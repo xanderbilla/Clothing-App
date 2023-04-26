@@ -183,6 +183,10 @@ color: white;
         display: flex;
         gap: 10px;
     }
+
+    .big__img{
+        height: auto;
+    }
     
     .side__img{
         width: 25%;
