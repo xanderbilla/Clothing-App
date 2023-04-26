@@ -1,0 +1,41 @@
+.container_title {
+    margin: 20px;
+}
+
+.container_filter {
+    display: flex;
+    justify-content: space-between;
+}
+
+.container_filter__item {
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container_filter__text {
+    font-size: 20px;
+    font-weight: 600;
+    margin-right: 20px;
+}
+
+.container_filter__select {
+    padding: 10px;
+    margin-right: 20px;
+}
+
+.container_filter__option {
+    font-size: 14px;
+}
+
+@media screen and (max-width: 767px) {
+    .container_filter {
+        display: block;
+        width: 0px 20px;
+    }
+
+    .container_filter__item {
+        padding: 0px;
+    }
+}
