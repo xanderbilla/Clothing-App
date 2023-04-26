@@ -40,8 +40,8 @@ const Navbar = ({ isOpen, setIsOpen}) => {
                             </Badge>
                         </Link>
                     </div>
-                    <Link to='/signup' className={styles.menu_auth}>REGISTER</Link>
-                    <Link to='/signin' className={styles.menu_auth}>SIGN IN</Link>
+                    <Link to='/register' className={styles.menu_auth}>REGISTER</Link>
+                    <Link to='/login' className={styles.menu_auth}>SIGN IN</Link>
                 </div>
             </div>
             <div className={styles.menuContainer}>

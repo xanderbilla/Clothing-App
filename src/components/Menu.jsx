@@ -22,10 +22,10 @@ export default function Menu({isOpen, setIsOpen}) {
           <Link className={styles.link_menu} to='/profile'>My Profile</Link>
         </li>
         <li className={styles.listItem} onClick={()=>setIsOpen(false)}>
-          <Link className={styles.link_menu} to='/signin'>Login</Link>
+          <Link className={styles.link_menu} to='/login'>Login</Link>
         </li>
         <li className={styles.listItem} onClick={()=>setIsOpen(false)}>
-          <Link className={styles.link_menu} to='/signup'>Register</Link>
+          <Link className={styles.link_menu} to='/register'>Register</Link>
         </li>
       </ul>
     </div>
