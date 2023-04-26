@@ -3,6 +3,7 @@ import MiniNavbar from '../components/MiniNavbar'
 import Newsletter from '../components/Newsletter'
 import Categories from '../components/Categories'
 import Slider from '../components/Slider'
+import FeaturedProduct from '../components/FeaturedProduct'
 
 const Home = () => {
   return (
@@ -10,6 +11,7 @@ const Home = () => {
           <MiniNavbar />
           <Slider />
           <Categories />
+          <FeaturedProduct/>
           <Newsletter />
           </>
   )
