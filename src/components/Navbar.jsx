@@ -4,10 +4,8 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import { Link } from 'react-router-dom';
 import Menu from './Menu';
-import { useState } from 'react';
 
-const Navbar = () => {
-const [isOpen, setIsOpen] = useState(false)
+const Navbar = ({ isOpen, setIsOpen}) => {
     const handleClick = () => {
         setIsOpen(!isOpen);
         if (!isOpen) {

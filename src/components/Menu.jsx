@@ -19,7 +19,7 @@ export default function Menu({isOpen, setIsOpen}) {
           <Link className={styles.link_menu} to='/category/Accessories'>Accessories</Link>
         </li>
         <li className={styles.listItem} onClick={()=>setIsOpen(false)}>
-          <Link className={styles.link_menu} to='/my-profile'>My Profile</Link>
+          <Link className={styles.link_menu} to='/profile'>My Profile</Link>
         </li>
         <li className={styles.listItem} onClick={()=>setIsOpen(false)}>
           <Link className={styles.link_menu} to='/signin'>Login</Link>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import ProductPage from './pages/ProductPage'
@@ -11,9 +11,10 @@ import Home from './pages/Home'
 import {Route, Routes } from 'react-router-dom'
 
 const App = () => {
+const [isOpen, setIsOpen] = useState(false)
   return (
     <>
-      <Navbar/>
+      <Navbar isOpen={isOpen} setIsOpen={setIsOpen}/>
         <Routes>
           <Route path='/' element={ <Home/>} />
           <Route path='/product/:id' element={<ProductPage/> } />
