@@ -9,6 +9,8 @@ import ProfilePage from './pages/ProfilePage'
 
 import Home from './pages/Home'
 import {Route, Routes } from 'react-router-dom'
+import SignUp from './pages/SignUp'
+import Login from './pages/Login'
 
 const App = () => {
 const [isOpen, setIsOpen] = useState(false)
@@ -21,6 +23,8 @@ const [isOpen, setIsOpen] = useState(false)
           <Route path='/category/:id' element={<ProductList/> } />
           <Route path='/cart' element={<Cart/> } />
           <Route path='/profile' element={<ProfilePage/> } />
+          <Route path='/register' element={<SignUp/> } />
+          <Route path='/login' element={<Login/> } />
           <Route path='/*' element={<Error/> } />
       </Routes>
       <Footer/>
