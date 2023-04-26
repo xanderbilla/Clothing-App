@@ -1,0 +1,168 @@
+.noScroll {
+    overflow: hidden;
+}
+
+.menuContainer {
+    width: 0;
+}
+
+.container {
+    height: 65px;
+    background-color: black;
+}
+
+.wrapper {
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.left {
+    flex: 4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.center {
+    flex: 1;
+}
+
+.right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.toggleButton {
+    flex: 0.3;
+    display: none;
+    justify-content: center;
+  }
+  
+  .hamburger {
+    display: flex;
+    width: 32px;
+    height: 25px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+  }
+  
+  .lines {
+    width: 100%;
+    height: 3px;
+    background-color: white;
+    transition: all 1.2s ease;
+  }
+  
+  .open {
+    transform: rotate(45deg) translate(5px, 10px);
+  }
+  
+  .hide {
+    opacity: 0;
+  }
+  
+  .close {
+    transform: rotate(-45deg) translate(5px, -10px);
+  }
+
+.search__container {
+    display: flex;
+    align-items: center;
+    margin-left: 5px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.search__input{
+    border-radius: 4px;
+    width: 300px;
+    padding: 5px;
+}
+
+.input {
+    border: none;
+    width: 100%;
+    font-size: 16px;
+    height: 100%;
+}
+
+.logo {
+    font-weight: bold;
+    text-align: center;
+}
+
+.menu_item {
+    font-size: 14px;
+    cursor: pointer;
+    margin-left: 0.3rem;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+}
+
+.menu_item:first-child {
+    margin-right: 24px;
+}
+
+.menu_auth{
+    font-size: 14px;
+    cursor: pointer;
+    margin-left: 0.7rem;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    border: 1px solid white;
+    width: 5rem;
+    padding: 8px;
+    font-weight: 500;
+}
+
+.menu_auth:hover {
+    background-color: white;
+    color: black;
+}
+
+
+@media screen and (max-width: 767px) {
+    .container {
+        height: 60px;
+        width: 100%;
+    }
+
+    .wrapper {
+        padding: 10px;
+    }
+
+    .logo {
+        font-size: 24px;
+    }
+
+    .center{
+        flex: 0;
+    }
+
+    .right {
+        justify-content: flex-end;
+        flex: 1;
+    }
+
+    .toggleButton{
+        display: block;
+        flex: 2;
+    }
+
+    .menu_item {
+        font-size: 12px;
+        margin-left: 10px;
+    }
+
+    .search__container, .menu_auth {
+        display: none;
+    }
+}
