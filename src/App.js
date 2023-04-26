@@ -4,6 +4,7 @@ import Footer from './components/Footer'
 import ProductPage from './pages/ProductPage'
 import Cart from './pages/Cart'
 import Error from './pages/Error'
+import ProfilePage from './pages/ProfilePage'
 
 import Home from './pages/Home'
 import {Route, Routes } from 'react-router-dom'
@@ -16,6 +17,7 @@ const App = () => {
           <Route path='/' element={ <Home/>} />
           <Route path='/product/:id' element={<ProductPage/> } />
           <Route path='/cart' element={<Cart/> } />
+          <Route path='/profile' element={<ProfilePage/> } />
           <Route path='/*' element={<Error/> } />
       </Routes>
       <Footer/>
