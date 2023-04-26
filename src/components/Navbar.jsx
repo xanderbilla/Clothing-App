@@ -25,8 +25,8 @@ const Navbar = ({ isOpen, setIsOpen}) => {
                         <span className={`${styles.lines} ${isOpen ? styles.close : ''}`}></span>
                     </div>
                 </div>
-                <Link to='/'><img src="https://i.imgur.com/S5awLwi.png" alt="" height="40px" /></Link>
                 <div className={styles.left}>
+                <Link to='/'><img src="https://i.imgur.com/S5awLwi.png" alt="" height="40px" /></Link>
                     <div className={styles.search__container}>
                         <input type="search" name="" id="" placeholder='Search...' className={styles.search__input} />
                         <SearchOutlinedIcon style={{ color: "gray", fontSize: 25 }} />
