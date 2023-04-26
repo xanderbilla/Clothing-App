@@ -1,0 +1,47 @@
+.mininavbar {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.074);
+}
+
+
+.left {
+    flex: 1;
+    margin-left: 20px;
+}
+
+.right {
+    flex: 4;
+    display: flex;
+    gap: 60px;
+    justify-content: flex-end;
+    margin-right: 20px;
+}
+
+.all_categories {
+    width: 140px;
+    height: 30px;
+    padding: 5px;
+    border: 1px solid rgb(246, 221, 221);
+    border-radius: 8px;
+}
+
+.links{
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.links:hover{
+    color: rgb(112, 112, 121);
+}
+
+@media screen and (max-width: 767px) {
+    .right{
+        display: none;
+    }
+}
