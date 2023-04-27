@@ -46,6 +46,10 @@
         text-align: center;
     }
 
+    .container_title{
+        font-size: 60px;
+    }
+
     .container_input {
         width: 80%;
     }
