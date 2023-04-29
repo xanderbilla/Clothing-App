@@ -1,9 +1,8 @@
 import React, { useEffect} from 'react'
 import Product from './Product'
 import styles from '../styles/list.module.css'
-import { popularProducts } from '../static/data'
 
-const List = ({ cat, filters, sort }) => {
+const List = ({ cat, filters, sort, popularProducts }) => {
     // const [products, setProducts] = useState([])
     // const [filteredProducts, setFilteredProducts] = useState([])
 

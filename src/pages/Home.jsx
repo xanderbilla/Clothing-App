@@ -5,13 +5,13 @@ import Categories from '../components/Categories'
 import Slider from '../components/Slider'
 import FeaturedProduct from '../components/FeaturedProduct'
 
-const Home = () => {
+const Home = ({popularProducts}) => {
   return (
       <>
           <MiniNavbar />
           <Slider />
           <Categories />
-          <FeaturedProduct/>
+          <FeaturedProduct popularProducts={popularProducts}/>
           <Newsletter />
           </>
   )

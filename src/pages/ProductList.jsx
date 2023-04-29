@@ -3,7 +3,7 @@ import List from '../components/List'
 import { useLocation } from 'react-router-dom'
 import { useState } from 'react'
 
-const ProductList = () => {
+const ProductList = ({popularProducts}) => {
 
     const [filters, setFilters] = useState({})
     const [sort, setSort] = useState("newest")
@@ -53,7 +53,7 @@ const ProductList = () => {
                     </select>
                 </div>
             </div>
-            <List cat={cat} sort={sort} filters={filters} />
+            <List cat={cat} sort={sort} filters={filters} popularProducts={popularProducts}/>
         </div>
     )
 }

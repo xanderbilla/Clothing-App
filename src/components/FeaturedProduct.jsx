@@ -1,9 +1,8 @@
 import React from 'react'
 import Product from './Product'
 import styles from '../styles/featuredProducts.module.css'
-import { featuredProducts } from '../static/data'
 
-const FeaturedProduct = () => {
+const FeaturedProduct = ({popularProducts}) => {
     return (
         <div className={styles.featured_products}>
             <div className={styles.top}>
@@ -12,7 +11,7 @@ const FeaturedProduct = () => {
             </div>
             <div className={styles.bottom}>
                 {
-                    featuredProducts.map(item => (
+                    popularProducts.slice(0,4).map(item => (
                         <Product item={item} key={item._id} />
                     ))
                 }
