@@ -49,55 +49,6 @@ export const categories = [
   }
 ];
 
-export const featuredProducts = [
-  {
-    _id: 1,
-    img: "https://images.pexels.com/photos/1972115/pexels-photo-1972115.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    img2: "https://images.pexels.com/photos/1163194/pexels-photo-1163194.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    title: "Long Sleeve Graphic T-Shirt",
-    isNew: true,
-    oldPrice: 19,
-    category: "Women",
-    price: 12,
-    size: ["M", "S", "XS"],
-    color: ["Yellow", "Black", "Green"]
-  },
-  {
-    _id: 2,
-    img: "https://images.pexels.com/photos/1759622/pexels-photo-1759622.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    img2: "https://images.pexels.com/photos/1620765/pexels-photo-1620765.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    title: "Coat",
-    isNew: true,
-    oldPrice: 19,
-    category: "Women",
-    price: 12,
-    size: ["M", "L", "XL", "XS"],
-    color: ["Yellow", "Blue", "Red"]
-
-  },
-  {
-    _id: 3,
-    img: "https://images.pexels.com/photos/1457983/pexels-photo-1457983.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    img2: null,
-    title: "Skirt",
-    oldPrice: 19,
-    category: "Women",
-    price: 12,
-    size: ["M", "L", "M"],
-    color: ["Red", "White", "Green"]
-  },
-  {
-    _id: 4,
-    img: "https://images.pexels.com/photos/2065200/pexels-photo-2065200.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    title: "Trouser",
-    oldPrice: 19,
-    category: "Men",
-    price: 12,
-    size: ["M", "XL", "XS"],
-    color: ["Blue", "Black", "White"]
-  }
-]
-
 export const popularProducts = [
   {
     _id: 1,
