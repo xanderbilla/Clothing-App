@@ -14,6 +14,18 @@ const ProductPage = () => {
   const location = useLocation()
   const productId = location.pathname.split("/")[2]
   const [product, setProduct] = useState({})
+  const [selectedSize, setSelectedSize] = useState(null);
+  const [selectedColor, setSelectedColor] = useState(null);
+
+  function handleSize(size) {
+    setSelectedSize(size);
+    console.log(size);
+  }
+  
+  function handleColor(color) {
+    setSelectedColor(color);
+    console.log(color);
+  }
 
   useEffect(() => {
     const getProducts = async () => {
@@ -26,6 +38,7 @@ const ProductPage = () => {
     };
     getProducts()
   }, [productId])
+
 
   return (
     <div className={styles.product}>
@@ -62,7 +75,8 @@ const ProductPage = () => {
               <span className={styles.option_title}>Size</span>
               <ul className={styles.select}>
                 {product.size.map((s) => (
-                  <li className={styles.selectOptions} key={s}>
+                  <li className={`${styles.selectOptions} ${selectedSize === s ? styles.selected : ''}`}
+                  onClick={() => handleSize(s)} key={s}>
                     {s}
                   </li>
                 ))}
@@ -74,7 +88,8 @@ const ProductPage = () => {
               <span className={styles.option_title}>Color</span>
               <ul className={styles.select}>
                 {product.color.map((c) => (
-                  <li className={styles.selectOptions} key={c}>
+                  <li className={`${styles.selectOptions} ${selectedColor === c ? styles.selected : ''}`}
+                  onClick={() => handleColor(c)} key={c}>
                     {c}
                   </li>
                 ))}
