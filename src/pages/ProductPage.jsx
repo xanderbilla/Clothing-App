@@ -16,8 +16,8 @@ const ProductPage = () => {
   const location = useLocation()
   const productId = location.pathname.split("/")[2]
   const [product, setProduct] = useState({})
-  const [selectedSize, setSelectedSize] = useState(null);
-  const [selectedColor, setSelectedColor] = useState(null);
+  const [selectedSize, setSelectedSize] = useState('S');
+  const [selectedColor, setSelectedColor] = useState('Blue');
 const dispatch = useDispatch()
 
   function handleSize(size) {
