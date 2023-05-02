@@ -1,0 +1,57 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-ecommercev2-dev-72920-authRole",
+      "UnauthRoleArn": "arn:aws:iam::954138568328:role/amplify-ecommercev2-dev-72920-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::954138568328:role/amplify-ecommercev2-dev-72920-authRole",
+      "Region": "ap-south-1",
+      "DeploymentBucketName": "amplify-ecommercev2-dev-72920-deployment",
+      "UnauthRoleName": "amplify-ecommercev2-dev-72920-unauthRole",
+      "StackName": "amplify-ecommercev2-dev-72920",
+      "StackId": "arn:aws:cloudformation:ap-south-1:954138568328:stack/amplify-ecommercev2-dev-72920/04bf1da0-e88d-11ed-bf78-061d7e0be836",
+      "AmplifyAppId": "dc8libp5nh7oz"
+    }
+  },
+  "auth": {
+    "ecommercev213f9baf9": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false,
+      "frontendAuthConfig": {
+        "socialProviders": [],
+        "usernameAttributes": [],
+        "signupAttributes": [
+          "EMAIL",
+          "NAME"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyMinLength": 8,
+          "passwordPolicyCharacters": []
+        },
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-ecommercev2-dev-72920-deployment/amplify-cfn-templates/auth/ecommercev213f9baf9-cloudformation-template.json",
+        "logicalId": "authecommercev213f9baf9"
+      },
+      "lastPushTimeStamp": "2023-05-02T02:06:25.008Z",
+      "output": {
+        "UserPoolId": "ap-south-1_yShQsK7Au",
+        "AppClientIDWeb": "38rm9dfql533jvckt57vrcmtc1",
+        "AppClientID": "3esa7lpkl9ljh2mfgd3rnb0d0s",
+        "IdentityPoolId": "ap-south-1:a6a1f9ac-7630-4dfa-b603-9c547bcc18aa",
+        "UserPoolArn": "arn:aws:cognito-idp:ap-south-1:954138568328:userpool/ap-south-1_yShQsK7Au",
+        "IdentityPoolName": "ecommercev213f9baf9_identitypool_13f9baf9__dev",
+        "UserPoolName": "ecommercev213f9baf9_userpool_13f9baf9"
+      },
+      "lastPushDirHash": "nTTf2zrYLdhLPvOKa8b4MLK7qis="
+    }
+  }
+}
