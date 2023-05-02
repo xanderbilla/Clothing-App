@@ -18,7 +18,7 @@ const ProductPage = () => {
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const apiName = 'apic2a5b53d';
+        const apiName = 'acharyapropubapi';
         API.get(apiName, `/products/${productId}`).then((response) => {
           setProduct(response);
         });
