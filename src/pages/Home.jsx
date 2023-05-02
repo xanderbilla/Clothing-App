@@ -11,7 +11,7 @@ const Home = ({popularProducts}) => {
           <MiniNavbar />
           <Slider />
           <Categories />
-          <FeaturedProduct popularProducts={popularProducts}/>
+          <FeaturedProduct/>
           <Newsletter />
           </>
   )
