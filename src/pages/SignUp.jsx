@@ -1,17 +1,16 @@
 import { useState } from 'react';
-// import { Auth } from 'aws-amplify';
+import { Auth } from 'aws-amplify';
 import styles from '../styles/signup.module.css';
-import { Link} from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 const SignUp = () => {
-  // const [formSubmitted, setFormSubmitted] = useState(false);
-  // const [verificationCode, setVerificationCode] = useState('');
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [verificationCode, setVerificationCode] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
-/*
   const [errorMessage, setErrorMessage] = useState('');
   const redirect = useNavigate();
 
@@ -27,7 +26,6 @@ const SignUp = () => {
       });
       setFormSubmitted(true);
       setName('');
-      setUsername('');
       setEmail('');
       setPassword('');
     } catch (error) {
@@ -44,24 +42,26 @@ const SignUp = () => {
     try {
       await Auth.confirmSignUp(username, verificationCode);
       redirect('/login')
+      setUsername('');
     } catch (error) {
       console.log('Error verifying user: ', error);
       setErrorMessage('Verification code is invalid. Please try again.');
     }
   };
-*/
 
+  /*
   const handleSignUp = () => {
     console.log(`Username: ${username}`);
     console.log(`Password: ${password}`);
     console.log(`Email: ${email}`);
     console.log(`Name: ${name}`);
   }
-  
+  */
+
   return (
     <div className={styles.signup}>
       <div className={styles.wrapper}>
-        {/* {!formSubmitted && ( */}
+        {!formSubmitted && (
           <form className={styles.signup_form}>
             <span className={styles.title}>Create An Account!</span>
             <div className={styles.form_input}>
@@ -117,20 +117,20 @@ const SignUp = () => {
             <button className={styles.button} type="button" onClick={handleSignUp}>
               Sign Up
             </button>
-            {/* {errorMessage && (
+            {errorMessage && (
               <div className={styles.error}>
                 <span className={styles.warning}>{errorMessage}</span>
               </div>
-            )} */}
+            )}
 
-            <Link to='/signin'>
+            <Link to='/login'>
               <button className={styles.button}>
                 Sign In
               </button>
             </Link>
           </form>
-        {/* )} */}
-        {/* {formSubmitted && (
+        )}
+        {formSubmitted && (
           <form className={styles.verify_form}>
             <span className={styles.title}>Verify Your Account!</span>
             <div className={styles.form_input}>
@@ -153,7 +153,7 @@ const SignUp = () => {
               </div>
             )}
           </form>
-        )} */}
+        )}
       </div>
     </div>
   );
