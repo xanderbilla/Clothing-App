@@ -6,6 +6,8 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { useLocation } from 'react-router';
 import { API } from 'aws-amplify';
+import { addProduct } from '../redux/cartRedux';
+import { useDispatch } from 'react-redux';
 
 const ProductPage = () => {
 
@@ -16,15 +18,22 @@ const ProductPage = () => {
   const [product, setProduct] = useState({})
   const [selectedSize, setSelectedSize] = useState(null);
   const [selectedColor, setSelectedColor] = useState(null);
+const dispatch = useDispatch()
 
   function handleSize(size) {
     setSelectedSize(size);
     console.log(size);
   }
   
-  function handleColor(color) {
+  const handleColor = (color) => {
     setSelectedColor(color);
     console.log(color);
+  }
+
+  const handleCart = () => {
+    dispatch(addProduct(
+      { ...product, quantity, selectedSize, selectedColor }
+    ))
   }
 
   useEffect(() => {
@@ -108,7 +117,7 @@ const ProductPage = () => {
               <FavoriteBorderIcon /> ADD TO WISH LIST
             </div>
           </div>
-          <span className={styles.product__add}>
+          <span className={styles.product__add} onClick={handleCart}>
             <AddShoppingCartIcon /> Add to cart
           </span>
         </div>
