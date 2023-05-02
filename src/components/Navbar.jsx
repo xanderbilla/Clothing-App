@@ -6,10 +6,12 @@ import { Link, redirect } from 'react-router-dom';
 import Menu from './Menu';
 import { Auth } from 'aws-amplify';
 import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 const Navbar = ({ isOpen, setIsOpen}) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+    const quantity = useSelector(state => state.cart.quantity)
+    console.log(quantity);
     useEffect(() => {
         checkAuth();
     }, []);
@@ -63,7 +65,7 @@ const Navbar = ({ isOpen, setIsOpen}) => {
                 <div className={styles.right}>
                     <div className={styles.menu_item}>
                         <Link style={{ textDecoration: "none", color: "inherit" }} to='/cart'>
-                            <Badge badgeContent={4} color="primary">
+                            <Badge badgeContent={quantity} color="primary">
                                 <ShoppingCartOutlinedIcon color="black" />
                             </Badge>
                         </Link>
