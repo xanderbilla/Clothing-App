@@ -13,10 +13,10 @@ const Cart = () => {
         <div className={styles.container}>
             <h1 className={styles.container_title}>YOUR BAG</h1>
             <div className={styles.container_top}>
-                <button className={`${styles.container_top__button} ${cart.quantity !== 0 ? '' : styles.disable_button}`} onClick={redirect('/')}>CONTINUE SHOPPING</button>
-                <button className={`${styles.container_top__button} ${cart.quantity !== 0 ? '' : styles.disable_button}`}>CHECKOUT NOW</button>
+                <button className={`${styles.container_top__button} ${cart.quantity ? '' : styles.disable_button}`} onClick={redirect('/')}>CONTINUE SHOPPING</button>
+                <button className={`${styles.container_top__button} ${cart.quantity ? '' : styles.disable_button}`}>CHECKOUT NOW</button>
             </div>
-            {cart.quantity !== 0 ?
+            {cart.quantity ?
                 <div className={styles.container_bottom}>
                     <div className={styles.container_bottom__info}>
                         {cart.products.map((product) => (
