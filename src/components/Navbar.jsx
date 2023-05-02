@@ -2,10 +2,27 @@ import styles from '../styles/navbar.module.css'
 import Badge from '@mui/material/Badge';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
-import { Link } from 'react-router-dom';
+import { Link, redirect } from 'react-router-dom';
 import Menu from './Menu';
+import { Auth } from 'aws-amplify';
+import { useState, useEffect } from 'react';
 
 const Navbar = ({ isOpen, setIsOpen}) => {
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    useEffect(() => {
+        checkAuth();
+    }, []);
+
+    const checkAuth = async () => {
+        try {
+            await Auth.currentAuthenticatedUser();
+            setIsLoggedIn(true);
+        } catch (error) {
+            setIsLoggedIn(false);
+        }
+    };
+
     const handleClick = () => {
         setIsOpen(!isOpen);
         if (!isOpen) {
@@ -13,6 +30,17 @@ const Navbar = ({ isOpen, setIsOpen}) => {
         } else {
             document.body.classList.remove(styles.noScroll);
         }
+    };
+
+    const logoutHandler = async () => {
+        try {
+            await Auth.signOut();
+            console.log('User signed out');
+            redirect('/');
+            setIsLoggedIn(false);
+          } catch (error) {
+            console.log('Error signing out: ', error);
+          }
     };
 
     return (
@@ -28,8 +56,8 @@ const Navbar = ({ isOpen, setIsOpen}) => {
                 <div className={styles.left}>
                 <Link to='/'><img src="https://i.imgur.com/S5awLwi.png" alt="" height="40px" /></Link>
                     <div className={styles.search__container}>
-                        <input type="search" name="" id="" placeholder='Search...' className={styles.search__input} />
                         <SearchOutlinedIcon style={{ color: "gray", fontSize: 25 }} />
+                        <input type="search" name="" id="" placeholder='Search...' className={styles.search__input} />
                     </div>
                 </div>
                 <div className={styles.right}>
@@ -40,8 +68,14 @@ const Navbar = ({ isOpen, setIsOpen}) => {
                             </Badge>
                         </Link>
                     </div>
-                    <Link to='/register' className={styles.menu_auth}>REGISTER</Link>
-                    <Link to='/login' className={styles.menu_auth}>SIGN IN</Link>
+                    {isLoggedIn ? (
+                        <span className={styles.menu_auth} onClick={logoutHandler}>LOGOUT</span>
+                    ) : (
+                        <>
+                            <Link to='/register' className={styles.menu_auth}>REGISTER</Link>
+                            <Link to='/login' className={styles.menu_auth}>SIGN IN</Link>
+                        </>
+                    )}
                 </div>
             </div>
             <div className={styles.menuContainer}>
