@@ -133,6 +133,13 @@
     color: black;
 }
 
+.menu_profile{
+    text-decoration: none;
+    color: white;
+    border: 2px solid white;
+    border-radius: 999px;
+    padding: 4px;
+}
 
 @media screen and (max-width: 767px) {
     .container {
