@@ -144,6 +144,21 @@
     color: white;
 }
 
+.message{
+    font-size: 20px;
+    font-weight: 600;
+    color: teal;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 35vh;
+}
+
+.disable_button{
+    cursor:  not-allowed;
+    color: teal;
+}
+
 @media screen and (max-width: 767px) {
     .container {
         padding: 10px;
