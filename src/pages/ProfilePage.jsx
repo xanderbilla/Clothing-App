@@ -1,7 +1,27 @@
+import { Auth } from 'aws-amplify';
 import DataTable from '../components/DataTable'
 import styles from '../styles/profilePage.module.css'
+import { useState } from 'react';
 
 const ProfilePage = () => {
+const[name, setName] = useState('')
+const[email, setEmail] = useState('')
+const[phone, setPhone] = useState('')
+const[gender, setGender] = useState('')
+    const logCurrentUser = async () => {
+        try {
+          const user = await Auth.currentAuthenticatedUser();
+            setName(user.attributes.name)
+            setEmail(user.attributes.email)
+            setPhone(user.attributes.phone_number)
+            setGender(user.attributes.gender)
+        } catch (error) {
+          console.log('Error getting current user: ', error);
+        }
+    }
+    
+    logCurrentUser()
+
     return (
         <div className={styles.container}>
             <h2>My Profile</h2>
@@ -19,11 +39,11 @@ const ProfilePage = () => {
                         <tbody>
                             <tr className={styles.table_row}>
                                 <th className={styles.table_head}>Name:</th>
-                                <td className={styles.table_data}>User</td>
+                                <td className={styles.table_data}>{name}</td>
                             </tr>
                             <tr className={styles.table_row}>
                                 <th className={styles.table_head}>Email:</th>
-                                <td className={styles.table_data}>user@email.com</td>
+                                <td className={styles.table_data}>{email}</td>
                             </tr>
                             <tr className={styles.table_row}>
                                 <th className={styles.table_head}>Address:</th>
@@ -31,11 +51,11 @@ const ProfilePage = () => {
                             </tr>
                             <tr className={styles.table_row}>
                                 <th className={styles.table_head}>Phone:</th>
-                                <td className={styles.table_data}>+40 123 456 7890</td>
+                                <td className={styles.table_data}>{phone}</td>
                             </tr>
                             <tr className={styles.table_row}>
                                 <th className={styles.table_head}>Gender:</th>
-                                <td className={styles.table_data}>Male</td>
+                                <td className={styles.table_data}>{gender}</td>
                             </tr>
                             <tr className={styles.table_row}>
                                 <th className={styles.table_head}>Date Of Birth:</th>
