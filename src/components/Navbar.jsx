@@ -7,8 +7,9 @@ import Menu from './Menu';
 import { Auth } from 'aws-amplify';
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
-const Navbar = ({ isOpen, setIsOpen}) => {
+const Navbar = ({ isOpen, setIsOpen }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const quantity = useSelector(state => state.cart.quantity)
     console.log(quantity);
@@ -40,9 +41,9 @@ const Navbar = ({ isOpen, setIsOpen}) => {
             console.log('User signed out');
             redirect('/');
             setIsLoggedIn(false);
-          } catch (error) {
+        } catch (error) {
             console.log('Error signing out: ', error);
-          }
+        }
     };
 
     return (
@@ -56,7 +57,7 @@ const Navbar = ({ isOpen, setIsOpen}) => {
                     </div>
                 </div>
                 <div className={styles.left}>
-                <Link to='/'><img src="https://i.imgur.com/S5awLwi.png" alt="" height="40px" /></Link>
+                    <Link to='/'><img src="https://i.imgur.com/S5awLwi.png" alt="" height="40px" /></Link>
                     <div className={styles.search__container}>
                         <SearchOutlinedIcon style={{ color: "gray", fontSize: 25 }} />
                         <input type="search" name="" id="" placeholder='Search...' className={styles.search__input} />
@@ -71,7 +72,10 @@ const Navbar = ({ isOpen, setIsOpen}) => {
                         </Link>
                     </div>
                     {isLoggedIn ? (
-                        <span className={styles.menu_auth} onClick={logoutHandler}>LOGOUT</span>
+                        <>
+                            <Link to='/profile' className={styles.menu_profile}><PersonOutlineOutlinedIcon/></Link>
+                            <span className={styles.menu_auth} onClick={logoutHandler}>LOGOUT</span>
+                        </>
                     ) : (
                         <>
                             <Link to='/register' className={styles.menu_auth}>REGISTER</Link>
