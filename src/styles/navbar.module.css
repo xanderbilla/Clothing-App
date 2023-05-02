@@ -19,14 +19,10 @@
 }
 
 .left {
-    flex: 4;
+    flex: 2;
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
-
-.center {
-    flex: 1;
 }
 
 .right {
@@ -74,15 +70,24 @@
 .search__container {
     display: flex;
     align-items: center;
-    margin-left: 5px;
-    padding: 5px;
+    justify-content: center;
+    width: 400px;
+    padding: 4px;
     cursor: pointer;
+    border-radius: 8px;
+    background-color: white;
 }
 
 .search__input{
-    border-radius: 4px;
-    width: 300px;
+    width: 400px;
+    font-size: 16px;
     padding: 5px;
+    background-color: transparent;
+    border: none;
+}
+
+.search__input:focus{
+    outline: none;
 }
 
 .input {
