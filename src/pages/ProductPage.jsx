@@ -16,15 +16,15 @@ const ProductPage = () => {
   const location = useLocation()
   const productId = location.pathname.split("/")[2]
   const [product, setProduct] = useState({})
-  const [selectedSize, setSelectedSize] = useState('S');
-  const [selectedColor, setSelectedColor] = useState('Blue');
-const dispatch = useDispatch()
+  const [selectedSize, setSelectedSize] = useState('');
+  const [selectedColor, setSelectedColor] = useState('');
+  const dispatch = useDispatch()
 
   function handleSize(size) {
     setSelectedSize(size);
     console.log(size);
   }
-  
+
   const handleColor = (color) => {
     setSelectedColor(color);
     console.log(color);
@@ -85,7 +85,7 @@ const dispatch = useDispatch()
               <ul className={styles.select}>
                 {product.size.map((s) => (
                   <li className={`${styles.selectOptions} ${selectedSize === s ? styles.selected : ''}`}
-                  onClick={() => handleSize(s)} key={s}>
+                    onClick={() => handleSize(s)} key={s}>
                     {s}
                   </li>
                 ))}
@@ -98,7 +98,7 @@ const dispatch = useDispatch()
               <ul className={styles.select}>
                 {product.color.map((c) => (
                   <li className={`${styles.selectOptions} ${selectedColor === c ? styles.selected : ''}`}
-                  onClick={() => handleColor(c)} key={c}>
+                    onClick={() => handleColor(c)} key={c}>
                     {c}
                   </li>
                 ))}
@@ -117,8 +117,7 @@ const dispatch = useDispatch()
               <FavoriteBorderIcon /> ADD TO WISH LIST
             </div>
           </div>
-          <span className={styles.product__add} onClick={handleCart}>
-            <AddShoppingCartIcon /> Add to cart
+          <span className={styles.product__add} onClick={selectedColor !== '' && selectedSize !== '' ? handleCart : null}><AddShoppingCartIcon/>ADD TO CART
           </span>
         </div>
         <div className={styles.product__details}>

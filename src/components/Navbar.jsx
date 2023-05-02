@@ -7,7 +7,7 @@ import Menu from './Menu';
 import { Auth } from 'aws-amplify';
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 
 const Navbar = ({ isOpen, setIsOpen }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -73,7 +73,7 @@ const Navbar = ({ isOpen, setIsOpen }) => {
                     </div>
                     {isLoggedIn ? (
                         <>
-                            <Link to='/profile' className={styles.menu_profile}><PersonOutlineOutlinedIcon/></Link>
+                            <Link to='/profile' className={styles.menu_profile}><AccountCircleOutlinedIcon fontSize='large'/></Link>
                             <span className={styles.menu_auth} onClick={logoutHandler}>LOGOUT</span>
                         </>
                     ) : (
