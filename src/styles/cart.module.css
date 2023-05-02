@@ -126,6 +126,8 @@
     margin: 30px 0;
     display: flex;
     justify-content: space-between;
+    font-size: 20px;
+    font-weight: 400;
 }
 
 .summary__total_price,
