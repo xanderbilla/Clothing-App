@@ -2,8 +2,11 @@ import React from 'react'
 import styles from '../styles/cart.module.css'
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
+import { useSelector } from 'react-redux';
 
 const Cart = () => {
+    const cart = useSelector(state => state.cart)
+    console.log(cart);
     return (
         <div className={styles.container}>
             <h1 className={styles.container_title}>YOUR BAG</h1>
@@ -13,63 +16,41 @@ const Cart = () => {
             </div>
             <div className={styles.container_bottom}>
                 <div className={styles.container_bottom__info}>
-                    <div className={styles.product}>
+                    {cart.products.map((product) => (
+
+                        <div className={styles.product}>
                         <div className={styles.product__details}>
-                            <img className={styles.product__image} src="https://i.imgur.com/Pi8E0wl.png" alt="" />
+                            <img className={styles.product__image} src={product.img[1]} alt="" />
                             <div className={styles.product__detail}>
                                 <span className={styles.product__name}>
-                                    <b>Product: </b>NIKE THUNDER SHOES
+                                    <b>Product: </b>{product.title}
                                 </span>
                                 <span className={styles.product__id}>
-                                    <b>ID: </b>2895264565
+                                    <b>ID: </b>{product.prodId}
                                 </span>
-                                <div className={styles.product__color} style={{ backgroundColor: 'black' }} />
+                                <div className={styles.product__color} style={{ backgroundColor: `${product.selectedColor.toLowerCase()}` }} />
                                 <span className={styles.product__size}>
-                                    <b>Size: </b>37.5
+                                    <b>Size: </b>{product.selectedSize}
                                 </span>
                             </div>
                         </div>
                         <div className={styles.product__price_detail}>
                             <div className={styles.product__amount}>
                                 <RemoveIcon />
-                                <span className={styles.product__quantity}>2</span>
+                                <span className={styles.product__quantity}>{product.quantity}</span>
                                 <AddIcon />
                             </div>
-                            <div className={styles.product__price}>$ 3499</div>
+                            <div className={styles.product__price}>${product.discount_price * product.quantity}</div>
+                        </div>                        
                         </div>
-                    </div>
+                    ))}
                     <hr className={styles.product__divider} />
-                    <div className={styles.product}>
-                        <div className={styles.product__details}>
-                            <img className={styles.product__image} src="https://i.imgur.com/IM51XNQ.png" alt="" />
-                            <div className={styles.product__detail}>
-                                <span className={styles.product__name}>
-                                    <b>Product: </b>DUKE SPORT T-SHIRT
-                                </span>
-                                <span className={styles.product__id}>
-                                    <b>ID: </b>29637867
-                                </span>
-                                <div className={styles.product__color} style={{ backgroundColor: 'navy' }} />
-                                <span className={styles.product__size}>
-                                    <b>Size: </b>M
-                                </span>
-                            </div>
-                        </div>
-                        <div className={styles.product__price_detail}>
-                            <div className={styles.product__amount}>
-                                <RemoveIcon />
-                                <span className={styles.product__quantity}>1</span>
-                                <AddIcon />
-                            </div>
-                            <div className={styles.product__price}>$ 899</div>
-                        </div>
-                    </div>
                 </div>
                 <div className={styles.container_bottom__summary}>
                     <h1 className={styles.summary__title}>ORDER SUMMARY</h1>
                     <div className={styles.summary__item}>
                         <span className={styles.summary__item_text}>Subtotal</span>
-                        <div className={styles.summary__item_price}>$ 4100</div>
+                        <div className={styles.summary__item_price}>$ {cart.total}</div>
                     </div>
                     <div className={styles.summary__item}>
                         <span className={styles.summary__item_text}>Estimated Shiping</span>
@@ -81,7 +62,7 @@ const Cart = () => {
                     </div>
                     <div className={styles.summary__item}>
                         <span className={styles.summary__total_text}>Total</span>
-                        <div className={styles.summary__total_price}>$ 4100</div>
+                        <div className={styles.summary__total_price}>$ {cart.total}</div>
                     </div>
                     <button className={styles.summary__checkout}>CHECKOUT NOW</button>
                 </div>
