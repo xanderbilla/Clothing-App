@@ -170,6 +170,11 @@ background-color: #272727;
 color: white;
 }
 
+.selected{
+    background-color: black;
+    color: #fff
+}
+
 @media screen and (max-width: 767px) {
     .product{
         flex-direction: column;
