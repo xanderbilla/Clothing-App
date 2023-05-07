@@ -1,13 +1,13 @@
 import styles from '../styles/navbar.module.css'
 import Badge from '@mui/material/Badge';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import { Link, redirect } from 'react-router-dom';
 import Menu from './Menu';
 import { Auth } from 'aws-amplify';
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import Search from './Search';
 
 const Navbar = ({ isOpen, setIsOpen }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -58,10 +58,9 @@ const Navbar = ({ isOpen, setIsOpen }) => {
                 </div>
                 <div className={styles.left}>
                     <Link to='/'><img src="https://i.imgur.com/S5awLwi.png" alt="" height="40px" /></Link>
-                    <div className={styles.search__container}>
-                        <SearchOutlinedIcon style={{ color: "gray", fontSize: 25 }} />
-                        <input type="search" name="" id="" placeholder='Search...' className={styles.search__input} />
-                    </div>
+                </div>
+                <div className={styles.center}>
+                    <Search />
                 </div>
                 <div className={styles.right}>
                     <div className={styles.menu_item}>
@@ -73,7 +72,7 @@ const Navbar = ({ isOpen, setIsOpen }) => {
                     </div>
                     {isLoggedIn ? (
                         <>
-                            <Link to='/profile' className={styles.menu_profile}><AccountCircleOutlinedIcon fontSize='large'/></Link>
+                            <Link to='/profile' className={styles.menu_profile}><AccountCircleOutlinedIcon fontSize='large' /></Link>
                             <span className={styles.menu_auth} onClick={logoutHandler}>LOGOUT</span>
                         </>
                     ) : (
