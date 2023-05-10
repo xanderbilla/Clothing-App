@@ -1,0 +1,20 @@
+.container {
+    padding: 20px;
+}
+
+.title {
+    font-weight: 300;
+    text-align: center;
+}
+
+
+.link{
+    text-decoration: none;
+    color: inherit;
+    background-color: white;
+}
+
+.orders{
+    display: flex;
+    align-items: center;justify-content: center;
+}

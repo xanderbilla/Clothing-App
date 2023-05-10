@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import styles from '../styles/search.module.css'
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
-import { info } from '../static/info.js'
 
 const Search = () => {
   const [query, setQuery] = useState('')
