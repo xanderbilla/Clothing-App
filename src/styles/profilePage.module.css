@@ -52,25 +52,12 @@
 }
 
 .edit:hover{
-    border: none;
     color: white;
     background-color: rgba(0, 0, 0, 0.448);
 }
 
-/* Table CSS */
-
-.table{
-    width: 70%;
-}
-
-.table_head, .table_data{
-   padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.086);
-}
-
-.table_head{
-    width: 200px;
+.edit_hide{
+    display: none;
 }
 
 /* My Orders */
@@ -81,6 +68,7 @@
     color: rgba(0, 0, 0, 0.515);
     margin: 16px 0;
 }
+
 
 @media screen and (max-width: 767px) {
 .center{

@@ -41,23 +41,14 @@ const SignUp = () => {
   const handleVerification = async () => {
     try {
       await Auth.confirmSignUp(username, verificationCode);
-      redirect('/login')
+      redirect('/login');
       setUsername('');
     } catch (error) {
       console.log('Error verifying user: ', error);
       setErrorMessage('Verification code is invalid. Please try again.');
     }
   };
-
-  /*
-  const handleSignUp = () => {
-    console.log(`Username: ${username}`);
-    console.log(`Password: ${password}`);
-    console.log(`Email: ${email}`);
-    console.log(`Name: ${name}`);
-  }
-  */
-
+  
   return (
     <div className={styles.signup}>
       <div className={styles.wrapper}>

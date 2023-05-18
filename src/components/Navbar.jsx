@@ -1,7 +1,7 @@
 import styles from '../styles/navbar.module.css'
 import Badge from '@mui/material/Badge';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-import { Link, redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Menu from './Menu';
 import { Auth } from 'aws-amplify';
 import { useState, useEffect } from 'react';
@@ -12,7 +12,6 @@ import Search from './Search';
 const Navbar = ({ isOpen, setIsOpen }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const quantity = useSelector(state => state.cart.quantity)
-    console.log(quantity);
     useEffect(() => {
         checkAuth();
     }, []);
@@ -39,7 +38,7 @@ const Navbar = ({ isOpen, setIsOpen }) => {
         try {
             await Auth.signOut();
             console.log('User signed out');
-            redirect('/');
+            window.location.replace('/');
             setIsLoggedIn(false);
         } catch (error) {
             console.log('Error signing out: ', error);

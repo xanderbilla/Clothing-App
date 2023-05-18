@@ -4,7 +4,7 @@ import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 
 const Search = () => {
   const [query, setQuery] = useState('')
-  console.log(query);
+  // console.log(query);
   return (
     <div className={styles.container}>
       <div className={styles.search}>
