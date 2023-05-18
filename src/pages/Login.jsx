@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import styles from '../styles/login.module.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Auth } from 'aws-amplify';
 
 const Login = () => {
@@ -11,14 +11,13 @@ const Login = () => {
 
   const [errorMessage, setErrorMessage] = useState('');
   
-  const navigate = useNavigate();
   const handleLogin = async (event) => {
     event.preventDefault();
 
     try {
       const user = await Auth.signIn(username, password);
-      console.log(user);
       window.location.replace('/');
+      console.log(user);
     } catch (error) {
       console.log('error signing in', error);
       setErrorMessage('Invalid Credentials')
@@ -75,7 +74,7 @@ const Login = () => {
               <span className={styles.warning}>{errorMessage}</span>
             </div>
           )}
-          <Link to='/signup'>
+          <Link to='/register'>
             <button className={styles.button}>
               Sign Up
             </button>
