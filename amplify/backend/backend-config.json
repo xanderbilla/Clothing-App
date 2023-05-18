@@ -9,6 +9,14 @@
           ],
           "category": "function",
           "resourceName": "acharyaproprodfunc"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "acharyaprousersfunc"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -58,6 +66,22 @@
       ],
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
+    },
+    "acharyaprousersfunc": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn",
+            "StreamArn"
+          ],
+          "category": "storage",
+          "resourceName": "acharyausersdb"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
     }
   },
   "parameters": {
@@ -76,10 +100,30 @@
           "resourceName": "acharyaproprodfunc"
         }
       ]
+    },
+    "AMPLIFY_function_acharyaprousersfunc_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "acharyaprousersfunc"
+        }
+      ]
+    },
+    "AMPLIFY_function_acharyaprousersfunc_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "acharyaprousersfunc"
+        }
+      ]
     }
   },
   "storage": {
     "acharyaprodb": {
+      "providerPlugin": "awscloudformation",
+      "service": "DynamoDB"
+    },
+    "acharyausersdb": {
       "providerPlugin": "awscloudformation",
       "service": "DynamoDB"
     }
