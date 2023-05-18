@@ -1,20 +1,19 @@
-import React from 'react'
-import MiniNavbar from '../components/MiniNavbar'
-import Newsletter from '../components/Newsletter'
-import Categories from '../components/Categories'
-import Slider from '../components/Slider'
-import FeaturedProduct from '../components/FeaturedProduct'
+import MiniNavbar from '../components/MiniNavbar';
+import Newsletter from '../components/Newsletter';
+import Categories from '../components/Categories';
+import Slider from '../components/Slider';
+import FeaturedProduct from '../components/FeaturedProduct';
 
-const Home = ({popularProducts}) => {
+const Home = ({ popularProducts }) => {
   return (
-      <>
-          <MiniNavbar />
-          <Slider />
-          <Categories />
-          <FeaturedProduct popularProducts={popularProducts}/>
-          <Newsletter />
-          </>
-  )
-}
+    <>
+      <MiniNavbar />
+      <Slider />
+      <Categories />
+      <FeaturedProduct />
+      <Newsletter />
+    </>
+  );
+};
 
-export default Home
+export default Home;

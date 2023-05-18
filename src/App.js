@@ -11,6 +11,7 @@ import Home from './pages/Home'
 import {Route, Routes } from 'react-router-dom'
 import SignUp from './pages/SignUp'
 import Login from './pages/Login'
+import Orders from './pages/Orders'
 
 const App = () => {
 
@@ -26,6 +27,7 @@ const [isOpen, setIsOpen] = useState(false)
           <Route path='/profile' element={<ProfilePage/> } />
           <Route path='/register' element={<SignUp/> } />
           <Route path='/login' element={<Login/> } />
+          <Route path='/orders' element={<Orders/> } />
           <Route path='/*' element={<Error/> } />
       </Routes>
       <Footer/>

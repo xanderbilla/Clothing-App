@@ -1,36 +1,35 @@
-//Implement Forgot Password (Future Plans)
+// Implement Forgot Password (Future Plans)
 
 import React, { useState } from 'react';
 import styles from '../styles/login.module.css';
 import { Link } from 'react-router-dom';
-// import { Auth } from 'aws-amplify';
+import { Auth } from 'aws-amplify';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  /*
+
   const [errorMessage, setErrorMessage] = useState('');
   
-  const navigate = useNavigate();
   const handleLogin = async (event) => {
     event.preventDefault();
 
     try {
       const user = await Auth.signIn(username, password);
+      window.location.replace('/');
       console.log(user);
-      navigate('/');
     } catch (error) {
       console.log('error signing in', error);
       setErrorMessage('Invalid Credentials')
     }
   };
-  */
 
+/*
   const handleLogin = () => {
     console.log(`Username: ${username}`);
     console.log(`Password: ${password}`);
   }
-
+*/
   return (
     <div className={styles.signup}>
       <div className={styles.wrapper}>
@@ -70,12 +69,12 @@ const Login = () => {
           <button className={styles.button} type="button" onClick={handleLogin}>
             Sign In
           </button>
-          {/* {errorMessage && (
+          {errorMessage && (
             <div className={styles.error}>
               <span className={styles.warning}>{errorMessage}</span>
             </div>
-          )} */}
-          <Link to='/signup'>
+          )}
+          <Link to='/register'>
             <button className={styles.button}>
               Sign Up
             </button>

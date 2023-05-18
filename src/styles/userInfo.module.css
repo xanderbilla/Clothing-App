@@ -1,0 +1,44 @@
+/* Table CSS */
+
+.table {
+    width: 70%;
+}
+
+.table_head,
+.table_data {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.086);
+}
+
+.table_head {
+    width: 200px;
+}
+
+/* Edit Info a*/
+
+.input {
+    font-size: 16px;
+    padding: 6px;
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.button {
+    padding: 6px;
+    margin: 14px 0;
+    font-size: 14px;
+    border-radius: 4px;
+    background-color: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+.button:first-child{
+    background-color: #0a0a3b;
+    color: white;
+    font-weight: 500;
+}
