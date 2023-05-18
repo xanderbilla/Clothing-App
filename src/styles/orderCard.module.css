@@ -4,7 +4,9 @@
     flex-direction: column;
     padding: 10px;
     width: 90%;
-    border-radius: 8px;box-shadow: 0px 9px 15px -3px rgba(0,0,0,0.1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    box-shadow: 0px 9px 15px -3px rgba(0,0,0,0.1);
 }
 
 .top, .product{
@@ -55,15 +57,31 @@ gap: 10px;
 
 .button{
     padding: 8px;
-    width: 150px;
+    width: 120px;
     font-size: 14px;
     font-weight: 600;
     background-color: white;
     cursor: pointer;
-    height: 45px;
+    height: 40px;
 }
 
 .button:hover{
     background-color: black;
     color: white;
+}
+
+.summary{
+    padding: 4px;
+    border-top: 1px solid rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.orderDesc{
+    font-size: 16px;
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+    opacity: 0.6;
 }

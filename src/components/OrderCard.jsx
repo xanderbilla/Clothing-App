@@ -57,6 +57,13 @@ const OrderCard = () => {
                     </div>
                 </div>
             </div>
+            <div className={styles.summary}>
+                <div className={styles.orderDesc}>
+                    <span className={styles.count}><b>Qunaitity: </b> 4</span>
+                    <span className={styles.total}><b>Total: </b> $1999</span>
+                </div>
+                <span className={styles.order_id}><b>Status: </b> Pending</span>
+            </div>
         </div>
     )
 }
