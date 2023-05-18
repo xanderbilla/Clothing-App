@@ -1,6 +1,6 @@
 {
   "api": {
-    "acharyapropubapi": {
+    "ecommerceApiOrders": {
       "dependsOn": [
         {
           "attributes": [
@@ -8,15 +8,21 @@
             "Arn"
           ],
           "category": "function",
-          "resourceName": "acharyaproprodfunc"
-        },
+          "resourceName": "ecommerceFuncOrders"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    },
+    "ecommerceApiProd": {
+      "dependsOn": [
         {
           "attributes": [
             "Name",
             "Arn"
           ],
           "category": "function",
-          "resourceName": "acharyaprousersfunc"
+          "resourceName": "ecommerceFuncProd"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -24,34 +30,32 @@
     }
   },
   "auth": {
-    "ecommercev2935d596e": {
+    "ecommercev21b0a9e92": {
       "customAuth": false,
       "dependsOn": [],
-      "frontendAuthConfig": {
-        "mfaConfiguration": "OFF",
-        "mfaTypes": [
-          "SMS"
-        ],
-        "passwordProtectionSettings": {
-          "passwordPolicyCharacters": [],
-          "passwordPolicyMinLength": 8
-        },
-        "signupAttributes": [
-          "EMAIL",
-          "NAME"
-        ],
-        "socialProviders": [],
-        "usernameAttributes": [],
-        "verificationMechanisms": [
-          "EMAIL"
-        ]
-      },
       "providerPlugin": "awscloudformation",
-      "service": "Cognito"
+      "service": "Cognito",
+      "serviceType": "imported"
     }
   },
   "function": {
-    "acharyaproprodfunc": {
+    "ecommerceFuncOrders": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn",
+            "StreamArn"
+          ],
+          "category": "storage",
+          "resourceName": "acharyaordersdb"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "ecommerceFuncProd": {
       "build": true,
       "dependsOn": [
         {
@@ -66,64 +70,136 @@
       ],
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
-    },
-    "acharyaprousersfunc": {
-      "build": true,
-      "dependsOn": [
-        {
-          "attributes": [
-            "Name",
-            "Arn",
-            "StreamArn"
-          ],
-          "category": "storage",
-          "resourceName": "acharyausersdb"
-        }
-      ],
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
     }
   },
   "parameters": {
-    "AMPLIFY_function_acharyaproprodfunc_deploymentBucketName": {
+    "AMPLIFY_auth_ecommercev21b0a9e92_allowUnauthenticatedIdentities": {
       "usedBy": [
         {
-          "category": "function",
-          "resourceName": "acharyaproprodfunc"
+          "category": "auth",
+          "resourceName": "ecommercev21b0a9e92"
         }
       ]
     },
-    "AMPLIFY_function_acharyaproprodfunc_s3Key": {
+    "AMPLIFY_auth_ecommercev21b0a9e92_authRoleArn": {
       "usedBy": [
         {
-          "category": "function",
-          "resourceName": "acharyaproprodfunc"
+          "category": "auth",
+          "resourceName": "ecommercev21b0a9e92"
         }
       ]
     },
-    "AMPLIFY_function_acharyaprousersfunc_deploymentBucketName": {
+    "AMPLIFY_auth_ecommercev21b0a9e92_authRoleName": {
       "usedBy": [
         {
-          "category": "function",
-          "resourceName": "acharyaprousersfunc"
+          "category": "auth",
+          "resourceName": "ecommercev21b0a9e92"
         }
       ]
     },
-    "AMPLIFY_function_acharyaprousersfunc_s3Key": {
+    "AMPLIFY_auth_ecommercev21b0a9e92_identityPoolId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "ecommercev21b0a9e92"
+        }
+      ]
+    },
+    "AMPLIFY_auth_ecommercev21b0a9e92_identityPoolName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "ecommercev21b0a9e92"
+        }
+      ]
+    },
+    "AMPLIFY_auth_ecommercev21b0a9e92_nativeClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "ecommercev21b0a9e92"
+        }
+      ]
+    },
+    "AMPLIFY_auth_ecommercev21b0a9e92_unauthRoleArn": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "ecommercev21b0a9e92"
+        }
+      ]
+    },
+    "AMPLIFY_auth_ecommercev21b0a9e92_unauthRoleName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "ecommercev21b0a9e92"
+        }
+      ]
+    },
+    "AMPLIFY_auth_ecommercev21b0a9e92_userPoolId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "ecommercev21b0a9e92"
+        }
+      ]
+    },
+    "AMPLIFY_auth_ecommercev21b0a9e92_userPoolName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "ecommercev21b0a9e92"
+        }
+      ]
+    },
+    "AMPLIFY_auth_ecommercev21b0a9e92_webClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "ecommercev21b0a9e92"
+        }
+      ]
+    },
+    "AMPLIFY_function_ecommerceFuncOrders_deploymentBucketName": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "acharyaprousersfunc"
+          "resourceName": "ecommerceFuncOrders"
+        }
+      ]
+    },
+    "AMPLIFY_function_ecommerceFuncOrders_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "ecommerceFuncOrders"
+        }
+      ]
+    },
+    "AMPLIFY_function_ecommerceFuncProd_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "ecommerceFuncProd"
+        }
+      ]
+    },
+    "AMPLIFY_function_ecommerceFuncProd_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "ecommerceFuncProd"
         }
       ]
     }
   },
   "storage": {
-    "acharyaprodb": {
+    "acharyaordersdb": {
       "providerPlugin": "awscloudformation",
       "service": "DynamoDB"
     },
-    "acharyausersdb": {
+    "acharyaprodb": {
       "providerPlugin": "awscloudformation",
       "service": "DynamoDB"
     }

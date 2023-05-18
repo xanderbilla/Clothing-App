@@ -31,7 +31,6 @@ app.use(function(req, res, next) {
   next()
 });
 
-
 const AWS = require('aws-sdk');
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 
