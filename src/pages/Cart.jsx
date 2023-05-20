@@ -1,19 +1,59 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from '../styles/cart.module.css'
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import Payment from '../components/Payment';
+import {Auth } from 'aws-amplify';
 
 const Cart = () => {
-    const cart = useSelector(state => state.cart)
-    const redirect = useNavigate()
-    console.log(cart);
+    const cart = useSelector((state) => state.cart);
+    const [paymentOption, setPaymentOption] = useState('');
+    const redirect = useNavigate();
+
+    const codPaymentId = () => {
+        const prefix = "cod";
+        const randomHex = Math.random().toString(16).substr(2, 10).toLowerCase();
+        const randomCode = prefix + randomHex;
+        return randomCode
+    };
+
+    const handlePaymentChange = (option) => {
+        setPaymentOption(option);
+    };
+
+    //Add Order Code
+    const handleCheckout = async () => {
+        try {
+            const user = await Auth.currentAuthenticatedUser();
+
+            if (paymentOption === 'COD') {
+                const data = {
+                    body: {
+                        custId: user.attributes.sub,
+                        custName: user.attributes.name,
+                        custPhone: user.attributes.phone_number,
+                        paymentMode: paymentOption,
+                        cart: cart,
+                        address: user.attributes['custom:address'],
+                        paymentId: paymentOption === 'COD' ? codPaymentId() : '',
+                    },
+                };
+                console.log({data}, 'Order Created')
+            } else {
+                alert('Work In Progress');
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
     return (
         <div className={styles.container}>
             <h1 className={styles.container_title}>YOUR BAG</h1>
             <div className={styles.container_top}>
-                <button className={`${styles.container_top__button} ${cart.quantity ? '' : styles.disable_button}`} onClick={redirect('/')}>CONTINUE SHOPPING</button>
+                <button
+                    className={`${styles.container_top__button} ${cart.quantity ? '' : styles.disable_button}`} onClick={() => redirect('/')}>CONTINUE SHOPPING</button>
                 <button className={`${styles.container_top__button} ${cart.quantity ? '' : styles.disable_button}`}>CHECKOUT NOW</button>
             </div>
             {cart.quantity ?
@@ -66,7 +106,8 @@ const Cart = () => {
                             <span className={styles.summary__total_text}>Total</span>
                             <div className={styles.summary__total_price}>$ {cart.total}</div>
                         </div>
-                        <button className={styles.summary__checkout}>CHECKOUT NOW</button>
+                        <Payment onPaymentChange={handlePaymentChange} />
+                        <button className={styles.summary__checkout} onClick={handleCheckout}>CHECKOUT NOW</button>
                     </div>
                 </div>
                 :
