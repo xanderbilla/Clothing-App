@@ -10,7 +10,7 @@ const List = ({ cat, filters, sort }) => {
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const apiName = 'acharyapropubapi';
+        const apiName = 'ecommerceApiProd';
         API.get(apiName, `/products?category=${cat}`).then((response) => {
           setProducts(response)
         }).catch((error) => {
