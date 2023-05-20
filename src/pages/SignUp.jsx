@@ -10,6 +10,7 @@ const SignUp = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
+  const [phone_number, setPhone] = useState('');
   const [name, setName] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const redirect = useNavigate();
@@ -22,6 +23,7 @@ const SignUp = () => {
         attributes: {
           email,
           name,
+          phone_number
         },
       });
       setFormSubmitted(true);
@@ -75,6 +77,17 @@ const SignUp = () => {
                 autoComplete='on'
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
+              />
+            </div>
+            <div className={styles.form_input}>
+              <input
+                className={styles.input}
+                required
+                type="text"
+                placeholder="Phone"
+                autoComplete='on'
+                value={phone_number}
+                onChange={(e) => setPhone(e.target.value)}
               />
             </div>
             <div className={styles.form_input}>
