@@ -39,7 +39,7 @@ const ProductPage = () => {
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const apiName = 'acharyapropubapi';
+        const apiName = 'ecommerceApiProd';
         API.get(apiName, `/products/${productId}`).then((response) => {
           setProduct(response);
         });
@@ -117,7 +117,7 @@ const ProductPage = () => {
               <FavoriteBorderIcon /> ADD TO WISH LIST
             </div>
           </div>
-          <span className={styles.product__add} onClick={selectedColor !== '' && selectedSize !== '' ? handleCart : null}><AddShoppingCartIcon/>ADD TO CART
+          <span className={styles.product__add} onClick={selectedColor !== '' && selectedSize !== '' ? handleCart : null}><AddShoppingCartIcon />ADD TO CART
           </span>
         </div>
         <div className={styles.product__details}>
