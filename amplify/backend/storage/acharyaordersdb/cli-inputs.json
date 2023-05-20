@@ -5,14 +5,6 @@
     "fieldName": "orderId",
     "fieldType": "string"
   },
-  "gsi": [
-    {
-      "name": "cust-index",
-      "partitionKey": {
-        "fieldName": "custId",
-        "fieldType": "string"
-      }
-    }
-  ],
+  "gsi": [],
   "triggerFunctions": []
 }

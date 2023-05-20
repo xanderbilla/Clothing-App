@@ -17,21 +17,6 @@
         "acharyaprodb": {},
         "acharyaordersdb": {}
       },
-      "auth": {
-        "ecommercev21b0a9e92": {
-          "userPoolId": "ap-south-1_Kh2Ou5eJS",
-          "userPoolName": "acharyaproauth",
-          "webClientId": "11f82quubpgsai2e1ptt2k2ppd",
-          "nativeClientId": "11f82quubpgsai2e1ptt2k2ppd",
-          "identityPoolId": "ap-south-1:2bc70f84-7cbe-4666-a7f0-d3267bbd33bd",
-          "identityPoolName": "acharyapro",
-          "allowUnauthenticatedIdentities": false,
-          "authRoleArn": "arn:aws:iam::954138568328:role/Cognito_acharyaproAuth_Role",
-          "authRoleName": "Cognito_acharyaproAuth_Role",
-          "unauthRoleArn": "arn:aws:iam::954138568328:role/Cognito_acharyaproUnauth_Role",
-          "unauthRoleName": "Cognito_acharyaproUnauth_Role"
-        }
-      },
       "function": {
         "ecommerceFuncProd": {
           "deploymentBucketName": "amplify-ecommercev2-dev-03008-deployment",
@@ -39,12 +24,15 @@
         },
         "ecommerceFuncOrders": {
           "deploymentBucketName": "amplify-ecommercev2-dev-03008-deployment",
-          "s3Key": "amplify-builds/ecommerceFuncOrders-5769652f6e4e32674472-build.zip"
+          "s3Key": "amplify-builds/ecommerceFuncOrders-5946434767706a4d546d-build.zip"
         }
       },
       "api": {
         "ecommerceApiProd": {},
         "ecommerceApiOrders": {}
+      },
+      "auth": {
+        "ecommercev2c27bf97b": {}
       }
     }
   }

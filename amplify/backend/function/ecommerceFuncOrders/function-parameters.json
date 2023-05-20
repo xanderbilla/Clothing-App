@@ -4,8 +4,7 @@
       "acharyaordersdb": [
         "create",
         "read",
-        "update",
-        "delete"
+        "update"
       ]
     }
   },

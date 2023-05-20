@@ -30,12 +30,31 @@
     }
   },
   "auth": {
-    "ecommercev21b0a9e92": {
+    "ecommercev2c27bf97b": {
       "customAuth": false,
       "dependsOn": [],
+      "frontendAuthConfig": {
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyCharacters": [],
+          "passwordPolicyMinLength": 8
+        },
+        "signupAttributes": [
+          "EMAIL",
+          "NAME",
+          "PHONE_NUMBER"
+        ],
+        "socialProviders": [],
+        "usernameAttributes": [],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
       "providerPlugin": "awscloudformation",
-      "service": "Cognito",
-      "serviceType": "imported"
+      "service": "Cognito"
     }
   },
   "function": {
@@ -73,94 +92,6 @@
     }
   },
   "parameters": {
-    "AMPLIFY_auth_ecommercev21b0a9e92_allowUnauthenticatedIdentities": {
-      "usedBy": [
-        {
-          "category": "auth",
-          "resourceName": "ecommercev21b0a9e92"
-        }
-      ]
-    },
-    "AMPLIFY_auth_ecommercev21b0a9e92_authRoleArn": {
-      "usedBy": [
-        {
-          "category": "auth",
-          "resourceName": "ecommercev21b0a9e92"
-        }
-      ]
-    },
-    "AMPLIFY_auth_ecommercev21b0a9e92_authRoleName": {
-      "usedBy": [
-        {
-          "category": "auth",
-          "resourceName": "ecommercev21b0a9e92"
-        }
-      ]
-    },
-    "AMPLIFY_auth_ecommercev21b0a9e92_identityPoolId": {
-      "usedBy": [
-        {
-          "category": "auth",
-          "resourceName": "ecommercev21b0a9e92"
-        }
-      ]
-    },
-    "AMPLIFY_auth_ecommercev21b0a9e92_identityPoolName": {
-      "usedBy": [
-        {
-          "category": "auth",
-          "resourceName": "ecommercev21b0a9e92"
-        }
-      ]
-    },
-    "AMPLIFY_auth_ecommercev21b0a9e92_nativeClientId": {
-      "usedBy": [
-        {
-          "category": "auth",
-          "resourceName": "ecommercev21b0a9e92"
-        }
-      ]
-    },
-    "AMPLIFY_auth_ecommercev21b0a9e92_unauthRoleArn": {
-      "usedBy": [
-        {
-          "category": "auth",
-          "resourceName": "ecommercev21b0a9e92"
-        }
-      ]
-    },
-    "AMPLIFY_auth_ecommercev21b0a9e92_unauthRoleName": {
-      "usedBy": [
-        {
-          "category": "auth",
-          "resourceName": "ecommercev21b0a9e92"
-        }
-      ]
-    },
-    "AMPLIFY_auth_ecommercev21b0a9e92_userPoolId": {
-      "usedBy": [
-        {
-          "category": "auth",
-          "resourceName": "ecommercev21b0a9e92"
-        }
-      ]
-    },
-    "AMPLIFY_auth_ecommercev21b0a9e92_userPoolName": {
-      "usedBy": [
-        {
-          "category": "auth",
-          "resourceName": "ecommercev21b0a9e92"
-        }
-      ]
-    },
-    "AMPLIFY_auth_ecommercev21b0a9e92_webClientId": {
-      "usedBy": [
-        {
-          "category": "auth",
-          "resourceName": "ecommercev21b0a9e92"
-        }
-      ]
-    },
     "AMPLIFY_function_ecommerceFuncOrders_deploymentBucketName": {
       "usedBy": [
         {
