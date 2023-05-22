@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import Search from './Search';
 
-const Navbar = ({ isOpen, setIsOpen }) => {
+const Navbar = ({ isOpen, setIsOpen,  }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const quantity = useSelector(state => state.cart.quantity)
     useEffect(() => {
@@ -83,7 +83,7 @@ const Navbar = ({ isOpen, setIsOpen }) => {
                 </div>
             </div>
             <div className={styles.menuContainer}>
-                <Menu isOpen={!isOpen} setIsOpen={!setIsOpen} />
+                <Menu isOpen={!isOpen} setIsOpen={setIsOpen} />
             </div>
         </div>
     )
