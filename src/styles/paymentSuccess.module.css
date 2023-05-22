@@ -1,0 +1,16 @@
+.container {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.title {
+    font-size: 34px;
+    font-weight:600;
+}
+
+.ref {
+    opacity: 0.5;
+}
