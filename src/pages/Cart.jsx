@@ -2,16 +2,23 @@ import React, { useState } from 'react'
 import styles from '../styles/cart.module.css'
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
-import { useSelector } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
+import { removeProduct } from "../redux/cartRedux";
 import { useNavigate } from 'react-router-dom';
 import Payment from '../components/Payment';
 import { API, Auth } from 'aws-amplify';
 import axios from 'axios';
-
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 const Cart = () => {
     const cart = useSelector((state) => state.cart);
     const [paymentOption, setPaymentOption] = useState('');
+    const [quantity, setQuantity] = useState(1);
     const redirect = useNavigate();
+    const dispatch = useDispatch();
+
+    const deleteItem = (productId) => {
+        dispatch(removeProduct({ productId }));
+      };
 
     const codPaymentId = () => {
         const prefix = "cod";
@@ -49,37 +56,37 @@ const Cart = () => {
                     .catch((error) => {
                         console.log(error.response);
                     });
-                
+
             } else {
                 const { data: { key } } = await axios.get("http://localhost:5252/api/getkey")
-const { data: { order } } = await axios.post('http://localhost:5252/api/checkout', {
-    amount: cart.total
-})
-var options = {
-    key: key,
-    amount: order.amount,
-    currency: "INR",
-    name: "Acharya Project",
-    desciption: "Test Transaction",
-    image: "https://i.imgur.com/hqTZ4NT.png",
-    order_id: order.id,
-    callback_url: "http://localhost:5252/api/verify",
-    prefill: {
-        name: "User",
-        email: "email@example.com",
-        contact: "7800818620"
-    },
-    notes: {
+                const { data: { order } } = await axios.post('http://localhost:5252/api/checkout', {
+                    amount: cart.total
+                })
+                var options = {
+                    key: key,
+                    amount: order.amount,
+                    currency: "INR",
+                    name: "Acharya Project",
+                    desciption: "Test Transaction",
+                    image: "https://i.imgur.com/hqTZ4NT.png",
+                    order_id: order.id,
+                    callback_url: "http://localhost:5252/api/verify",
+                    prefill: {
+                        name: "User",
+                        email: "email@example.com",
+                        contact: "7800818620"
+                    },
+                    notes: {
 
-    },
-    theme: {
-        color: "#121212"
-    }
-}
+                    },
+                    theme: {
+                        color: "#121212"
+                    }
+                }
 
-var rzp1 = new window.Razorpay(options);
-rzp1.open()
-console.log(order);
+                var rzp1 = new window.Razorpay(options);
+                rzp1.open()
+                console.log(order);
             }
         } catch (error) {
             console.log(error);
@@ -115,11 +122,14 @@ console.log(order);
                                 </div>
                                 <div className={styles.product__price_detail}>
                                     <div className={styles.product__amount}>
-                                        <RemoveIcon />
-                                        <span className={styles.product__quantity}>{product.quantity}</span>
-                                        <AddIcon />
+                                        <RemoveIcon onClick={() => setQuantity(prev => prev === 1 ? 1 : prev - 1)} />
+                                        <span className={styles.product__quantity}>{quantity}</span>
+                                        <AddIcon onClick={() => setQuantity(prev => prev + 1)} />
                                     </div>
+                                    <div className={styles.foofunc}>
                                     <div className={styles.product__price}>${product.discount_price * product.quantity}</div>
+                                        <button className={styles.remove} onClick={() => deleteItem(product.prodId)}><DeleteOutlineIcon fontSize='large'/> </button>
+                                    </div>
                                 </div>
                             </div>
                         ))}
