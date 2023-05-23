@@ -1,6 +1,5 @@
-import { useSelector } from 'react-redux';
+import { useSearchParams, useSelector } from '../utils/Imports';
 import styles from '../styles/paymentSuccess.module.css'
-import { useSearchParams } from 'react-router-dom'
 
 const PaymentSuccess = () => {
   const cart = useSelector((state) => state.cart);

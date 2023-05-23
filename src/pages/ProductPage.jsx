@@ -1,40 +1,29 @@
-import React, { useState, useEffect } from 'react'
-import styles from '../styles/productPage.module.css'
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart'
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
-import AddIcon from '@mui/icons-material/Add';
-import RemoveIcon from '@mui/icons-material/Remove';
-import { useLocation } from 'react-router';
-import { API } from 'aws-amplify';
-import { addProduct } from '../redux/cartRedux';
-import { useDispatch } from 'react-redux';
+import { useState, useEffect, useLocation, API, useDispatch, addProduct, ProductInfo, AdditionalDetails, MainImage, ProductImages, QuantityControls, AddShoppingCartIcon } from '../utils/Imports';
+import styles from '../styles/productPage.module.css';
 
 const ProductPage = () => {
-
   const [selectedImg, setSelectedImg] = useState(0);
   const [quantity, setQuantity] = useState(1);
-  const location = useLocation()
-  const productId = location.pathname.split("/")[2]
-  const [product, setProduct] = useState({})
+  const location = useLocation();
+  const productId = location.pathname.split('/')[2];
+  const [product, setProduct] = useState({});
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedColor, setSelectedColor] = useState('');
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  function handleSize(size) {
+  const handleSize = (size) => {
     setSelectedSize(size);
     console.log(size);
-  }
+  };
 
   const handleColor = (color) => {
     setSelectedColor(color);
     console.log(color);
-  }
+  };
 
   const handleCart = () => {
-    dispatch(addProduct(
-      { ...product, quantity, selectedSize, selectedColor }
-    ))
-  }
+    dispatch(addProduct({ ...product, quantity, selectedSize, selectedColor }));
+  };
 
   useEffect(() => {
     const getProducts = async () => {
@@ -45,79 +34,50 @@ const ProductPage = () => {
         });
       } catch (error) { }
     };
-    getProducts()
-  }, [productId])
-
+    getProducts();
+  }, [productId]);
 
   return (
     <div className={styles.product}>
       <div className={styles.left}>
-        {
-          product.img && (
-            <div className={styles.product_imageSet}>
-              {
-                product.img.map((image, i) =>
-                  <img src={image} alt="" className={styles.side__img} key={i} onClick={() => setSelectedImg(i)} />
-                )
-              }
-            </div>
-          )}
         {product.img && (
-          <div className={styles.main_img}>
-            <img
-              src={product.img[selectedImg]}
-              className={styles.big__img}
-              alt=""
-            />
-          </div>
+          <ProductImages
+            images={product.img}
+            selectedImg={selectedImg}
+            setSelectedImg={setSelectedImg}
+          />
         )}
+        {product.img && <MainImage image={product.img[selectedImg]} />}
       </div>
       <div className={styles.right}>
-        <div className={styles.product_info}>
-          <h1 className={styles.title}>{product.title}</h1>
-          <p className={styles.desc}>{product.desc}</p>
-        </div>
+        <ProductInfo title={product.title} description={product.desc} />
         <span className={styles.price}>${product.discount_price}</span>
         <div className={styles.additional_details}>
           {product.size && (
-            <div className={styles.additional_detail}>
-              <span className={styles.option_title}>Size</span>
-              <ul className={styles.select}>
-                {product.size.map((s) => (
-                  <li className={`${styles.selectOptions} ${selectedSize === s ? styles.selected : ''}`}
-                    onClick={() => handleSize(s)} key={s}>
-                    {s}
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <AdditionalDetails
+              title="Size"
+              options={product.size}
+              selectedOption={selectedSize}
+              handleOption={handleSize}
+            />
           )}
           {product.color && (
-            <div className={styles.additional_detail}>
-              <span className={styles.option_title}>Color</span>
-              <ul className={styles.select}>
-                {product.color.map((c) => (
-                  <li className={`${styles.selectOptions} ${selectedColor === c ? styles.selected : ''}`}
-                    onClick={() => handleColor(c)} key={c}>
-                    {c}
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <AdditionalDetails
+              title="Color"
+              options={product.color}
+              selectedOption={selectedColor}
+              handleOption={handleColor}
+            />
           )}
         </div>
         <div className={styles.product_purchase}>
-          <div className={styles.purchase__quantity}>
-            <div className={styles.quantity}>
-              <RemoveIcon onClick={() => setQuantity(prev => prev === 1 ? 1 : prev - 1)} />
-              <span className={styles.product__quantity}>{quantity}</span>
-              <AddIcon onClick={() => setQuantity(prev => prev + 1)} />
-            </div>
-            <div className={styles.wishlist}>
-              <FavoriteBorderIcon /> ADD TO WISH LIST
-            </div>
-          </div>
-          <span className={styles.product__add} onClick={selectedColor !== '' && selectedSize !== '' ? handleCart : null}><AddShoppingCartIcon />ADD TO CART
+          <QuantityControls quantity={quantity} setQuantity={setQuantity} />
+          <span
+            className={styles.product__add}
+            onClick={selectedColor !== '' && selectedSize !== '' ? handleCart : null}
+          >
+            <AddShoppingCartIcon />
+            ADD TO CART
           </span>
         </div>
         <div className={styles.product__details}>
@@ -128,7 +88,7 @@ const ProductPage = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ProductPage
+export default ProductPage;

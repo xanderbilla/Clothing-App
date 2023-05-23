@@ -1,14 +1,6 @@
-import React, { useState } from 'react'
-import styles from '../styles/cart.module.css'
-import AddIcon from '@mui/icons-material/Add';
-import RemoveIcon from '@mui/icons-material/Remove';
-import { useSelector,useDispatch } from 'react-redux';
-import { removeProduct } from "../redux/cartRedux";
-import { useNavigate } from 'react-router-dom';
-import Payment from '../components/Payment';
-import { API, Auth } from 'aws-amplify';
-import axios from 'axios';
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import { useState, useSelector, API, useDispatch, useNavigate, removeProduct, axios, RemoveIcon, DeleteOutlineIcon, Auth, AddIcon, Payment } from '../utils/Imports';
+import styles from '../styles/cart.module.css';
+
 const Cart = () => {
     const cart = useSelector((state) => state.cart);
     const [paymentOption, setPaymentOption] = useState('');

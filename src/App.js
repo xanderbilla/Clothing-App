@@ -1,19 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import ProductPage from './pages/ProductPage';
-import ProductList from './pages/ProductList';
-import Cart from './pages/Cart';
-import Error from './pages/Error';
-import ProfilePage from './pages/ProfilePage';
+import { Auth, useState, useEffect, Navbar, Routes, Route, ProductList, ProductPage, Login, SignUp, Home, PaymentSuccess, Error, Footer, ProfilePage, Orders, Cart, Navigate} from './utils/Imports'
 import { popularProducts } from './static/data';
-import Home from './pages/Home';
-import { Route, Routes, Navigate } from 'react-router-dom';
-import SignUp from './pages/SignUp';
-import Login from './pages/Login';
-import Orders from './pages/Orders';
-import PaymentSuccess from './pages/PaymentSuccess';
-import { Auth } from 'aws-amplify';
 
 const App = () => {
   const [isOpen, setIsOpen] = useState(false);

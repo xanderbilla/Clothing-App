@@ -1,8 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import {useState, useEffect, API, Link, OrderCard} from '../utils/Imports'
 import styles from '../styles/orders.module.css';
-import OrderCard from '../components/OrderCard';
-import { API } from 'aws-amplify';
-import { Link } from 'react-router-dom';
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
