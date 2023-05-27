@@ -1,8 +1,10 @@
 import { useState, useSelector, API, useDispatch, useNavigate, removeProduct, axios, RemoveIcon, DeleteOutlineIcon, Auth, AddIcon, Payment } from '../utils/Imports';
 import styles from '../styles/cart.module.css';
+import {SuccessAlert, ErrorAlert} from '../components/Alert';
 
 const Cart = () => {
     const cart = useSelector((state) => state.cart);
+    const [orderAdded, setOrderAdded] = useState(false);
     const [paymentOption, setPaymentOption] = useState('');
     const [quantity, setQuantity] = useState(1);
     const redirect = useNavigate();
@@ -22,8 +24,7 @@ const Cart = () => {
     const handlePaymentChange = (option) => {
         setPaymentOption(option);
     };
-    console.log(cart);
-    //Add Order Code
+  
     const handleCheckout = async () => {
         try {
             const user = await Auth.currentAuthenticatedUser();
@@ -43,7 +44,8 @@ const Cart = () => {
                 API.post('ecommerceApiOrders', '/orders', data)
                     .then((response) => {
                         console.log(response);
-                        redirect('/orders');
+                        setOrderAdded(true)
+                        redirect('/orders')
                     })
                     .catch((error) => {
                         console.log(error.response);
@@ -94,6 +96,9 @@ const Cart = () => {
             </div>
             {cart.quantity ?
                 <div className={styles.container_bottom}>
+                    {orderAdded ? (
+                        <SuccessAlert message={'Order Added!'} orderAdded={ orderAdded} setOrderAdded={ setOrderAdded} />
+          ) : null}
                     <div className={styles.container_bottom__info}>
                         {cart.products.map((product, i) => (
                             <div className={styles.product} key={i}>
