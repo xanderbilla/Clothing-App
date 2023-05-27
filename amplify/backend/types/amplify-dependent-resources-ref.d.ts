@@ -1,15 +1,21 @@
 export type AmplifyDependentResourcesAttributes = {
   "api": {
-    "acharyapropubapi": {
+    "ecommerceApiOrders": {
+      "ApiId": "string",
+      "ApiName": "string",
+      "RootUrl": "string"
+    },
+    "ecommerceApiProd": {
       "ApiId": "string",
       "ApiName": "string",
       "RootUrl": "string"
     }
   },
   "auth": {
-    "ecommercev2935d596e": {
+    "ecommercev2c27bf97b": {
       "AppClientID": "string",
       "AppClientIDWeb": "string",
+      "CreatedSNSRole": "string",
       "IdentityPoolId": "string",
       "IdentityPoolName": "string",
       "UserPoolArn": "string",
@@ -18,14 +24,14 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "function": {
-    "acharyaproprodfunc": {
+    "ecommerceFuncOrders": {
       "Arn": "string",
       "LambdaExecutionRole": "string",
       "LambdaExecutionRoleArn": "string",
       "Name": "string",
       "Region": "string"
     },
-    "acharyaprousersfunc": {
+    "ecommerceFuncProd": {
       "Arn": "string",
       "LambdaExecutionRole": "string",
       "LambdaExecutionRoleArn": "string",
@@ -34,7 +40,7 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "storage": {
-    "acharyaprodb": {
+    "acharyaordersdb": {
       "Arn": "string",
       "Name": "string",
       "PartitionKeyName": "string",
@@ -42,7 +48,7 @@ export type AmplifyDependentResourcesAttributes = {
       "Region": "string",
       "StreamArn": "string"
     },
-    "acharyausersdb": {
+    "acharyaprodb": {
       "Arn": "string",
       "Name": "string",
       "PartitionKeyName": "string",

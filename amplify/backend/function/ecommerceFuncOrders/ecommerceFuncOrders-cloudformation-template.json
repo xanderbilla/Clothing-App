@@ -1,6 +1,6 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "{\"createdOn\":\"Windows\",\"createdBy\":\"Amplify\",\"createdWith\":\"11.1.1\",\"stackType\":\"function-Lambda\",\"metadata\":{}}",
+  "Description": "{\"createdOn\":\"Windows\",\"createdBy\":\"Amplify\",\"createdWith\":\"12.0.0\",\"stackType\":\"function-Lambda\",\"metadata\":{}}",
   "Parameters": {
     "CloudWatchRule": {
       "Type": "String",
@@ -16,17 +16,17 @@
     "s3Key": {
       "Type": "String"
     },
-    "storageacharyaprodbName": {
+    "storageacharyaordersdbName": {
       "Type": "String",
-      "Default": "storageacharyaprodbName"
+      "Default": "storageacharyaordersdbName"
     },
-    "storageacharyaprodbArn": {
+    "storageacharyaordersdbArn": {
       "Type": "String",
-      "Default": "storageacharyaprodbArn"
+      "Default": "storageacharyaordersdbArn"
     },
-    "storageacharyaprodbStreamArn": {
+    "storageacharyaordersdbStreamArn": {
       "Type": "String",
-      "Default": "storageacharyaprodbStreamArn"
+      "Default": "storageacharyaordersdbStreamArn"
     }
   },
   "Conditions": {
@@ -59,12 +59,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "acharyaproprodfunc",
+            "ecommerceFuncOrders",
             {
               "Fn::Join": [
                 "",
                 [
-                  "acharyaproprodfunc",
+                  "ecommerceFuncOrders",
                   "-",
                   {
                     "Ref": "env"
@@ -82,14 +82,14 @@
             "REGION": {
               "Ref": "AWS::Region"
             },
-            "STORAGE_ACHARYAPRODB_NAME": {
-              "Ref": "storageacharyaprodbName"
+            "STORAGE_ACHARYAORDERSDB_NAME": {
+              "Ref": "storageacharyaordersdbName"
             },
-            "STORAGE_ACHARYAPRODB_ARN": {
-              "Ref": "storageacharyaprodbArn"
+            "STORAGE_ACHARYAORDERSDB_ARN": {
+              "Ref": "storageacharyaordersdbArn"
             },
-            "STORAGE_ACHARYAPRODB_STREAMARN": {
-              "Ref": "storageacharyaprodbStreamArn"
+            "STORAGE_ACHARYAORDERSDB_STREAMARN": {
+              "Ref": "storageacharyaordersdbStreamArn"
             }
           }
         },
@@ -99,7 +99,7 @@
             "Arn"
           ]
         },
-        "Runtime": "nodejs16.x",
+        "Runtime": "nodejs18.x",
         "Layers": [],
         "Timeout": 25
       }
@@ -110,12 +110,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "ecommercev2LambdaRoleee43dff4",
+            "ecommercev2LambdaRole25dbd68d",
             {
               "Fn::Join": [
                 "",
                 [
-                  "ecommercev2LambdaRoleee43dff4",
+                  "ecommercev2LambdaRole25dbd68d",
                   "-",
                   {
                     "Ref": "env"
@@ -204,23 +204,28 @@
             {
               "Effect": "Allow",
               "Action": [
+                "dynamodb:Put*",
+                "dynamodb:Create*",
+                "dynamodb:BatchWriteItem",
                 "dynamodb:Get*",
                 "dynamodb:BatchGetItem",
                 "dynamodb:List*",
                 "dynamodb:Describe*",
                 "dynamodb:Scan",
-                "dynamodb:Query"
+                "dynamodb:Query",
+                "dynamodb:Update*",
+                "dynamodb:RestoreTable*"
               ],
               "Resource": [
                 {
-                  "Ref": "storageacharyaprodbArn"
+                  "Ref": "storageacharyaordersdbArn"
                 },
                 {
                   "Fn::Join": [
                     "/",
                     [
                       {
-                        "Ref": "storageacharyaprodbArn"
+                        "Ref": "storageacharyaordersdbArn"
                       },
                       "index/*"
                     ]

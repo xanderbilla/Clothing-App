@@ -1,9 +1,10 @@
 {
   "permissions": {
     "storage": {
-      "acharyausersdb": [
+      "acharyaordersdb": [
         "create",
-        "read"
+        "read",
+        "update"
       ]
     }
   },

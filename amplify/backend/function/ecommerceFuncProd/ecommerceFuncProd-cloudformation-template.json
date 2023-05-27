@@ -16,17 +16,17 @@
     "s3Key": {
       "Type": "String"
     },
-    "storageacharyausersdbName": {
+    "storageacharyaprodbName": {
       "Type": "String",
-      "Default": "storageacharyausersdbName"
+      "Default": "storageacharyaprodbName"
     },
-    "storageacharyausersdbArn": {
+    "storageacharyaprodbArn": {
       "Type": "String",
-      "Default": "storageacharyausersdbArn"
+      "Default": "storageacharyaprodbArn"
     },
-    "storageacharyausersdbStreamArn": {
+    "storageacharyaprodbStreamArn": {
       "Type": "String",
-      "Default": "storageacharyausersdbStreamArn"
+      "Default": "storageacharyaprodbStreamArn"
     }
   },
   "Conditions": {
@@ -59,12 +59,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "acharyaprousersfunc",
+            "ecommerceFuncProd",
             {
               "Fn::Join": [
                 "",
                 [
-                  "acharyaprousersfunc",
+                  "ecommerceFuncProd",
                   "-",
                   {
                     "Ref": "env"
@@ -82,14 +82,14 @@
             "REGION": {
               "Ref": "AWS::Region"
             },
-            "STORAGE_ACHARYAUSERSDB_NAME": {
-              "Ref": "storageacharyausersdbName"
+            "STORAGE_ACHARYAPRODB_NAME": {
+              "Ref": "storageacharyaprodbName"
             },
-            "STORAGE_ACHARYAUSERSDB_ARN": {
-              "Ref": "storageacharyausersdbArn"
+            "STORAGE_ACHARYAPRODB_ARN": {
+              "Ref": "storageacharyaprodbArn"
             },
-            "STORAGE_ACHARYAUSERSDB_STREAMARN": {
-              "Ref": "storageacharyausersdbStreamArn"
+            "STORAGE_ACHARYAPRODB_STREAMARN": {
+              "Ref": "storageacharyaprodbStreamArn"
             }
           }
         },
@@ -110,12 +110,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "ecommercev2LambdaRole7727d686",
+            "ecommercev2LambdaRole63e69ded",
             {
               "Fn::Join": [
                 "",
                 [
-                  "ecommercev2LambdaRole7727d686",
+                  "ecommercev2LambdaRole63e69ded",
                   "-",
                   {
                     "Ref": "env"
@@ -204,9 +204,6 @@
             {
               "Effect": "Allow",
               "Action": [
-                "dynamodb:Put*",
-                "dynamodb:Create*",
-                "dynamodb:BatchWriteItem",
                 "dynamodb:Get*",
                 "dynamodb:BatchGetItem",
                 "dynamodb:List*",
@@ -216,14 +213,14 @@
               ],
               "Resource": [
                 {
-                  "Ref": "storageacharyausersdbArn"
+                  "Ref": "storageacharyaprodbArn"
                 },
                 {
                   "Fn::Join": [
                     "/",
                     [
                       {
-                        "Ref": "storageacharyausersdbArn"
+                        "Ref": "storageacharyaprodbArn"
                       },
                       "index/*"
                     ]

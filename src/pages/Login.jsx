@@ -1,9 +1,5 @@
-// Implement Forgot Password (Future Plans)
-
-import React, { useState } from 'react';
+import {useState, Link, Auth} from '../utils/Imports'
 import styles from '../styles/login.module.css';
-import { Link } from 'react-router-dom';
-import { Auth } from 'aws-amplify';
 
 const Login = () => {
   const [username, setUsername] = useState('');

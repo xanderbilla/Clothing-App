@@ -1,8 +1,5 @@
-import { useState } from 'react'
-import DataTable from '../components/DataTable'
-import EditUserInfo from '../components/EditUserInfo'
+import { useState, DataTable, EditUserInfo, UserInfo } from '../utils/Imports'
 import styles from '../styles/profilePage.module.css'
-import UserInfo from '../components/UserInfo';
 
 const ProfilePage = () => {
     const [isEdit, setIsEdit] = useState(false)

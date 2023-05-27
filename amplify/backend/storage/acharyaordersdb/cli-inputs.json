@@ -1,0 +1,10 @@
+{
+  "resourceName": "acharyaordersdb",
+  "tableName": "acharyaordersdb",
+  "partitionKey": {
+    "fieldName": "orderId",
+    "fieldType": "string"
+  },
+  "gsi": [],
+  "triggerFunctions": []
+}

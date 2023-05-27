@@ -1,8 +1,4 @@
-import MiniNavbar from '../components/MiniNavbar';
-import Newsletter from '../components/Newsletter';
-import Categories from '../components/Categories';
-import Slider from '../components/Slider';
-import FeaturedProduct from '../components/FeaturedProduct';
+import { MiniNavbar, Newsletter, Categories, Slider, FeaturedProduct } from '../utils/Imports'
 
 const Home = ({ popularProducts }) => {
   return (

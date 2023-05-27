@@ -1,8 +1,5 @@
-import { useState } from 'react';
-import { Auth } from 'aws-amplify';
+import { useState, Auth, useNavigate, VerificationSection, FormSection } from '../utils/Imports';
 import styles from '../styles/signup.module.css';
-import { Link, useNavigate } from 'react-router-dom';
-
 
 const SignUp = () => {
   const [formSubmitted, setFormSubmitted] = useState(false);
@@ -10,6 +7,7 @@ const SignUp = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
+  const [phone_number, setPhone] = useState('');
   const [name, setName] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const redirect = useNavigate();
@@ -22,6 +20,7 @@ const SignUp = () => {
         attributes: {
           email,
           name,
+          phone_number
         },
       });
       setFormSubmitted(true);
@@ -48,102 +47,27 @@ const SignUp = () => {
       setErrorMessage('Verification code is invalid. Please try again.');
     }
   };
-  
+
   return (
     <div className={styles.signup}>
       <div className={styles.wrapper}>
         {!formSubmitted && (
-          <form className={styles.signup_form}>
-            <span className={styles.title}>Create An Account!</span>
-            <div className={styles.form_input}>
-              <input
-                className={styles.input}
-                required
-                type="text"
-                placeholder="Full Name"
-                autoComplete='on'
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-            </div>
-            <div className={styles.form_input}>
-              <input
-                className={styles.input}
-                required
-                type="text"
-                placeholder="Username"
-                autoComplete='on'
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-              />
-            </div>
-            <div className={styles.form_input}>
-              <input
-                className={styles.input}
-                required
-                type="email"
-                placeholder="Email Address"
-                autoComplete='on'
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div className={styles.form_input}>
-              <input
-                className={styles.input}
-                required
-                type="password"
-                placeholder="Password"
-                autoComplete='on'
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-            <div className={styles.help}>
-              <div className={styles.remember}>
-                <input type="checkbox" name="remember" />
-                <span className={styles.other_info}>Remember Me</span>
-              </div>
-            </div>
-            <button className={styles.button} type="button" onClick={handleSignUp}>
-              Sign Up
-            </button>
-            {errorMessage && (
-              <div className={styles.error}>
-                <span className={styles.warning}>{errorMessage}</span>
-              </div>
-            )}
-
-            <Link to='/login'>
-              <button className={styles.button}>
-                Sign In
-              </button>
-            </Link>
-          </form>
+          <FormSection
+            handleSignUp={handleSignUp}
+            errorMessage={errorMessage}
+            setName={setName}
+            setUsername={setUsername}
+            setPhone={setPhone}
+            setEmail={setEmail}
+            setPassword={setPassword}
+          />
         )}
         {formSubmitted && (
-          <form className={styles.verify_form}>
-            <span className={styles.title}>Verify Your Account!</span>
-            <div className={styles.form_input}>
-              <span className={styles.desc}>Enter 6-digit code sent on your Email Address</span>
-              <input
-                className={styles.input}
-                required
-                type="number"
-                placeholder="code"
-                value={verificationCode}
-                onChange={(e) => setVerificationCode(e.target.value)}
-              />
-            </div>
-            <button className={styles.button} type="button" onClick={handleVerification}>
-              Verify
-            </button>
-            {errorMessage && (
-              <div className={styles.error}>
-                <span className={styles.warning}>{errorMessage}</span>
-              </div>
-            )}
-          </form>
+          <VerificationSection
+            handleVerification={handleVerification}
+            errorMessage={errorMessage}
+            setVerificationCode={setVerificationCode}
+          />
         )}
       </div>
     </div>

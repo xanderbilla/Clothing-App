@@ -13,25 +13,26 @@
       "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-ecommercev2-dev-03008-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
     },
     "categories": {
-      "auth": {
-        "ecommercev2935d596e": {}
-      },
-      "function": {
-        "acharyaproprodfunc": {
-          "deploymentBucketName": "amplify-ecommercev2-dev-03008-deployment",
-          "s3Key": "amplify-builds/acharyaproprodfunc-7a792f435a73746e3867-build.zip"
-        },
-        "acharyaprousersfunc": {
-          "deploymentBucketName": "amplify-ecommercev2-dev-03008-deployment",
-          "s3Key": "amplify-builds/acharyaprousersfunc-636775667135532f734f-build.zip"
-        }
-      },
       "storage": {
         "acharyaprodb": {},
-        "acharyausersdb": {}
+        "acharyaordersdb": {}
+      },
+      "function": {
+        "ecommerceFuncProd": {
+          "deploymentBucketName": "amplify-ecommercev2-dev-03008-deployment",
+          "s3Key": "amplify-builds/ecommerceFuncProd-42336d2f314346304b75-build.zip"
+        },
+        "ecommerceFuncOrders": {
+          "deploymentBucketName": "amplify-ecommercev2-dev-03008-deployment",
+          "s3Key": "amplify-builds/ecommerceFuncOrders-5a525a556d33706e3256-build.zip"
+        }
       },
       "api": {
-        "acharyapropubapi": {}
+        "ecommerceApiProd": {},
+        "ecommerceApiOrders": {}
+      },
+      "auth": {
+        "ecommercev2c27bf97b": {}
       }
     }
   }

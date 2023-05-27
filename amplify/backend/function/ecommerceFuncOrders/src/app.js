@@ -10,9 +10,9 @@ See the License for the specific language governing permissions and limitations 
 /* Amplify Params - DO NOT EDIT
 	ENV
 	REGION
-	STORAGE_ACHARYAUSERSDB_ARN
-	STORAGE_ACHARYAUSERSDB_NAME
-	STORAGE_ACHARYAUSERSDB_STREAMARN
+	STORAGE_ACHARYAORDERSDB_ARN
+	STORAGE_ACHARYAORDERSDB_NAME
+	STORAGE_ACHARYAORDERSDB_STREAMARN
 Amplify Params - DO NOT EDIT */
 
 const express = require('express')
@@ -31,25 +31,28 @@ app.use(function(req, res, next) {
   next()
 });
 
-
 const AWS = require('aws-sdk');
 const dynamodb = new AWS.DynamoDB.DocumentClient();
-const table = process.env.STORAGE_ACHARYAUSERSDB_NAME
+const table = process.env.STORAGE_ACHARYAORDERSDB_NAME
+
+function id() {
+  return Math.random().toString(36).substring(2) + Date.now().toString(36)
+}
 
 /****************************
 * Example post method *
 ****************************/
 
-app.post('/users', function (req, res) {
+app.post('/orders', function (req, res) {
   const item = {
-    id: req.body.id,
-    name: req.body.name,
-    email: req.body.email,
-    phone: req.body.phone,
-    gender: req.body.gender,
-    dob: req.body.dob,
-    avatar: req.body.avatar,
-    address: req.body.address
+    orderId: id(),
+    custId: req.body.custId,
+    custName: req.body.custName,
+    custPhone: req.body.custPhone,
+    paymentMode: req.body.paymentMode,
+    cart: req.body.cart,
+    address: req.body.address,
+    paymentId: req.body.paymentId
   };
   const params = {
     TableName: table,
@@ -69,7 +72,7 @@ app.post('/users', function (req, res) {
 * Example get method *
 ****************************/
 
-app.get('/users', function (req, res) {
+app.get('/orders', function (req, res) {
   const params = {
     TableName: table
   };
@@ -83,11 +86,9 @@ app.get('/users', function (req, res) {
   });
 });
 
-
 app.listen(3000, function() {
-    console.log("App started")
+  console.log("App started")
 });
-
 // Export the app object. When executing the application local this does nothing. However,
 // to port it to AWS Lambda we will create a wrapper around that will load the app from
 // this file
