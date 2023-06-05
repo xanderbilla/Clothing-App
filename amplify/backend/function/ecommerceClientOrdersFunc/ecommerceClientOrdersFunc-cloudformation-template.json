@@ -1,6 +1,6 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "{\"createdOn\":\"Windows\",\"createdBy\":\"Amplify\",\"createdWith\":\"11.1.1\",\"stackType\":\"function-Lambda\",\"metadata\":{}}",
+  "Description": "{\"createdOn\":\"Windows\",\"createdBy\":\"Amplify\",\"createdWith\":\"12.0.0\",\"stackType\":\"function-Lambda\",\"metadata\":{}}",
   "Parameters": {
     "CloudWatchRule": {
       "Type": "String",
@@ -16,17 +16,17 @@
     "s3Key": {
       "Type": "String"
     },
-    "storageacharyaprodbName": {
+    "storageecommerceOrdersTabledevName": {
       "Type": "String",
-      "Default": "storageacharyaprodbName"
+      "Default": "storageecommerceOrdersTabledevName"
     },
-    "storageacharyaprodbArn": {
+    "storageecommerceOrdersTabledevArn": {
       "Type": "String",
-      "Default": "storageacharyaprodbArn"
+      "Default": "storageecommerceOrdersTabledevArn"
     },
-    "storageacharyaprodbStreamArn": {
+    "storageecommerceOrdersTabledevStreamArn": {
       "Type": "String",
-      "Default": "storageacharyaprodbStreamArn"
+      "Default": "storageecommerceOrdersTabledevStreamArn"
     }
   },
   "Conditions": {
@@ -59,12 +59,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "ecommerceFuncProd",
+            "ecommerceClientOrdersFunc",
             {
               "Fn::Join": [
                 "",
                 [
-                  "ecommerceFuncProd",
+                  "ecommerceClientOrdersFunc",
                   "-",
                   {
                     "Ref": "env"
@@ -82,14 +82,14 @@
             "REGION": {
               "Ref": "AWS::Region"
             },
-            "STORAGE_ACHARYAPRODB_NAME": {
-              "Ref": "storageacharyaprodbName"
+            "STORAGE_ECOMMERCEORDERSTABLEDEV_NAME": {
+              "Ref": "storageecommerceOrdersTabledevName"
             },
-            "STORAGE_ACHARYAPRODB_ARN": {
-              "Ref": "storageacharyaprodbArn"
+            "STORAGE_ECOMMERCEORDERSTABLEDEV_ARN": {
+              "Ref": "storageecommerceOrdersTabledevArn"
             },
-            "STORAGE_ACHARYAPRODB_STREAMARN": {
-              "Ref": "storageacharyaprodbStreamArn"
+            "STORAGE_ECOMMERCEORDERSTABLEDEV_STREAMARN": {
+              "Ref": "storageecommerceOrdersTabledevStreamArn"
             }
           }
         },
@@ -99,7 +99,7 @@
             "Arn"
           ]
         },
-        "Runtime": "nodejs16.x",
+        "Runtime": "nodejs18.x",
         "Layers": [],
         "Timeout": 25
       }
@@ -110,12 +110,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "ecommercev2LambdaRole63e69ded",
+            "ecommercev2LambdaRole35e26d9d",
             {
               "Fn::Join": [
                 "",
                 [
-                  "ecommercev2LambdaRole63e69ded",
+                  "ecommercev2LambdaRole35e26d9d",
                   "-",
                   {
                     "Ref": "env"
@@ -204,23 +204,29 @@
             {
               "Effect": "Allow",
               "Action": [
+                "dynamodb:Put*",
+                "dynamodb:Create*",
+                "dynamodb:BatchWriteItem",
                 "dynamodb:Get*",
                 "dynamodb:BatchGetItem",
                 "dynamodb:List*",
                 "dynamodb:Describe*",
                 "dynamodb:Scan",
-                "dynamodb:Query"
+                "dynamodb:Query",
+                "dynamodb:Update*",
+                "dynamodb:RestoreTable*",
+                "dynamodb:Delete*"
               ],
               "Resource": [
                 {
-                  "Ref": "storageacharyaprodbArn"
+                  "Ref": "storageecommerceOrdersTabledevArn"
                 },
                 {
                   "Fn::Join": [
                     "/",
                     [
                       {
-                        "Ref": "storageacharyaprodbArn"
+                        "Ref": "storageecommerceOrdersTabledevArn"
                       },
                       "index/*"
                     ]

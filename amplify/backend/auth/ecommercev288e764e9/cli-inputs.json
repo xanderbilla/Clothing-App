@@ -1,10 +1,10 @@
 {
   "version": "1",
   "cognitoConfig": {
-    "identityPoolName": "ecommercev2c27bf97b_identitypool_c27bf97b",
-    "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "ecommec27bf97b",
-    "userPoolName": "ecommercev2c27bf97b_userpool_c27bf97b",
+    "identityPoolName": "ecommercev288e764e9_identitypool_88e764e9",
+    "allowUnauthenticatedIdentities": true,
+    "resourceNameTruncated": "ecomme88e764e9",
+    "userPoolName": "ecommercev288e764e9_userpool_88e764e9",
     "autoVerifiedAttributes": [
       "email"
     ],
@@ -33,16 +33,30 @@
     "userpoolClientReadAttributes": [
       "email"
     ],
-    "userpoolClientLambdaRole": "ecommec27bf97b_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "ecomme88e764e9_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "c27bf97b",
-    "resourceName": "ecommercev2c27bf97b",
+    "sharedId": "88e764e9",
+    "resourceName": "ecommercev288e764e9",
     "authSelections": "identityPoolAndUserPool",
     "useDefault": "default",
     "triggers": {},
     "userPoolGroupList": [],
     "serviceName": "Cognito",
     "usernameCaseSensitive": false,
-    "useEnabledMfas": true
+    "useEnabledMfas": true,
+    "authRoleArn": {
+      "Fn::GetAtt": [
+        "AuthRole",
+        "Arn"
+      ]
+    },
+    "unauthRoleArn": {
+      "Fn::GetAtt": [
+        "UnauthRole",
+        "Arn"
+      ]
+    },
+    "breakCircularDependency": true,
+    "dependsOn": []
   }
 }

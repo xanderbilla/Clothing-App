@@ -10,9 +10,9 @@ See the License for the specific language governing permissions and limitations 
 /* Amplify Params - DO NOT EDIT
 	ENV
 	REGION
-	STORAGE_ACHARYAORDERSDB_ARN
-	STORAGE_ACHARYAORDERSDB_NAME
-	STORAGE_ACHARYAORDERSDB_STREAMARN
+	STORAGE_ECOMMERCEORDERSTABLEDEV_ARN
+	STORAGE_ECOMMERCEORDERSTABLEDEV_NAME
+	STORAGE_ECOMMERCEORDERSTABLEDEV_STREAMARN
 Amplify Params - DO NOT EDIT */
 
 const express = require('express')
@@ -33,7 +33,7 @@ app.use(function(req, res, next) {
 
 const AWS = require('aws-sdk');
 const dynamodb = new AWS.DynamoDB.DocumentClient();
-const table = process.env.STORAGE_ACHARYAORDERSDB_NAME
+const table = process.env.STORAGE_ECOMMERCEORDERSTABLEDEV_NAME
 
 function id() {
   return Math.random().toString(36).substring(2) + Date.now().toString(36)

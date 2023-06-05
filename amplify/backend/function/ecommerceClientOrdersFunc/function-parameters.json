@@ -1,10 +1,11 @@
 {
   "permissions": {
     "storage": {
-      "acharyaordersdb": [
+      "ecommerceOrdersTabledev": [
         "create",
         "read",
-        "update"
+        "update",
+        "delete"
       ]
     }
   },

@@ -1,6 +1,6 @@
 {
   "api": {
-    "ecommerceApiOrders": {
+    "ecommerceClientApi": {
       "dependsOn": [
         {
           "attributes": [
@@ -8,21 +8,15 @@
             "Arn"
           ],
           "category": "function",
-          "resourceName": "ecommerceFuncOrders"
-        }
-      ],
-      "providerPlugin": "awscloudformation",
-      "service": "API Gateway"
-    },
-    "ecommerceApiProd": {
-      "dependsOn": [
+          "resourceName": "ecommerceClientProdFunc"
+        },
         {
           "attributes": [
             "Name",
             "Arn"
           ],
           "category": "function",
-          "resourceName": "ecommerceFuncProd"
+          "resourceName": "ecommerceClientOrdersFunc"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -30,7 +24,7 @@
     }
   },
   "auth": {
-    "ecommercev2c27bf97b": {
+    "ecommercev288e764e9": {
       "customAuth": false,
       "dependsOn": [],
       "frontendAuthConfig": {
@@ -58,7 +52,7 @@
     }
   },
   "function": {
-    "ecommerceFuncOrders": {
+    "ecommerceClientOrdersFunc": {
       "build": true,
       "dependsOn": [
         {
@@ -68,13 +62,13 @@
             "StreamArn"
           ],
           "category": "storage",
-          "resourceName": "acharyaordersdb"
+          "resourceName": "ecommerceOrdersTabledev"
         }
       ],
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     },
-    "ecommerceFuncProd": {
+    "ecommerceClientProdFunc": {
       "build": true,
       "dependsOn": [
         {
@@ -84,7 +78,7 @@
             "StreamArn"
           ],
           "category": "storage",
-          "resourceName": "acharyaprodb"
+          "resourceName": "ecommerceProdTabledev"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -92,47 +86,168 @@
     }
   },
   "parameters": {
-    "AMPLIFY_function_ecommerceFuncOrders_deploymentBucketName": {
+    "AMPLIFY_function_ecommerceClientOrdersFunc_deploymentBucketName": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "ecommerceFuncOrders"
+          "resourceName": "ecommerceClientOrdersFunc"
         }
       ]
     },
-    "AMPLIFY_function_ecommerceFuncOrders_s3Key": {
+    "AMPLIFY_function_ecommerceClientOrdersFunc_s3Key": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "ecommerceFuncOrders"
+          "resourceName": "ecommerceClientOrdersFunc"
         }
       ]
     },
-    "AMPLIFY_function_ecommerceFuncProd_deploymentBucketName": {
+    "AMPLIFY_function_ecommerceClientProdFunc_deploymentBucketName": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "ecommerceFuncProd"
+          "resourceName": "ecommerceClientProdFunc"
         }
       ]
     },
-    "AMPLIFY_function_ecommerceFuncProd_s3Key": {
+    "AMPLIFY_function_ecommerceClientProdFunc_s3Key": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "ecommerceFuncProd"
+          "resourceName": "ecommerceClientProdFunc"
+        }
+      ]
+    },
+    "AMPLIFY_storage_ecommerceOrdersTabledev_arn": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "ecommerceOrdersTabledev"
+        }
+      ]
+    },
+    "AMPLIFY_storage_ecommerceOrdersTabledev_partitionKeyName": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "ecommerceOrdersTabledev"
+        }
+      ]
+    },
+    "AMPLIFY_storage_ecommerceOrdersTabledev_partitionKeyType": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "ecommerceOrdersTabledev"
+        }
+      ]
+    },
+    "AMPLIFY_storage_ecommerceOrdersTabledev_region": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "ecommerceOrdersTabledev"
+        }
+      ]
+    },
+    "AMPLIFY_storage_ecommerceOrdersTabledev_sortKeyName": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "ecommerceOrdersTabledev"
+        }
+      ]
+    },
+    "AMPLIFY_storage_ecommerceOrdersTabledev_sortKeyType": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "ecommerceOrdersTabledev"
+        }
+      ]
+    },
+    "AMPLIFY_storage_ecommerceOrdersTabledev_streamArn": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "ecommerceOrdersTabledev"
+        }
+      ]
+    },
+    "AMPLIFY_storage_ecommerceOrdersTabledev_tableName": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "ecommerceOrdersTabledev"
+        }
+      ]
+    },
+    "AMPLIFY_storage_ecommerceProdTabledev_arn": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "ecommerceProdTabledev"
+        }
+      ]
+    },
+    "AMPLIFY_storage_ecommerceProdTabledev_partitionKeyName": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "ecommerceProdTabledev"
+        }
+      ]
+    },
+    "AMPLIFY_storage_ecommerceProdTabledev_partitionKeyType": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "ecommerceProdTabledev"
+        }
+      ]
+    },
+    "AMPLIFY_storage_ecommerceProdTabledev_region": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "ecommerceProdTabledev"
+        }
+      ]
+    },
+    "AMPLIFY_storage_ecommerceProdTabledev_streamArn": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "ecommerceProdTabledev"
+        }
+      ]
+    },
+    "AMPLIFY_storage_ecommerceProdTabledev_tableName": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "ecommerceProdTabledev"
         }
       ]
     }
   },
   "storage": {
-    "acharyaordersdb": {
+    "ecommerceClient": {
+      "dependsOn": [],
       "providerPlugin": "awscloudformation",
-      "service": "DynamoDB"
+      "service": "S3"
     },
-    "acharyaprodb": {
+    "ecommerceOrdersTabledev": {
+      "dependsOn": [],
       "providerPlugin": "awscloudformation",
-      "service": "DynamoDB"
+      "service": "DynamoDB",
+      "serviceType": "imported"
+    },
+    "ecommerceProdTabledev": {
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "DynamoDB",
+      "serviceType": "imported"
     }
   }
 }

@@ -11,10 +11,7 @@
     "env": {
       "Type": "String"
     },
-    "ecommerceApiProd": {
-      "Type": "String"
-    },
-    "ecommerceApiOrders": {
+    "ecommerceClientApi": {
       "Type": "String"
     }
   },
@@ -55,7 +52,7 @@
                       },
                       ":",
                       {
-                        "Ref": "ecommerceApiOrders"
+                        "Ref": "ecommerceClientApi"
                       },
                       "/",
                       {
@@ -85,7 +82,7 @@
                       },
                       ":",
                       {
-                        "Ref": "ecommerceApiOrders"
+                        "Ref": "ecommerceClientApi"
                       },
                       "/",
                       {

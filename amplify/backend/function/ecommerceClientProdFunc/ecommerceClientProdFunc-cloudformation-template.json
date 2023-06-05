@@ -16,17 +16,17 @@
     "s3Key": {
       "Type": "String"
     },
-    "storageacharyaordersdbName": {
+    "storageecommerceProdTabledevName": {
       "Type": "String",
-      "Default": "storageacharyaordersdbName"
+      "Default": "storageecommerceProdTabledevName"
     },
-    "storageacharyaordersdbArn": {
+    "storageecommerceProdTabledevArn": {
       "Type": "String",
-      "Default": "storageacharyaordersdbArn"
+      "Default": "storageecommerceProdTabledevArn"
     },
-    "storageacharyaordersdbStreamArn": {
+    "storageecommerceProdTabledevStreamArn": {
       "Type": "String",
-      "Default": "storageacharyaordersdbStreamArn"
+      "Default": "storageecommerceProdTabledevStreamArn"
     }
   },
   "Conditions": {
@@ -59,12 +59,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "ecommerceFuncOrders",
+            "ecommerceClientProdFunc",
             {
               "Fn::Join": [
                 "",
                 [
-                  "ecommerceFuncOrders",
+                  "ecommerceClientProdFunc",
                   "-",
                   {
                     "Ref": "env"
@@ -82,14 +82,14 @@
             "REGION": {
               "Ref": "AWS::Region"
             },
-            "STORAGE_ACHARYAORDERSDB_NAME": {
-              "Ref": "storageacharyaordersdbName"
+            "STORAGE_ECOMMERCEPRODTABLEDEV_NAME": {
+              "Ref": "storageecommerceProdTabledevName"
             },
-            "STORAGE_ACHARYAORDERSDB_ARN": {
-              "Ref": "storageacharyaordersdbArn"
+            "STORAGE_ECOMMERCEPRODTABLEDEV_ARN": {
+              "Ref": "storageecommerceProdTabledevArn"
             },
-            "STORAGE_ACHARYAORDERSDB_STREAMARN": {
-              "Ref": "storageacharyaordersdbStreamArn"
+            "STORAGE_ECOMMERCEPRODTABLEDEV_STREAMARN": {
+              "Ref": "storageecommerceProdTabledevStreamArn"
             }
           }
         },
@@ -110,12 +110,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "ecommercev2LambdaRole25dbd68d",
+            "ecommercev2LambdaRole031a9a3c",
             {
               "Fn::Join": [
                 "",
                 [
-                  "ecommercev2LambdaRole25dbd68d",
+                  "ecommercev2LambdaRole031a9a3c",
                   "-",
                   {
                     "Ref": "env"
@@ -204,28 +204,23 @@
             {
               "Effect": "Allow",
               "Action": [
-                "dynamodb:Put*",
-                "dynamodb:Create*",
-                "dynamodb:BatchWriteItem",
                 "dynamodb:Get*",
                 "dynamodb:BatchGetItem",
                 "dynamodb:List*",
                 "dynamodb:Describe*",
                 "dynamodb:Scan",
-                "dynamodb:Query",
-                "dynamodb:Update*",
-                "dynamodb:RestoreTable*"
+                "dynamodb:Query"
               ],
               "Resource": [
                 {
-                  "Ref": "storageacharyaordersdbArn"
+                  "Ref": "storageecommerceProdTabledevArn"
                 },
                 {
                   "Fn::Join": [
                     "/",
                     [
                       {
-                        "Ref": "storageacharyaordersdbArn"
+                        "Ref": "storageecommerceProdTabledevArn"
                       },
                       "index/*"
                     ]

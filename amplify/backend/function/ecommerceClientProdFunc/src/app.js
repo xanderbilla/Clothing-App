@@ -10,9 +10,9 @@ See the License for the specific language governing permissions and limitations 
 /* Amplify Params - DO NOT EDIT
 	ENV
 	REGION
-	STORAGE_ACHARYAPRODB_ARN
-	STORAGE_ACHARYAPRODB_NAME
-	STORAGE_ACHARYAPRODB_STREAMARN
+	STORAGE_ECOMMERCEPRODTABLEDEV_ARN
+	STORAGE_ECOMMERCEPRODTABLEDEV_NAME
+	STORAGE_ECOMMERCEPRODTABLEDEV_STREAMARN
 Amplify Params - DO NOT EDIT */
 
 const express = require('express')
@@ -31,12 +31,13 @@ app.use(function(req, res, next) {
   next()
 });
 
+
 const AWS = require('aws-sdk');
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 
 async function getProduct(prodId) {
   const params = {
-    TableName: process.env.STORAGE_ACHARYAPRODB_NAME,
+    TableName: process.env.STORAGE_ECOMMERCEPRODTABLEDEV_NAME,
     Key: {
       prodId
     }
@@ -57,7 +58,7 @@ async function getProduct(prodId) {
 
 async function getAllItems(category) {
     const params = {
-      TableName: process.env.STORAGE_ACHARYAPRODB_NAME
+      TableName: process.env.STORAGE_ECOMMERCEPRODTABLEDEV_NAME
     };
   
     if (category) {
