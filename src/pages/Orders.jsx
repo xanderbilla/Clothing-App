@@ -1,4 +1,4 @@
-import {useState, useEffect, API, Link, OrderCard} from '../utils/Imports'
+import { useState, useEffect, API, Link, OrderCard } from '../utils/Imports'
 import styles from '../styles/orders.module.css';
 
 const Orders = () => {
@@ -10,20 +10,20 @@ const Orders = () => {
 
   const fetchOrders = async () => {
     try {
-      const response = await API.get('ecommerceApiOrders', '/orders');
+      const response = await API.get('ecommerceClientApi', '/orders');
       setOrders(response);
     } catch (error) {
       console.log(error.response);
     }
   };
-console.log(orders);
+  console.log(orders);
   return (
     <div className={styles.container}>
       <div className={styles.top}>
         <h1 className={styles.title}>YOUR ORDERS</h1>
-              <Link to='/'>
-                  <button className={styles.button}>Continue Shopping</button>
-                  </Link>
+        <Link to='/'>
+          <button className={styles.button}>Continue Shopping</button>
+        </Link>
       </div>
       <div className={styles.orders}>
         {orders && orders.map((order, i) => (

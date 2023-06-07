@@ -1,4 +1,4 @@
-.product {
+.top {
     padding: 20px 50px;
     display: flex;
     gap: 20px;
@@ -38,6 +38,12 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+}
+
+.rating{
+    opacity: 0.5;
+    font-size: 14px;
+    font-weight: 600;
 }
 
 .product_info {
@@ -176,7 +182,7 @@ color: white;
 }
 
 @media screen and (max-width: 767px) {
-    .product{
+    .top{
         flex-direction: column;
         height: auto;
     }

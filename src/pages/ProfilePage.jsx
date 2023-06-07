@@ -1,5 +1,6 @@
 import { useState, DataTable, EditUserInfo, UserInfo } from '../utils/Imports'
 import styles from '../styles/profilePage.module.css'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 
 const ProfilePage = () => {
     const [isEdit, setIsEdit] = useState(false)
@@ -14,7 +15,7 @@ const ProfilePage = () => {
             </div>
             <div className={styles.center}>
                 <div className={styles.center_left}>
-                    <img className={styles.avatar} src="https://images.pexels.com/photos/16407235/pexels-photo-16407235.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" />
+                    <LazyLoadImage className={styles.avatar} src="https://images.pexels.com/photos/16407235/pexels-photo-16407235.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" />
                 </div>
                 <div className={styles.center_right}>
                     {isEdit

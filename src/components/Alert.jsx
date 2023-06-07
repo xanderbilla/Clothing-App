@@ -3,13 +3,12 @@ import styles from '../styles/alert.module.css';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 
-export const SuccessAlert = ({ message, orderAdded, setOrderAdded }) => {
+export const SuccessAlert = ({ message}) => {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
         setVisible(false);
-        setOrderAdded(false)
     }, 2000);
 
     return () => {
@@ -22,13 +21,12 @@ export const SuccessAlert = ({ message, orderAdded, setOrderAdded }) => {
   ) : null;
 };
 
-export const ErrorAlert = ({ message, orderAdded, setOrderAdded }) => {
+export const ErrorAlert = ({ message }) => {
     const [visible, setVisible] = useState(true);
   
     useEffect(() => {
       const timeout = setTimeout(() => {
           setVisible(false);
-          setOrderAdded(false)
       }, 2000);
   
       return () => {

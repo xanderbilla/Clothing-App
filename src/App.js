@@ -18,7 +18,7 @@ const App = () => {
       console.log(error);
     }
   };
-
+  
   return (
     <>
       <Navbar isOpen={isOpen} setIsOpen={setIsOpen} />
@@ -27,11 +27,11 @@ const App = () => {
         <Route path="/product/:id" element={<ProductPage />} />
         <Route path="/category/:id" element={<ProductList popularProducts={popularProducts} />} />
         <Route path="/cart" element={<Cart />} />
+    <Route path="/paymentsuccess" element={<PaymentSuccess />} />
         {isLogin ? (
           <>
-            <Route path="/profile" element={<ProfilePage />} />
             <Route path="/orders" element={<Orders />} />
-            <Route path="/paymentsuccess" element={<PaymentSuccess />} />
+            <Route path="/profile" element={<ProfilePage />} />
             <Route path="/login" element={<Navigate to="/profile" />} />
             <Route path="/register" element={<Navigate to="/profile" />} />
           </>

@@ -10,7 +10,7 @@ const List = ({ cat, filters, sort }) => {
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const apiName = 'ecommerceApiProd';
+        const apiName = 'ecommerceClientApi';
         let url = '/products';
         if (cat) {
           url += `?category=${cat}`;
@@ -26,7 +26,7 @@ const List = ({ cat, filters, sort }) => {
 
   useEffect(() => {
     let updatedProducts = products;
-    
+
     if (cat && Object.keys(filters).length > 0) {
       updatedProducts = updatedProducts.filter(item =>
         Object.entries(filters).every(([key, value]) => item[key].includes(value))

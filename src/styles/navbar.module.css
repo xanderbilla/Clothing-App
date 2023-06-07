@@ -7,7 +7,7 @@
 }
 
 .container {
-    height: 65px;
+    height: 60px;
     background-color: black;
 }
 
@@ -18,7 +18,7 @@
     justify-content: space-between;
 }
 
-.left {
+.left, .right {
     flex: 1;
     display: flex;
     align-items: center;
@@ -29,9 +29,6 @@
 }
 
 .right {
-    flex: 1;
-    display: flex;
-    align-items: center;
     justify-content: flex-end;
 }
 
@@ -98,7 +95,7 @@
 .menu_auth {
     font-size: 14px;
     cursor: pointer;
-    margin-left: 0.7rem;
+    margin-left: 10px;
     text-align: center;
     text-decoration: none;
     color: white;
@@ -116,8 +113,16 @@
 .menu_profile {
     text-decoration: none;
     color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
+.link{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 @media screen and (max-width: 767px) {
     .container {
         height: 60px;

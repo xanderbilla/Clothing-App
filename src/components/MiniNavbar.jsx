@@ -12,9 +12,7 @@ const MiniNavbar = () => {
         setValue(selectedValue);
         redirect(`/category/${selectedValue}`);
     }
-
-    // Set the "value" attribute to the value of the state variable "value"
-    // Set the "defaultValue" attribute to "All" (the default option)
+    
     return (
         <div className={styles.mininavbar}>
             <div className={styles.left}>
