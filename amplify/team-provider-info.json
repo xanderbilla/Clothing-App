@@ -1,54 +1,51 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-ecommercev2-dev-12419-authRole",
-      "UnauthRoleArn": "arn:aws:iam::954138568328:role/amplify-ecommercev2-dev-12419-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::954138568328:role/amplify-ecommercev2-dev-12419-authRole",
+      "AuthRoleName": "amplify-ecommercev2-dev-72833-authRole",
+      "UnauthRoleArn": "arn:aws:iam::954138568328:role/amplify-ecommercev2-dev-72833-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::954138568328:role/amplify-ecommercev2-dev-72833-authRole",
       "Region": "ap-south-1",
-      "DeploymentBucketName": "amplify-ecommercev2-dev-12419-deployment",
-      "UnauthRoleName": "amplify-ecommercev2-dev-12419-unauthRole",
-      "StackName": "amplify-ecommercev2-dev-12419",
-      "StackId": "arn:aws:cloudformation:ap-south-1:954138568328:stack/amplify-ecommercev2-dev-12419/88b18420-0248-11ee-9da9-0607729f6718",
-      "AmplifyAppId": "duomx1s3n93e8",
-      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-ecommercev2-dev-12419-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
+      "DeploymentBucketName": "amplify-ecommercev2-dev-72833-deployment",
+      "UnauthRoleName": "amplify-ecommercev2-dev-72833-unauthRole",
+      "StackName": "amplify-ecommercev2-dev-72833",
+      "StackId": "arn:aws:cloudformation:ap-south-1:954138568328:stack/amplify-ecommercev2-dev-72833/4f0941b0-0732-11ee-9fc2-0a304b2dca28",
+      "AmplifyAppId": "d26tclpzsvpseb"
     },
     "categories": {
       "auth": {
-        "ecommercev288e764e9": {}
+        "ecommercev248c0c298": {}
       },
       "storage": {
-        "ecommerceProdTabledev": {
-          "tableName": "ecommerceProdTable-dev",
+        "acharyaOrdersdev": {
+          "tableName": "acharyaOrders-dev",
           "region": "ap-south-1",
-          "arn": "arn:aws:dynamodb:ap-south-1:954138568328:table/ecommerceProdTable-dev",
-          "streamArn": "arn:aws:dynamodb:ap-south-1:954138568328:table/ecommerceProdTable-dev/stream/2023-06-03T18:19:13.504",
+          "arn": "arn:aws:dynamodb:ap-south-1:954138568328:table/acharyaOrders-dev",
+          "streamArn": "arn:aws:dynamodb:ap-south-1:954138568328:table/acharyaOrders-dev/stream/2023-06-09T14:09:02.097",
+          "partitionKeyName": "orderId",
+          "partitionKeyType": "S"
+        },
+        "acharyaProddev": {
+          "tableName": "acharyaProd-dev",
+          "region": "ap-south-1",
+          "arn": "arn:aws:dynamodb:ap-south-1:954138568328:table/acharyaProd-dev",
+          "streamArn": "arn:aws:dynamodb:ap-south-1:954138568328:table/acharyaProd-dev/stream/2023-06-09T13:32:27.833",
           "partitionKeyName": "prodId",
           "partitionKeyType": "S"
         },
-        "ecommerceOrdersTabledev": {
-          "tableName": "ecommerceOrdersTable-dev",
-          "region": "ap-south-1",
-          "arn": "arn:aws:dynamodb:ap-south-1:954138568328:table/ecommerceOrdersTable-dev",
-          "streamArn": "arn:aws:dynamodb:ap-south-1:954138568328:table/ecommerceOrdersTable-dev/stream/2023-06-03T18:19:13.340",
-          "partitionKeyName": "orderId",
-          "partitionKeyType": "S",
-          "sortKeyName": "paymentId",
-          "sortKeyType": "S"
-        },
-        "ecommerceClient": {}
+        "ecommerceMediaStorage": {}
       },
       "function": {
-        "ecommerceClientProdFunc": {
-          "deploymentBucketName": "amplify-ecommercev2-dev-12419-deployment",
-          "s3Key": "amplify-builds/ecommerceClientProdFunc-75707873665059504b38-build.zip"
+        "ecommerceFuncProdClient": {
+          "deploymentBucketName": "amplify-ecommercev2-dev-72833-deployment",
+          "s3Key": "amplify-builds/ecommerceFuncProdClient-5a7636727341376f6e34-build.zip"
         },
-        "ecommerceClientOrdersFunc": {
-          "deploymentBucketName": "amplify-ecommercev2-dev-12419-deployment",
-          "s3Key": "amplify-builds/ecommerceClientOrdersFunc-545831484e544b6c664d-build.zip"
+        "ecommerceFuncOrdersClient": {
+          "deploymentBucketName": "amplify-ecommercev2-dev-72833-deployment",
+          "s3Key": "amplify-builds/ecommerceFuncOrdersClient-6e64337a4f44766b6f57-build.zip"
         }
       },
       "api": {
-        "ecommerceClientApi": {}
+        "eCommerceApi": {}
       }
     }
   }

@@ -10,9 +10,9 @@ See the License for the specific language governing permissions and limitations 
 /* Amplify Params - DO NOT EDIT
 	ENV
 	REGION
-	STORAGE_ECOMMERCEPRODTABLEDEV_ARN
-	STORAGE_ECOMMERCEPRODTABLEDEV_NAME
-	STORAGE_ECOMMERCEPRODTABLEDEV_STREAMARN
+	STORAGE_ACHARYAPRODDEV_ARN
+	STORAGE_ACHARYAPRODDEV_NAME
+	STORAGE_ACHARYAPRODDEV_STREAMARN
 Amplify Params - DO NOT EDIT */
 
 const express = require('express')
@@ -34,10 +34,10 @@ app.use(function(req, res, next) {
 
 const AWS = require('aws-sdk');
 const dynamodb = new AWS.DynamoDB.DocumentClient();
-
+const table = process.env.STORAGE_ACHARYAPRODDEV_NAME
 async function getProduct(prodId) {
   const params = {
-    TableName: process.env.STORAGE_ECOMMERCEPRODTABLEDEV_NAME,
+    TableName: table,
     Key: {
       prodId
     }
@@ -57,31 +57,31 @@ async function getProduct(prodId) {
 }
 
 async function getAllItems(category) {
-    const params = {
-      TableName: process.env.STORAGE_ECOMMERCEPRODTABLEDEV_NAME
+  const params = {
+    TableName: table
+  };
+
+  if (category) {
+    params.FilterExpression = "category = :category";
+    params.ExpressionAttributeValues = {
+      ":category": category
     };
-  
-    if (category) {
-      params.FilterExpression = "category = :category";
-      params.ExpressionAttributeValues = {
-        ":category": category
-      };
-    }
-  
-    try {
-      const data = await dynamodb.scan(params).promise();
-      return data.Items;
-    } catch (err) {
-      console.error(err);
-      throw new Error('Failed to retrieve items from table');
-    }
+  }
+
+  try {
+    const data = await dynamodb.scan(params).promise();
+    return data.Items;
+  } catch (err) {
+    console.error(err);
+    throw new Error('Failed to retrieve items from table');
+  }
 }
-  
+
 /*****************************************
  * Get all products or based on category *
  ****************************************/
 
-app.get('/products', async function(req, res) {
+app.get('/products', async function (req, res) {
   const category = req.query.category;
   try {
     const items = await getAllItems(category);
@@ -96,7 +96,7 @@ app.get('/products', async function(req, res) {
  * Get single products                   *
  ****************************************/
 
-app.get('/products/:prodId', async function(req, res) {
+app.get('/products/:prodId', async function (req, res) {
   try {
     const { prodId } = req.params;
     const product = await getProduct(prodId);
@@ -107,12 +107,13 @@ app.get('/products/:prodId', async function(req, res) {
   }
 });
 
+
 /*****************************************
  * API Gateway Information               *
  ****************************************/
 
-app.listen(3000, function() {
-    console.log("App started")
+app.listen(3000, function () {
+  console.log("App started")
 });
 
 // Export the app object. When executing the application local this does nothing. However,

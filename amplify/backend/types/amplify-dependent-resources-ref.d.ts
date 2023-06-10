@@ -1,13 +1,13 @@
 export type AmplifyDependentResourcesAttributes = {
   "api": {
-    "ecommerceClientApi": {
+    "eCommerceApi": {
       "ApiId": "string",
       "ApiName": "string",
       "RootUrl": "string"
     }
   },
   "auth": {
-    "ecommercev288e764e9": {
+    "ecommercev248c0c298": {
       "AppClientID": "string",
       "AppClientIDWeb": "string",
       "CreatedSNSRole": "string",
@@ -19,14 +19,14 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "function": {
-    "ecommerceClientOrdersFunc": {
+    "ecommerceFuncOrdersClient": {
       "Arn": "string",
       "LambdaExecutionRole": "string",
       "LambdaExecutionRoleArn": "string",
       "Name": "string",
       "Region": "string"
     },
-    "ecommerceClientProdFunc": {
+    "ecommerceFuncProdClient": {
       "Arn": "string",
       "LambdaExecutionRole": "string",
       "LambdaExecutionRoleArn": "string",
@@ -35,7 +35,7 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "storage": {
-    "ecommerceClient": {
+    "ecommerceMediaStorage": {
       "BucketName": "string",
       "Region": "string"
     }

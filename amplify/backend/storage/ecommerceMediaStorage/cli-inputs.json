@@ -1,7 +1,7 @@
 {
-  "resourceName": "ecommerceClient",
-  "policyUUID": "1746241b",
-  "bucketName": "ecommerceclientmediastorage",
+  "resourceName": "ecommerceMediaStorage",
+  "policyUUID": "1577e6c8",
+  "bucketName": "ecommercemediastorage",
   "storageAccess": "authAndGuest",
   "guestAccess": [
     "READ"

@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "paths": {
+    "/products": {
+      "name": "/products",
+      "lambdaFunction": "ecommerceFuncProdClient",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/orders": {
+      "name": "/orders",
+      "lambdaFunction": "ecommerceFuncOrdersClient",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}
