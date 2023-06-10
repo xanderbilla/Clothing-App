@@ -10,7 +10,7 @@ const Orders = () => {
 
   const fetchOrders = async () => {
     try {
-      const response = await API.get('ecommerceClientApi', '/orders');
+      const response = await API.get('eCommerceApi', '/orders');
       setOrders(response);
     } catch (error) {
       console.log(error.response);
@@ -26,9 +26,12 @@ const Orders = () => {
         </Link>
       </div>
       <div className={styles.orders}>
-        {orders && orders.map((order, i) => (
+        {orders ? orders.map((order, i) => (
           <OrderCard cart={order} key={i} />
-        ))}
+        ))
+          :
+          <div className={styles.message}>No Recent Orders</div>
+        }
       </div>
     </div>
   );

@@ -47,7 +47,7 @@ const Cart = () => {
                         paymentId: paymentOption === 'COD' ? codPaymentId() : '',
                     },
                 };
-                API.post('ecommerceClientApi', '/orders', data)
+                API.post('eCommerceApi', '/orders', data)
                     .then((response) => {
                         console.log(response);
                         setOrderAdded(true);
@@ -57,7 +57,8 @@ const Cart = () => {
                     .catch((error) => {
                         console.log(error.response);
                     });
-            } else {
+            }
+            else {
                 const amount = cart.total;
                 const data = await fetch('http://localhost:5555/razorpay', {
                     method: 'POST',
@@ -93,7 +94,7 @@ const Cart = () => {
                                     paymentOption === 'COD' ? response.razorpay_payment_id : '',
                             },
                         };
-                        API.post('ecommerceClientApi', '/orders', data)
+                        API.post('eCommerceApi', '/orders', data)
                             .then((response) => {
                                 console.log(response);
                                 setOrderAdded(true);

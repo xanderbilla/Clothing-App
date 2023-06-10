@@ -10,13 +10,14 @@ const List = ({ cat, filters, sort }) => {
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const apiName = 'ecommerceClientApi';
+        const apiName = 'eCommerceApi';
         let url = '/products';
         if (cat) {
           url += `?category=${cat}`;
         }
         const response = await API.get(apiName, url);
         setProducts(response);
+        console.log(response)
       } catch (error) {
         console.log(error);
       }

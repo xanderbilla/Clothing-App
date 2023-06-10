@@ -25,7 +25,6 @@ export default function Menu({ isOpen, setIsOpen }) {
     try {
       const user = await Auth.currentAuthenticatedUser();
       setIsLogin(true);
-      console.log(user);
     } catch (error) {
       setIsLogin(false);
       console.log(error);

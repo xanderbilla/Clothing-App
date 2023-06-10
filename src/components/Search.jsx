@@ -11,11 +11,11 @@ const Search = () => {
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const apiName = 'ecommerceClientApi';
+        const apiName = 'eCommerceApi';
         API.get(apiName, `/products`).then(async (response) => {
           setInfo(response);
         });
-      } catch (error) {}
+      } catch (error) { }
     };
     getProducts();
   }, []);
@@ -27,7 +27,7 @@ const Search = () => {
   };
 
   const handleLinkClick = () => {
-    setQuery(''); 
+    setQuery('');
   };
 
   return (
@@ -41,7 +41,7 @@ const Search = () => {
             id=""
             placeholder="Search..."
             onChange={(e) => setQuery(e.target.value)}
-            value={query} 
+            value={query}
             className={styles.search__input}
           />
         </div>
@@ -54,7 +54,7 @@ const Search = () => {
                   key={item.prodId}
                   to={`/product/${item.prodId}`}
                   className={styles.link}
-                  onClick={handleLinkClick} 
+                  onClick={handleLinkClick}
                 >
                   <li className={styles.search__item}>{item.title}</li>
                 </Link>

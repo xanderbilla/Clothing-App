@@ -1,6 +1,5 @@
 import { useState, useEffect, useLocation, API, useDispatch, addProduct, ProductInfo, AdditionalDetails, MainImage, ProductImages, QuantityControls, AddShoppingCartIcon } from '../utils/Imports';
 import styles from '../styles/productPage.module.css';
-import { getImage } from '../utils/getImage';
 import { Rating } from '@mui/material';
 import RatingSection from '../components/RatingSection';
 
@@ -31,11 +30,9 @@ const ProductPage = () => {
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const apiName = 'ecommerceClientApi';
+        const apiName = 'eCommerceApi';
         API.get(apiName, `/products/${productId}`).then(async (response) => {
-          const imageUrls = await Promise.all(response.img.map((imageKey) => getImage(imageKey)));
-          const productWithImages = { ...response, img: imageUrls };
-          setProduct(productWithImages);
+          setProduct(response);
         });
       } catch (error) { }
     };
