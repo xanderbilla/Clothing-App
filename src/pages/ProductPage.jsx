@@ -93,9 +93,6 @@ const ProductPage = () => {
           </div>
         </div>
       </div>
-      <div className={styles.bottom}>
-        <RatingSection />
-      </div>
     </div>
   );
 };
