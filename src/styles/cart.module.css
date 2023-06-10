@@ -54,7 +54,7 @@
 .product {
     display: flex;
     justify-content: space-between;
-    margin-top: 20px;
+    margin: 20px 0;
 }
 
 .product__details {
@@ -70,7 +70,7 @@
 }
 
 .product__image {
-    width: 200px;
+    width: 150px;
 }
 
 .product__color {

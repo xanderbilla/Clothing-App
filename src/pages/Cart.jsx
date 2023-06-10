@@ -1,14 +1,15 @@
 import { useState, useSelector, API, useDispatch, useNavigate, removeProduct, RemoveIcon, DeleteOutlineIcon, Auth, AddIcon, Payment } from '../utils/Imports';
 import styles from '../styles/cart.module.css';
 import { SuccessAlert, ErrorAlert } from '../components/Alert';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { resetCart } from '../redux/cartRedux';
+import CartImages from '../components/CartImages';
 
 const Cart = () => {
     const cart = useSelector((state) => state.cart);
     const [orderAdded, setOrderAdded] = useState(false);
     const [paymentOption, setPaymentOption] = useState('');
     const [quantity, setQuantity] = useState(1);
+    const [showPaymentError, setShowPaymentError] = useState(false);
     const redirect = useNavigate();
     const dispatch = useDispatch();
 
@@ -29,10 +30,19 @@ const Cart = () => {
 
     const handleCheckout = async () => {
         try {
+            if (!paymentOption) {
+                setShowPaymentError(true);
+                setTimeout(() => {
+                    setShowPaymentError(false);
+                }, 2000);
+                return;
+            }
+
             const user = await Auth.currentAuthenticatedUser();
-            const name = user.attributes.name
-            const email = user.attributes.email
-            const contact = user.attributes.phone_number
+            console.log(user);
+            const name = user.attributes.name;
+            const email = user.attributes.email;
+            const contact = user.attributes.phone_number;
 
             console.log(`name: ${name}, email: ${email} | phone: ${contact}`)
             if (paymentOption === 'COD') {
@@ -98,7 +108,7 @@ const Cart = () => {
                             .then((response) => {
                                 console.log(response);
                                 setOrderAdded(true);
-                                redirect('/paymentSuccess/');
+                                redirect('/paymentSuccess');
                                 dispatch(resetCart());
                             })
                             .catch((error) => {
@@ -119,11 +129,10 @@ const Cart = () => {
     };
 
     const renderProduct = (product, index) => {
-        console.log(product)
         return (
             <div className={styles.product} key={index}>
                 <div className={styles.product__details}>
-                    <LazyLoadImage className={styles.product__image} src={product.img[1]} alt="" />
+                    <CartImages images={product.img} />
                     <div className={styles.product__detail}>
                         <span className={styles.product__name}>
                             <b>Product: </b>
@@ -150,7 +159,7 @@ const Cart = () => {
                         <AddIcon onClick={() => setQuantity((prev) => prev + 1)} />
                     </div>
                     <div className={styles.foofunc}>
-                        <div className={styles.product__price}>${product.discount_price * product.quantity}</div>
+                        <div className={styles.product__price}>₹{product.discount_price * product.quantity}</div>
                         <button className={styles.remove} onClick={() => deleteItem(product.prodId)}>
                             <DeleteOutlineIcon fontSize="large" />{' '}
                         </button>
@@ -165,7 +174,7 @@ const Cart = () => {
             <h1 className={styles.container_title}>YOUR BAG</h1>
             <div className={styles.container_top}>
                 <button
-                    className={`${styles.container_top__button} ${cart.quantity ? '' : styles.disable_button}`}
+                    className={styles.container_top__button} 
                     onClick={() => redirect('/')}
                 >
                     CONTINUE SHOPPING
@@ -185,21 +194,22 @@ const Cart = () => {
                         <h1 className={styles.summary__title}>ORDER SUMMARY</h1>
                         <div className={styles.summary__item}>
                             <span className={styles.summary__item_text}>Subtotal</span>
-                            <div className={styles.summary__item_price}>$ {cart.total}</div>
+                            <div className={styles.summary__item_price}>₹ {cart.total}</div>
                         </div>
                         <div className={styles.summary__item}>
                             <span className={styles.summary__item_text}>Estimated Shiping</span>
-                            <div className={styles.summary__item_price}>$ 99</div>
+                            <div className={styles.summary__item_price}>₹ 99</div>
                         </div>
                         <div className={styles.summary__item}>
                             <span className={styles.summary__item_text}>Shipping Discount</span>
-                            <div className={styles.summary__item_price}>- $ 59</div>
+                            <div className={styles.summary__item_price}>- ₹ 59</div>
                         </div>
                         <div className={styles.summary__item}>
                             <span className={styles.summary__total_text}>Total</span>
-                            <div className={styles.summary__total_price}>$ {cart.total}</div>
+                            <div className={styles.summary__total_price}>₹ {cart.total - 59 - 99}</div>
                         </div>
                         <Payment onPaymentChange={handlePaymentChange} />
+                        {showPaymentError && <ErrorAlert message={'Please choose a payment option.'} />}
                         <button className={styles.summary__checkout} onClick={handleCheckout}>
                             CHECKOUT NOW
                         </button>

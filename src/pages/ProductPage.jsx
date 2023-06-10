@@ -1,7 +1,7 @@
 import { useState, useEffect, useLocation, API, useDispatch, addProduct, ProductInfo, AdditionalDetails, MainImage, ProductImages, QuantityControls, AddShoppingCartIcon } from '../utils/Imports';
 import styles from '../styles/productPage.module.css';
 import { Rating } from '@mui/material';
-import RatingSection from '../components/RatingSection';
+import { getImage } from '../utils/getImage';
 
 const ProductPage = () => {
   const [selectedImg, setSelectedImg] = useState(0);
@@ -12,6 +12,18 @@ const ProductPage = () => {
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedColor, setSelectedColor] = useState('');
   const dispatch = useDispatch();
+  const [imageUrls, setImageUrls] = useState([]);
+
+  console.log(imageUrls[selectedImg]);
+
+  useEffect(() => {
+    const fetchImages = async () => {
+      const urls = await Promise.all(product.img.map((imageKey) => getImage(imageKey)));
+      setImageUrls(urls);
+    };
+
+    fetchImages();
+  }, [product.img]);
 
   const handleSize = (size) => {
     setSelectedSize(size);
@@ -45,18 +57,18 @@ const ProductPage = () => {
         <div className={styles.left}>
           {product.img && (
             <ProductImages
-              images={product.img}
+              images={imageUrls}
               selectedImg={selectedImg}
               setSelectedImg={setSelectedImg}
             />
           )}
-          {product.img && <MainImage image={product.img[selectedImg]} />}
+          {product.img && <MainImage image={imageUrls[selectedImg]} />}
         </div>
         <div className={styles.right}>
           <ProductInfo title={product.title} description={product.desc} />
           <Rating name="read-only" value={4.6} precision={0.1} readOnly />
           <span className={styles.rating}>(4.6 / 5, 455,000 Reviews )</span>
-          <span className={styles.price}>${product.discount_price}</span>
+          <span className={styles.price}>₹{product.discount_price}</span>
           <div className={styles.additional_details}>
             {product.size && (
               <AdditionalDetails
@@ -88,13 +100,9 @@ const ProductPage = () => {
           <div className={styles.product__details}>
             <span className={styles.product__detail}>Vendor: {product.vendor}</span>
             <span className={styles.product__detail}>Category: {product.category}</span>
-            <span className={styles.product__detail}>Tag: T-Shirt, Women, Top</span>
             <hr className={styles.divider} />
           </div>
         </div>
-      </div>
-      <div className={styles.bottom}>
-        <RatingSection />
       </div>
     </div>
   );
