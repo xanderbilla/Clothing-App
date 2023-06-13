@@ -1,28 +1,64 @@
 import styles from '../styles/ratingCard.module.css'
 import Rating from '@mui/material/Rating';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { Auth } from 'aws-amplify';
+import { useEffect, useState } from 'react';
 
-const RatingCard = () => {
+const RatingCard = ({ data }) => {
+    const [isClicked, setIsClicked] = useState(false)
+    const [value, setValue] = useState(false)
+    const [review, setReview] = useState(false)
+    const [userId, setUserId] = useState('')
+    const fetchUser = async () => {
+        const user = await Auth.currentAuthenticatedUser();
+        setUserId(user.attributes.sub)
+    }
+
+    useEffect(() => {
+        fetchUser()
+    }, [])
+
+    const onSave = () => {
+
+    }
+
+    const onDelete = () => {
+
+    }
+
     return (
         <div className={styles.container}>
             <div className={styles.top}>
                 <div className={styles.userDetail}>
-                <img src="https://pbs.twimg.com/media/Fxy5YgeaIAcMuUh?format=jpg&name=large" alt="" className={styles.img} />
+                    <img src="https://pbs.twimg.com/media/Fxy5YgeaIAcMuUh?format=jpg&name=large" alt="" className={styles.img} />
                     <div className={styles.userInfo}>
-                    <span className={styles.custName}>John Doe</span>
-                    <span className={styles.timeStamp}>May 24, 2023 | 11:06 PM</span>
-                </div>
+                        <span className={styles.custName}>{data.username}</span>
+                        <span className={styles.timeStamp}>{data.timestamp}</span>
+                    </div>
                 </div>
                 <div className={styles.detail}>
-                    <div className={styles.buttons}>
-                    <button className={styles.button}>Edit</button>
-                    <button className={styles.button}><DeleteIcon/></button>
-                    </div>
-                    <Rating name="read-only" value={4.6} precision={0.1} readOnly />
+                    {data.userId === userId ?
+                        <div className={styles.buttons}>
+                            <button className={styles.button} onClick={() => setIsClicked(!isClicked)}>Edit</button>
+                            <button className={styles.button} onClick={() => onDelete(data.reviewId)}><DeleteIcon /></button>
+                        </div>
+                        :
+                        null
+                    }
+                    <Rating name="read-only" value={data.rating} precision={0.1} readOnly />
                 </div>
             </div>
             <div className={styles.bottom}>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illo est dicta natus doloribus porro alias vel excepturi assumenda! Quia voluptatum molestiae laudantium inventore vitae quo unde laboriosam cumque nesciunt velit necessitatibus explicabo deserunt, magni in perferendis ratione minus quos ad.
+                {
+                    isClicked ?
+                        <>
+                            <Rating name="simple-controlled" value={value} onChange={(event, newValue) => { setValue(newValue) }} />
+                            <textarea className="input" rows="4" cols="50" placeholder="Your Review..." onChange={(e) => setReview(e.target.value)} />
+                            <button className="button" onClick={onSave}>Save</button>
+                        </>
+                        :
+                        data.review
+                }
             </div>
         </div >
     )

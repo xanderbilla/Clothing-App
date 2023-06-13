@@ -1,20 +1,20 @@
 import { useState, useEffect, useLocation, API, useDispatch, addProduct, ProductInfo, AdditionalDetails, MainImage, ProductImages, QuantityControls, AddShoppingCartIcon } from '../utils/Imports';
 import styles from '../styles/productPage.module.css';
+import RatingSection from '../components/RatingSection'
 import { Rating } from '@mui/material';
 import { getImage } from '../utils/getImage';
 
 const ProductPage = () => {
+  const [rating, setRating] = useState([])
   const [selectedImg, setSelectedImg] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const location = useLocation();
   const productId = location.pathname.split('/')[2];
-  const [product, setProduct] = useState({});
+  const [product, setProduct] = useState([]);
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedColor, setSelectedColor] = useState('');
   const dispatch = useDispatch();
   const [imageUrls, setImageUrls] = useState([]);
-
-  console.log(imageUrls[selectedImg]);
 
   useEffect(() => {
     const fetchImages = async () => {
@@ -34,6 +34,19 @@ const ProductPage = () => {
     setSelectedColor(color);
     console.log(color);
   };
+
+  const fetchData = async () => {
+      const items = await API.get('eCommerceApi', '/review', {
+          queryStringParameters: {
+              prodId: product.prodId
+          }
+      });
+      setRating(items)
+  }
+
+  useEffect(() => {
+      fetchData()
+  }, [])
 
   const handleCart = () => {
     dispatch(addProduct({ ...product, quantity, selectedSize, selectedColor }));
@@ -103,6 +116,9 @@ const ProductPage = () => {
             <hr className={styles.divider} />
           </div>
         </div>
+      </div>      
+      <div className={styles.bottom}>
+        <RatingSection id={product.prodId} data={rating} />
       </div>
     </div>
   );
