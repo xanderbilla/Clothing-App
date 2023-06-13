@@ -8,7 +8,6 @@ const Cart = () => {
     const cart = useSelector((state) => state.cart);
     const [orderAdded, setOrderAdded] = useState(false);
     const [paymentOption, setPaymentOption] = useState('');
-    const [quantity, setQuantity] = useState(1);
     const [showPaymentError, setShowPaymentError] = useState(false);
     const redirect = useNavigate();
     const dispatch = useDispatch();
@@ -154,9 +153,9 @@ const Cart = () => {
                 </div>
                 <div className={styles.product__price_detail}>
                     <div className={styles.product__amount}>
-                        <RemoveIcon onClick={() => setQuantity((prev) => (prev === 1 ? 1 : prev - 1))} />
-                        <span className={styles.product__quantity}>{quantity}</span>
-                        <AddIcon onClick={() => setQuantity((prev) => prev + 1)} />
+                        <RemoveIcon style={{cursor: 'not-allowed'}} />
+                        <span className={styles.product__quantity}>{product.quantity}</span>
+                        <AddIcon style={{cursor: 'not-allowed'}} />
                     </div>
                     <div className={styles.foofunc}>
                         <div className={styles.product__price}>₹{product.discount_price * product.quantity}</div>
