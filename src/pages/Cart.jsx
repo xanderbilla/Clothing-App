@@ -153,12 +153,12 @@ const Cart = () => {
                 </div>
                 <div className={styles.product__price_detail}>
                     <div className={styles.product__amount}>
-                        <RemoveIcon style={{cursor: 'not-allowed'}} />
+                        <RemoveIcon style={{ cursor: 'not-allowed' }} />
                         <span className={styles.product__quantity}>{product.quantity}</span>
-                        <AddIcon style={{cursor: 'not-allowed'}} />
+                        <AddIcon style={{ cursor: 'not-allowed' }} />
                     </div>
                     <div className={styles.foofunc}>
-                        <div className={styles.product__price}>₹{product.discount_price * product.quantity}</div>
+                        <div className={styles.product__price}>${product.discount_price * product.quantity}</div>
                         <button className={styles.remove} onClick={() => deleteItem(product.prodId)}>
                             <DeleteOutlineIcon fontSize="large" />{' '}
                         </button>
@@ -173,7 +173,7 @@ const Cart = () => {
             <h1 className={styles.container_title}>YOUR BAG</h1>
             <div className={styles.container_top}>
                 <button
-                    className={styles.container_top__button} 
+                    className={styles.container_top__button}
                     onClick={() => redirect('/')}
                 >
                     CONTINUE SHOPPING
@@ -193,19 +193,19 @@ const Cart = () => {
                         <h1 className={styles.summary__title}>ORDER SUMMARY</h1>
                         <div className={styles.summary__item}>
                             <span className={styles.summary__item_text}>Subtotal</span>
-                            <div className={styles.summary__item_price}>₹ {cart.total}</div>
+                            <div className={styles.summary__item_price}>$ {cart.total}</div>
                         </div>
                         <div className={styles.summary__item}>
                             <span className={styles.summary__item_text}>Estimated Shiping</span>
-                            <div className={styles.summary__item_price}>₹ 99</div>
+                            <div className={styles.summary__item_price}>$ 99</div>
                         </div>
                         <div className={styles.summary__item}>
                             <span className={styles.summary__item_text}>Shipping Discount</span>
-                            <div className={styles.summary__item_price}>- ₹ 59</div>
+                            <div className={styles.summary__item_price}>- $ 59</div>
                         </div>
                         <div className={styles.summary__item}>
                             <span className={styles.summary__total_text}>Total</span>
-                            <div className={styles.summary__total_price}>₹ {cart.total - 59 - 99}</div>
+                            <div className={styles.summary__total_price}>$ {cart.total - 59 - 99}</div>
                         </div>
                         <Payment onPaymentChange={handlePaymentChange} />
                         {showPaymentError && <ErrorAlert message={'Please choose a payment option.'} />}

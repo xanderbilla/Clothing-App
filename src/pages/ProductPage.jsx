@@ -1,11 +1,8 @@
 import { useState, useEffect, useLocation, API, useDispatch, addProduct, ProductInfo, AdditionalDetails, MainImage, ProductImages, QuantityControls, AddShoppingCartIcon } from '../utils/Imports';
 import styles from '../styles/productPage.module.css';
-import RatingSection from '../components/RatingSection'
-import { Rating } from '@mui/material';
 import { getImage } from '../utils/getImage';
 
 const ProductPage = () => {
-  const [rating, setRating] = useState([])
   const [selectedImg, setSelectedImg] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const location = useLocation();
@@ -15,7 +12,7 @@ const ProductPage = () => {
   const [selectedColor, setSelectedColor] = useState('');
   const dispatch = useDispatch();
   const [imageUrls, setImageUrls] = useState([]);
-
+  
   useEffect(() => {
     const fetchImages = async () => {
       const urls = await Promise.all(product.img.map((imageKey) => getImage(imageKey)));
@@ -34,19 +31,6 @@ const ProductPage = () => {
     setSelectedColor(color);
     console.log(color);
   };
-
-  const fetchData = async () => {
-      const items = await API.get('eCommerceApi', '/review', {
-          queryStringParameters: {
-              prodId: product.prodId
-          }
-      });
-      setRating(items)
-  }
-
-  useEffect(() => {
-      fetchData()
-  }, [])
 
   const handleCart = () => {
     dispatch(addProduct({ ...product, quantity, selectedSize, selectedColor }));
@@ -79,9 +63,7 @@ const ProductPage = () => {
         </div>
         <div className={styles.right}>
           <ProductInfo title={product.title} description={product.desc} />
-          <Rating name="read-only" value={4.6} precision={0.1} readOnly />
-          <span className={styles.rating}>(4.6 / 5, 455,000 Reviews )</span>
-          <span className={styles.price}>₹{product.discount_price}</span>
+          <span className={styles.price}>${product.discount_price}</span>
           <div className={styles.additional_details}>
             {product.size && (
               <AdditionalDetails
@@ -116,9 +98,6 @@ const ProductPage = () => {
             <hr className={styles.divider} />
           </div>
         </div>
-      </div>      
-      <div className={styles.bottom}>
-        <RatingSection id={product.prodId} data={rating} />
       </div>
     </div>
   );

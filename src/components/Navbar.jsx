@@ -57,7 +57,7 @@ const Navbar = ({ isOpen, setIsOpen, }) => {
                 </div>
                     <ShoppingCartOutlinedIcon color="black" />
                 <div className={styles.left}>
-                    <Link to='/' className={styles.link}><img src="https://i.imgur.com/S5awLwi.png" alt="" height="40px" /></Link>
+                    <Link to='/' className={styles.link}><img src="https://i.imgur.com/yfCcLf5.png" alt="" height="40px" /></Link>
                 </div>
                 <div className={styles.center}>
                     <Search />

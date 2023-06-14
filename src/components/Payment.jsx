@@ -17,12 +17,12 @@ const Payment = ({ onPaymentChange }) => {
                     className={styles.input}
                     type="radio"
                     name="paymentOption"
-                    id="card-netbanking-upi"
+                    id="card-netbanking"
                     value="onlinePay"
                     checked={selectedOption === 'onlinePay'}
                     onChange={handleOptionChange}
                 />
-                Card/Net Banking/UPI
+                Card
             </label>
             <label htmlFor="cod" className={`${styles.label} ${selectedOption === 'COD' ? styles.selected : ''}`}>
                 <input

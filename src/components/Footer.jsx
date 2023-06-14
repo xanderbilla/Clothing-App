@@ -12,7 +12,7 @@ const Footer = () => {
     return (
         <div className={styles.container}>
             <div className={styles.container_left}>
-                <img src="https://i.imgur.com/S5awLwi.png" alt="" height="40px" width="160px" />
+                <img src="https://i.imgur.com/yfCcLf5.png" alt="" height="40px" width="160px" />
                 <p className={styles.container_desc}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint commodi odit ipsa, sequi deleniti adipisci. Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore, obcaecati!</p>
                 <div className={styles.container_social}>
                     <div className={styles.container_social_icon}>
