@@ -18,11 +18,16 @@
 
 .order_id{
     font-size: 24px;
-    font-weight: 500;
+    font-weight: 300;
 }
 
 .product{
     padding: 20px 20px 20px 20px;
+}
+
+.status{
+    font-size: 20px;
+    font-weight: 500;
 }
 
 .product:last-child{

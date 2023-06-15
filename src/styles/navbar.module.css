@@ -30,6 +30,7 @@
 
 .right {
     justify-content: flex-end;
+    gap: 14px;
 }
 
 .toggleButton {

@@ -63,6 +63,7 @@ const Navbar = ({ isOpen, setIsOpen, }) => {
                     <Search />
                 </div>
                 <div className={styles.right}>
+                    <Link to='/orders' className={styles.menu_profile}>My Orders</Link>
                     <div className={styles.menu_item}>
                         <Link style={{ textDecoration: "none", color: "inherit" }} to='/cart'>
                             <Badge badgeContent={quantity} color="primary">

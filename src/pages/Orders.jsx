@@ -26,8 +26,8 @@ const Orders = () => {
         </Link>
       </div>
       <div className={styles.orders}>
-        {orders ? orders.map((order, i) => (
-          <OrderCard cart={order} key={i} />
+        {orders.length !== 0 ? orders.map((order, i) => (
+          <OrderCard item={order} key={i} />
         ))
           :
           <div className={styles.message}>No Recent Orders</div>

@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom';
 import { API } from 'aws-amplify';
 import { getImage } from '../utils/getImage';
 
-const OrderCard = ({ cart }) => {
-  const items = cart.cart.products;
+const OrderCard = ({ item }) => {
+  const items = item.cart.products;
+  console.log(items)
   const [imageUrls, setImageUrls] = useState([]);
-
-  const handleDelete = (orderId) => {
+  const handleCacel = (orderId) => {
     API.del('eCommerceApi', `/orders/${orderId}`)
       .then((response) => {
         // Handle the response if needed
@@ -30,10 +30,10 @@ const OrderCard = ({ cart }) => {
   return (
     <div className={styles.card}>
       <div className={styles.top}>
-        <span className={styles.order_id}>{cart.orderId}</span>
+        <span className={styles.order_id}>#{item.orderId}</span>
         <div className={styles.orderDesc}>
           <span className={styles.count}>
-            <b>Shipping Address: </b> {cart.address}
+            <b>Shipping Address: </b> {item.address}
           </span>
         </div>
       </div>
@@ -63,9 +63,6 @@ const OrderCard = ({ cart }) => {
                 <Link to={`/product/${item.prodId}`}>
                   <button className={styles.button}>Product Detail</button>
                 </Link>
-                <button className={styles.button} onClick={() => handleDelete(cart.orderId)}>
-                  Cancel Order
-                </button>
               </div>
             </div>
           ))}
@@ -73,15 +70,18 @@ const OrderCard = ({ cart }) => {
       <div className={styles.summary}>
         <div className={styles.orderDesc}>
           <span className={styles.count}>
-            <b>Quantity: </b> {cart.cart.quantity}
+            <b>Quantity: </b> {item.cart.quantity}
           </span>
           <span className={styles.total}>
-            <b>Total: </b> ${cart.cart.total}
+            <b>Total: </b> ${item.cart.total}
           </span>
         </div>
-        <span className={styles.order_id}>
+        <span className={styles.status}>
           <b>Status: </b> Pending
         </span>
+        <button className={styles.button} onClick={() => handleCacel(item.orderId)}>
+          Cancel Order
+        </button>
       </div>
     </div>
   );
