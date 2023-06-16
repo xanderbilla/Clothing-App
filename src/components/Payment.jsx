@@ -12,7 +12,7 @@ const Payment = ({ onPaymentChange }) => {
 
     return (
         <div className={styles.container}>
-            <label htmlFor="card-netbanking-upi" className={`${styles.label} ${selectedOption === 'onlinePay' ? styles.selected : ''}`}>
+            <label htmlFor="card-netbanking" className={`${styles.label} ${selectedOption === 'onlinePay' ? styles.selected : ''}`}>
                 <input
                     className={styles.input}
                     type="radio"
