@@ -41,7 +41,7 @@
         },
         "ecommerceFuncOrdersClient": {
           "deploymentBucketName": "amplify-ecommercev2-dev-72833-deployment",
-          "s3Key": "amplify-builds/ecommerceFuncOrdersClient-6e64337a4f44766b6f57-build.zip"
+          "s3Key": "amplify-builds/ecommerceFuncOrdersClient-5771535538322f69356c-build.zip"
         }
       },
       "api": {

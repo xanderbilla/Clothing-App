@@ -149,24 +149,40 @@ app.get('/orders/:orderId', async function (req, res) {
 });
 
 /****************************
-* Example delete method *
+* Update Order              *
 *****************************/
 
-app.delete('/orders/:orderId', function (req, res) {
+app.put('/orders/:orderId', function (req, res) {
   const orderId = req.params.orderId;
+  const updatedAttributes = req.body;
 
   const params = {
     TableName: table,
     Key: {
       orderId: orderId
-    }
+    },
+    UpdateExpression: 'SET',
+    ExpressionAttributeValues: {},
+    ExpressionAttributeNames: {},
+    ReturnValues: 'ALL_NEW'
   };
 
-  dynamodb.delete(params, function (err, data) {
+  // Construct the update expression and attribute values dynamically
+  Object.keys(updatedAttributes).forEach((key, index) => {
+    params.UpdateExpression += ` #${key} = :value${index},`;
+    params.ExpressionAttributeValues[`:value${index}`] = updatedAttributes[key];
+    params.ExpressionAttributeNames[`#${key}`] = key;
+  });
+
+  params.UpdateExpression = params.UpdateExpression.slice(0, -1); // Remove the trailing comma
+
+  dynamodb.update(params, function (err, data) {
     if (err) {
-      res.status(500).json({ message: err });
+      console.error('Unable to update item. Error JSON:', JSON.stringify(err, null, 2));
+      res.status(500).json({ message: 'Failed to update the item' });
     } else {
-      res.json({ message: 'Order deleted successfully' });
+      console.log('UpdateItem succeeded:', JSON.stringify(data, null, 2));
+      res.json({ message: 'Item updated successfully' });
     }
   });
 });

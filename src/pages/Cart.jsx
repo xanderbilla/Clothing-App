@@ -68,7 +68,7 @@ const Cart = () => {
                     });
             }
             else {
-                const amount = cart.total;
+                const amount = cart.total - 59 - 99;
                 const data = await fetch('http://localhost:5555/razorpay', {
                     method: 'POST',
                     body: JSON.stringify({ amount }), // Pass amount in the request body

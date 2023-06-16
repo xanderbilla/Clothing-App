@@ -13,16 +13,15 @@ const cartSlice = createSlice({
       state.products.push(action.payload);
       state.total += action.payload.discount_price * action.payload.quantity;
     },
- removeProduct: (state, action) => { 
+    removeProduct: (state, action) => { 
       const { productId } = action.payload;
       const productIndex = state.products.findIndex(
         (product) => product.prodId === productId
       );
       if (productIndex !== -1) {
         const removedProduct = state.products[productIndex];
-        state.quantity>0 ? state.quantity -= 1 : state.quantity=0;
-        state.total -=
-          removedProduct.dicount_price * removedProduct.quantity;
+        state.quantity > 0 ? (state.quantity -= 1) : (state.quantity = 0);
+        state.total -= removedProduct.discount_price * removedProduct.quantity;
         state.products.splice(productIndex, 1);
       }
     },
