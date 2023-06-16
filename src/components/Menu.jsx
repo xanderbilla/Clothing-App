@@ -51,6 +51,12 @@ export default function Menu({ isOpen, setIsOpen }) {
           <li className={styles.listItem} onClick={() => setIsOpen(false)}>
             <Link className={styles.link_menu} to='/category/Kids'>Kids</Link>
           </li>
+          <li className={styles.listItem} onClick={() => setIsOpen(false)}>
+            <Link className={styles.link_menu} to='/category/Accessories'>Accessories</Link>
+          </li>
+          <li className={styles.listItem} onClick={() => setIsOpen(false)}>
+            <Link className={styles.link_menu} to='/orders'>My Orders</Link>
+          </li>
         </ul>
         <div className={`${styles.icons} ${!isLogin ? styles.hide : ''}`}>
           <span className={styles.menu_auth} onClick={logoutHandler}>LOGOUT</span>
