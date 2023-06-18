@@ -5,7 +5,7 @@ import RatingCard from './RatingCard';
 import { Link, useLocation } from 'react-router-dom';
 import { API } from 'aws-amplify';
 
-const RatingSection = ({ isLogin, user }) => {
+const RatingSection = ({ isLogin, user, averageRating }) => {
   const [data, setData] = useState([]);
   const [value, setValue] = useState(0);
   const [review, setReview] = useState('');
@@ -55,8 +55,8 @@ const RatingSection = ({ isLogin, user }) => {
       <div className={styles.top}>
         <span className={styles.title}>Rating & Review</span>
         <div className={styles.detail}>
-          <Rating name="read-only" value={4.6} precision={0.1} readOnly />
-          <span className={styles.rating}>(4.6 / 5 | 200 Reviews)</span>
+          <Rating name="read-only" value={averageRating} precision={0.1} readOnly />
+          <span className={styles.rating}>({averageRating} / 5 | {data.length} Reviews)</span>
         </div>
       </div>
       <div className={styles.bottom}>

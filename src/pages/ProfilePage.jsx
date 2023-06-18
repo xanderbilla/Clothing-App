@@ -1,4 +1,4 @@
-import { useState, DataTable, EditUserInfo, UserInfo } from '../utils/Imports'
+import { useState, EditUserInfo, UserInfo } from '../utils/Imports'
 import styles from '../styles/profilePage.module.css'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 
@@ -23,10 +23,6 @@ const ProfilePage = () => {
                         : <UserInfo />
                     }
                 </div>
-            </div>
-            <div className={styles.bottom}>
-                <span className={styles.profile_order_title}>My Orders</span>
-                <DataTable />
             </div>
         </div>
     )

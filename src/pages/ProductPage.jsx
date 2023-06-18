@@ -144,7 +144,7 @@ const ProductPage = ({ isLogin, setIsLogin, user }) => {
         </div>
       </div>
       <div className={styles.bottom}>
-        <RatingSection isLogin={isLogin} user={user} />
+        <RatingSection isLogin={isLogin} user={user} averageRating={averageRating}/>
       </div>
     </div>
   );
