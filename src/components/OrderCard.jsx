@@ -18,7 +18,7 @@ const OrderCard = ({ item, onCancelOrder }) => {
     API.put('eCommerceApi', `/orders/${orderId}`, myInit)
       .then((response) => {
         console.log('Order Cancelled');
-        // fetchOrders();
+        onCancelOrder();
       })
       .catch((error) => {
         console.log(error.response);
@@ -86,9 +86,9 @@ const OrderCard = ({ item, onCancelOrder }) => {
         <span className={styles.status}>
           <b>Status: </b> {item.status}
         </span>
-        <button className={styles.button} onClick={() => handleCancel(item.orderId)}>
+        {item.status === 'Cancel' || item.status === 'Delivered' ? '' : <button className={styles.button} onClick={() => handleCancel(item.orderId)}>
           Cancel Order
-        </button>
+        </button>}
       </div>
     </div>
   );
