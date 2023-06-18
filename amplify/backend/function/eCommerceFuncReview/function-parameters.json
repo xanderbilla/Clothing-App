@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "storage": {
+      "acharyaReview": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}

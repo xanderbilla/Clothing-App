@@ -17,6 +17,14 @@
           ],
           "category": "function",
           "resourceName": "ecommerceFuncOrdersClient"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "eCommerceFuncReview"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -52,6 +60,22 @@
     }
   },
   "function": {
+    "eCommerceFuncReview": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn",
+            "StreamArn"
+          ],
+          "category": "storage",
+          "resourceName": "acharyaReview"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
     "ecommerceFuncOrdersClient": {
       "build": true,
       "dependsOn": [
@@ -86,6 +110,22 @@
     }
   },
   "parameters": {
+    "AMPLIFY_function_eCommerceFuncReview_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "eCommerceFuncReview"
+        }
+      ]
+    },
+    "AMPLIFY_function_eCommerceFuncReview_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "eCommerceFuncReview"
+        }
+      ]
+    },
     "AMPLIFY_function_ecommerceFuncOrdersClient_deploymentBucketName": {
       "usedBy": [
         {
@@ -227,6 +267,10 @@
       "providerPlugin": "awscloudformation",
       "service": "DynamoDB",
       "serviceType": "imported"
+    },
+    "acharyaReview": {
+      "providerPlugin": "awscloudformation",
+      "service": "DynamoDB"
     },
     "ecommerceMediaStorage": {
       "dependsOn": [],

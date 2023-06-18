@@ -19,6 +19,13 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "function": {
+    "eCommerceFuncReview": {
+      "Arn": "string",
+      "LambdaExecutionRole": "string",
+      "LambdaExecutionRoleArn": "string",
+      "Name": "string",
+      "Region": "string"
+    },
     "ecommerceFuncOrdersClient": {
       "Arn": "string",
       "LambdaExecutionRole": "string",
@@ -35,6 +42,14 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "storage": {
+    "acharyaReview": {
+      "Arn": "string",
+      "Name": "string",
+      "PartitionKeyName": "string",
+      "PartitionKeyType": "string",
+      "Region": "string",
+      "StreamArn": "string"
+    },
     "ecommerceMediaStorage": {
       "BucketName": "string",
       "Region": "string"

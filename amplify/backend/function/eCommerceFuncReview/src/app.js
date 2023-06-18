@@ -10,9 +10,9 @@ See the License for the specific language governing permissions and limitations 
 /* Amplify Params - DO NOT EDIT
 	ENV
 	REGION
-	STORAGE_ACHARYAORDERSDEV_ARN
-	STORAGE_ACHARYAORDERSDEV_NAME
-	STORAGE_ACHARYAORDERSDEV_STREAMARN
+	STORAGE_ACHARYAREVIEW_ARN
+	STORAGE_ACHARYAREVIEW_NAME
+	STORAGE_ACHARYAREVIEW_STREAMARN
 Amplify Params - DO NOT EDIT */
 
 const express = require('express')
@@ -34,7 +34,7 @@ app.use(function(req, res, next) {
 
 const AWS = require('aws-sdk');
 const dynamodb = new AWS.DynamoDB.DocumentClient();
-const table = process.env.STORAGE_ACHARYAORDERSDEV_NAME
+const table = process.env.STORAGE_ACHARYAREVIEW_NAME
 
 const id = () => {
   const now = new Date();
@@ -63,36 +63,15 @@ const timeStamp = () => {
   return timestamp;
 }
 
-async function getOrders(orderId) {
-  const params = {
-    TableName: table,
-    Key: {
-      orderId
-    }
-  };
-
-  try {
-    const data = await dynamodb.get(params).promise();
-    if (!data.Item) {
-      throw new Error(`Product with orderId ${orderId} not found in table`);
-    }
-    console.log(`Product with orderId ${orderId} found in table:`, data.Item);
-    return data.Item;
-  } catch (err) {
-    console.error(err);
-    throw new Error('Failed to get product from table');
-  }
-}
-
-async function getOrders(custId) {
+async function getReviews(prodId) {
   const params = {
     TableName: table
   };
 
-  if (custId) {
-    params.FilterExpression = "custId = :custId";
+  if (prodId) {
+    params.FilterExpression = "prodId = :prodId";
     params.ExpressionAttributeValues = {
-      ":custId": custId
+      ":prodId": prodId
     };
   }
 
@@ -105,22 +84,34 @@ async function getOrders(custId) {
   }
 }
 
+/*****************************************
+ * Get all review or based on prodId *
+ ****************************************/
+
+app.get('/review', async function (req, res) {
+  const prodId = req.query.prodId;
+  try {
+    const items = await getReviews(prodId);
+    res.status(200).json(items);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Failed to retrieve review' });
+  }
+});
+
 /****************************
 * Example post method *
 ****************************/
 
-app.post('/orders', function (req, res) {
+app.post('/review', function (req, res) {
   const item = {
-    orderId: id(),
+    reviewId: id(),
     custId: req.body.custId,
     custName: req.body.custName,
-    custPhone: req.body.custPhone,
-    paymentMode: req.body.paymentMode,
-    cart: req.body.cart,
-    status: req.body.status,
-    address: req.body.address,
-    paymentId: req.body.paymentId,
-    createdAt: timeStamp()
+    review: req.body.review,
+    rating: req.body.rating,
+    prodId: req.body.prodId,
+    timestamp: timeStamp()
   };
   const params = {
     TableName: table,
@@ -136,48 +127,18 @@ app.post('/orders', function (req, res) {
   });
 });
 
-/*****************************************
- * Get all orders based on custId *
- ****************************************/
-
-app.get('/orders/:custId', async function (req, res) {
-  const custId = req.params.custId;
-  try {
-    const items = await getOrders(custId);
-    res.status(200).json(items);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Failed to retrieve review' });
-  }
-});
-
-/*****************************************
- * Get single Order                   *
- ****************************************/
-
-app.get('/orders/:orderId', async function (req, res) {
-  try {
-    const { orderId } = req.params;
-    const product = await getOrders(orderId);
-    res.status(200).json(product);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Failed to get Order' });
-  }
-});
-
 /****************************
 * Update Order              *
 *****************************/
 
-app.put('/orders/:orderId', function (req, res) {
-  const orderId = req.params.orderId;
+app.put('/review/:reviewId', function (req, res) {
+  const reviewId = req.params.reviewId;
   const updatedAttributes = req.body;
 
   const params = {
     TableName: table,
     Key: {
-      orderId: orderId
+      reviewId: reviewId
     },
     UpdateExpression: 'SET',
     ExpressionAttributeValues: {},
@@ -204,6 +165,30 @@ app.put('/orders/:orderId', function (req, res) {
     }
   });
 });
+
+/****************************
+* Example delete method *
+*****************************/
+
+app.delete('/review/:reviewId', function (req, res) {
+  const reviewId = req.params.reviewId;
+
+  const params = {
+    TableName: table,
+    Key: {
+      reviewId: reviewId
+    }
+  };
+
+  dynamodb.delete(params, function (err, data) {
+    if (err) {
+      res.status(500).json({ message: 'Failed to delete the order' });
+    } else {
+      res.json({ message: 'Order deleted successfully' });
+    }
+  });
+});
+
 
 app.listen(3000, function() {
     console.log("App started")

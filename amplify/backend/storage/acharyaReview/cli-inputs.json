@@ -1,0 +1,10 @@
+{
+  "resourceName": "acharyaReview",
+  "tableName": "acharyaReview",
+  "partitionKey": {
+    "fieldName": "reviewId",
+    "fieldType": "string"
+  },
+  "gsi": [],
+  "triggerFunctions": []
+}

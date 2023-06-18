@@ -32,7 +32,8 @@
           "partitionKeyName": "prodId",
           "partitionKeyType": "S"
         },
-        "ecommerceMediaStorage": {}
+        "ecommerceMediaStorage": {},
+        "acharyaReview": {}
       },
       "function": {
         "ecommerceFuncProdClient": {
@@ -41,7 +42,11 @@
         },
         "ecommerceFuncOrdersClient": {
           "deploymentBucketName": "amplify-ecommercev2-dev-72833-deployment",
-          "s3Key": "amplify-builds/ecommerceFuncOrdersClient-5771535538322f69356c-build.zip"
+          "s3Key": "amplify-builds/ecommerceFuncOrdersClient-2b69456a35776d66434a-build.zip"
+        },
+        "eCommerceFuncReview": {
+          "deploymentBucketName": "amplify-ecommercev2-dev-72833-deployment",
+          "s3Key": "amplify-builds/eCommerceFuncReview-33654842343172756d65-build.zip"
         }
       },
       "api": {
