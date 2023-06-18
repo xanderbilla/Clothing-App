@@ -52,6 +52,7 @@ const Cart = () => {
                         custPhone: user.attributes.phone_number,
                         paymentMode: paymentOption,
                         cart: cart,
+                        status: 'Pending',
                         address: user.attributes['custom:address'],
                         paymentId: paymentOption === 'COD' ? codPaymentId() : '',
                     },
@@ -98,6 +99,7 @@ const Cart = () => {
                                 custPhone: user.attributes.phone_number,
                                 paymentMode: paymentOption,
                                 cart: cart,
+                                status: 'Pending',
                                 address: user.attributes['custom:address'],
                                 paymentId:
                                     paymentOption === 'COD' ? response.razorpay_payment_id : '',

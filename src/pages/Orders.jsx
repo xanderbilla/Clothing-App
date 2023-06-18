@@ -1,7 +1,7 @@
 import { useState, useEffect, API, Link, OrderCard } from '../utils/Imports'
 import styles from '../styles/orders.module.css';
 
-const Orders = () => {
+const Orders = ({user}) => {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
@@ -10,13 +10,19 @@ const Orders = () => {
 
   const fetchOrders = async () => {
     try {
-      const response = await API.get('eCommerceApi', '/orders');
-      setOrders(response);
+      const response = await API.get('eCommerceApi', `/orders/${user.attributes.sub}`);
+      const sortedOrders = response.sort((a, b) => {
+        const dateA = new Date(a.createdAt);
+        const dateB = new Date(b.createdAt);
+        return dateB - dateA;
+      });
+      setOrders(sortedOrders);
     } catch (error) {
       console.log(error.response);
     }
   };
-  console.log(orders);
+
+  
   return (
     <div className={styles.container}>
       <div className={styles.top}>
@@ -27,7 +33,7 @@ const Orders = () => {
       </div>
       <div className={styles.orders}>
         {orders.length !== 0 ? orders.map((order, i) => (
-          <OrderCard item={order} key={i} />
+          <OrderCard item={order} key={i} onCancelOrder={fetchOrders}/>
         ))
           :
           <div className={styles.message}>No Recent Orders</div>

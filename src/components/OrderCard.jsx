@@ -4,14 +4,21 @@ import { Link } from 'react-router-dom';
 import { API } from 'aws-amplify';
 import { getImage } from '../utils/getImage';
 
-const OrderCard = ({ item }) => {
+const OrderCard = ({ item, onCancelOrder }) => {
   const items = item.cart.products;
-  console.log(items)
   const [imageUrls, setImageUrls] = useState([]);
-  const handleCacel = (orderId) => {
-    API.del('eCommerceApi', `/orders/${orderId}`)
+
+  const handleCancel = (orderId) => {
+    const myInit = {
+      body: {
+        status: 'Cancel',
+      },
+    };
+
+    API.put('eCommerceApi', `/orders/${orderId}`, myInit)
       .then((response) => {
-        // Handle the response if needed
+        console.log('Order Cancelled');
+        // fetchOrders();
       })
       .catch((error) => {
         console.log(error.response);
@@ -77,9 +84,9 @@ const OrderCard = ({ item }) => {
           </span>
         </div>
         <span className={styles.status}>
-          <b>Status: </b> Pending
+          <b>Status: </b> {item.status}
         </span>
-        <button className={styles.button} onClick={() => handleCacel(item.orderId)}>
+        <button className={styles.button} onClick={() => handleCancel(item.orderId)}>
           Cancel Order
         </button>
       </div>

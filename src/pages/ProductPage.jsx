@@ -1,18 +1,31 @@
-import { useState, useEffect, useLocation, API, useDispatch, addProduct, ProductInfo, AdditionalDetails, MainImage, ProductImages, QuantityControls, AddShoppingCartIcon } from '../utils/Imports';
-import styles from '../styles/productPage.module.css';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import { API, useDispatch } from '../utils/Imports';
+import { addProduct } from '../utils/Imports';
 import { getImage } from '../utils/getImage';
+import styles from '../styles/productPage.module.css';
+import ProductImages from '../components/ProductImages';
+import MainImage from '../components/MainImage';
+import ProductInfo from '../components/ProductInfo';
+import AdditionalDetails from '../components/AdditionalDetails';
+import QuantityControls from '../components/QuantityControls';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import Rating from '@mui/material/Rating';
+import RatingSection from '../components/RatingSection';
 
-const ProductPage = () => {
+const ProductPage = ({ isLogin, setIsLogin, user }) => {
   const [selectedImg, setSelectedImg] = useState(0);
+  const [averageRating, setAverageRating] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const location = useLocation();
   const productId = location.pathname.split('/')[2];
-  const [product, setProduct] = useState([]);
+  const [product, setProduct] = useState({});
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedColor, setSelectedColor] = useState('');
   const dispatch = useDispatch();
   const [imageUrls, setImageUrls] = useState([]);
-  
+  const [review, setReview] = useState([]);
+
   useEffect(() => {
     const fetchImages = async () => {
       const urls = await Promise.all(product.img.map((imageKey) => getImage(imageKey)));
@@ -37,15 +50,45 @@ const ProductPage = () => {
   };
 
   useEffect(() => {
+    const calculateAverageRating = () => {
+      if (review.length > 0) {
+        const totalRating = review.reduce((sum, item) => sum + item.rating, 0);
+        const average = totalRating / review.length;
+        setAverageRating(average);
+      }
+    };
+
+    calculateAverageRating();
+  }, [review]);
+
+  useEffect(() => {
     const getProducts = async () => {
       try {
         const apiName = 'eCommerceApi';
-        API.get(apiName, `/products/${productId}`).then(async (response) => {
-          setProduct(response);
-        });
-      } catch (error) { }
+        const response = await API.get(apiName, `/products/${productId}`);
+        setProduct(response);
+      } catch (error) {
+        console.log(error);
+      }
     };
     getProducts();
+  }, [productId]);
+
+  useEffect(() => {
+    const getReview = async () => {
+      try {
+        const myInit = {
+          queryStringParameters: {
+            prodId: productId
+          }
+        };
+        const response = await API.get('eCommerceApi', `/review`, myInit);
+        setReview(response);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getReview();
   }, [productId]);
 
   return (
@@ -63,6 +106,10 @@ const ProductPage = () => {
         </div>
         <div className={styles.right}>
           <ProductInfo title={product.title} description={product.desc} />
+          <div className={styles.ratings}>
+            <Rating name="read-only" value={averageRating} precision={0.1} readOnly />
+            <span className={styles.rating}>({averageRating} / 5 | {review.length} Reviews)</span>
+          </div>
           <span className={styles.price}>${product.discount_price}</span>
           <div className={styles.additional_details}>
             {product.size && (
@@ -84,10 +131,7 @@ const ProductPage = () => {
           </div>
           <div className={styles.product_purchase}>
             <QuantityControls quantity={quantity} setQuantity={setQuantity} />
-            <span
-              className={styles.product__add}
-              onClick={handleCart}
-            >
+            <span className={styles.product__add} onClick={handleCart}>
               <AddShoppingCartIcon />
               ADD TO CART
             </span>
@@ -98,6 +142,9 @@ const ProductPage = () => {
             <hr className={styles.divider} />
           </div>
         </div>
+      </div>
+      <div className={styles.bottom}>
+        <RatingSection isLogin={isLogin} user={user} />
       </div>
     </div>
   );

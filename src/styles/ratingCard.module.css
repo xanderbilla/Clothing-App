@@ -64,19 +64,16 @@
     background-color: transparent;
     font-weight: 600;
     cursor: pointer;
-}
-
-.button:first-child{
     width: 60px;
     height: 35px;
 }
 
-.button:first-child:hover{
+.button:hover{
     background-color: black;
     color: #fff;
 }
 
-.button:last-child{
+.delete{
     padding: 6px;
     border: none;
     border-radius: 50%;
@@ -85,4 +82,14 @@
 
 .bottom{
     margin: 10px 0;
+}
+
+.edit{
+    display: flex;
+    gap: 14px;
+flex-direction: column;
+}
+
+.hide{
+    display: none;
 }

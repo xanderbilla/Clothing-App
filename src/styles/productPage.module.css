@@ -40,9 +40,9 @@
     object-fit: contain;
 }
 
-.rating{
+.rating {
     opacity: 0.5;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 600;
 }
 
@@ -81,7 +81,7 @@
     margin: 0 10px;
 }
 
-.purchase__quantity{
+.purchase__quantity {
     display: flex;
     margin-bottom: 20px;
     align-items: center;
@@ -131,33 +131,33 @@
     border: 1px solid rgb(238, 237, 237)
 }
 
-.product__add_detail{
+.product__add_detail {
     margin-bottom: 10px;
 }
 
-.additional_details{
+.additional_details {
     margin: 1rem 0;
 }
 
-.additional_detail{    
+.additional_detail {
     display: flex;
     flex-direction: column;
     gap: 5px;
     margin: 10px 0;
 }
 
-.option_title{
+.option_title {
     font-size: 18px;
     font-weight: 600;
 }
 
-.select{
+.select {
     display: flex;
     gap: 10px;
     padding-left: 0;
 }
 
-.selectOptions{
+.selectOptions {
     min-width: 30px;
     height: 30px;
     list-style: none;
@@ -170,55 +170,78 @@
     cursor: pointer;
 }
 
-.selectOptions:hover{
+.selectOptions:hover {
     border: 1px solid rgb(125, 218, 125);
-background-color: #272727;
-color: white;
+    background-color: #272727;
+    color: white;
 }
 
-.selected{
+.selected {
     border: 2px solid yellowgreen;
 }
 
-.product_images{
+.product_images {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
-.product_image{
+.product_image {
     border: 1px solid rgba(0, 0, 0, 0.1);
-    height: 150px;
-    width: 150px;padding: 8px;
+    height: 120px;
+    width: 120px;
+    padding: 8px;
+}
+
+.ratings {
+    display: flex;
+    flex-direction: column;
 }
 
 @media screen and (max-width: 767px) {
-    .top{
+    .top {
         flex-direction: column;
         height: auto;
     }
 
-    .left{
+    .left {
         flex-direction: column-reverse;
     }
 
-    .product_imageSet{
+    .product_images{
+       flex-direction: row;
+    }
+
+    .product_image{
+        height: 100px;
+        width: 100px;
+    }
+
+    .product_imageSet {
         display: flex;
         gap: 10px;
     }
 
-    .big__img{
+    .big__img {
         height: auto;
     }
-    
-    .side__img{
-        width: 25%;
-        height: 100px;
+
+    .side__img {
+        width: 20%;
+        height: 80px;
     }
-    
-    .quantity{
+
+    .quantity {
         width: 30%;
     }
-  
-    
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px){
+    .product_images{
+        flex-direction: row;
+     }
+     
+    .left {
+        flex-direction: column-reverse;
+    }
 }

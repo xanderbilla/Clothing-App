@@ -1,13 +1,12 @@
 .search {
-  position: relative; /* Add position relative */
+  position: relative; 
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .search__container {
-  /* Remove width: 26rem; */
-  position: relative; /* Add position relative */
+  position: relative; 
   display: flex;
   align-items: center;
   justify-content: center;
@@ -18,7 +17,7 @@
 }
 
 .search__input {
-  width: 460px;
+  width: 26rem;
   font-size: 16px;
   padding: 5px;
   background-color: transparent;
