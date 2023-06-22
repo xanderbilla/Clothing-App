@@ -4,10 +4,11 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import ArrowLeftOutlinedIcon from '@mui/icons-material/ArrowLeftOutlined';
 import ArrowRightOutlinedIcon from '@mui/icons-material/ArrowRightOutlined';
 import { sliderItems } from '../static/data';
+import { useNavigate } from 'react-router-dom';
 
 const Slider = () => {
   const [slideIndex, setSlideIndex] = useState(0);
-
+const redirect = useNavigate()
   const handleClick = (direction) => {
     if (direction === 'left') {
       setSlideIndex(slideIndex > 0 ? slideIndex - 1 : 2);
@@ -15,6 +16,10 @@ const Slider = () => {
       setSlideIndex(slideIndex < 2 ? slideIndex + 1 : 0);
     }
   };
+
+  const handleButton = (loc) => {
+    redirect(`/category/${loc}`)
+  }
 
   return (
     <div className={styles.container}>
@@ -42,7 +47,7 @@ const Slider = () => {
             <div className={styles.container_info}>
               <h1 className={styles.slide_title}>{item.title}</h1>
               <p className={styles.slide_desc}>{item.desc}</p>
-              <button className={styles.slide_button}>SHOP NOW</button>
+              <button className={styles.slide_button} onClick={() => handleButton(item.btn)}>SHOP NOW</button>
             </div>
           </div>
         ))}

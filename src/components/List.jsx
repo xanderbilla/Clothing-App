@@ -6,7 +6,8 @@ import { API } from 'aws-amplify';
 const List = ({ cat, filters, sort }) => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
-
+console.log(filters);
+console.log(products);
   useEffect(() => {
     const getProducts = async () => {
       try {

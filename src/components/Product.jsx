@@ -6,8 +6,6 @@ import { LazyLoadImage } from 'react-lazy-load-image-component'
 
 const Product = ({ item }) => {
   const [imageUrls, setImageUrls] = useState([]);
-  console.log(imageUrls);
-
   useEffect(() => {
     const fetchImages = async () => {
       const urls = await Promise.all(item.img.map((imageKey) => getImage(imageKey)));
@@ -28,8 +26,8 @@ const Product = ({ item }) => {
         <div className={styles.info}>
           <h2 className={styles.card_title}>{item.title}</h2>
           <div className={styles.card_prices}>
-            <h3 className={styles.card_price}>${item.discount_price}</h3>
-            <h3 className={styles.card_price}>${item.original_price}</h3>
+            <h3 className={styles.card_price}>₹{item.discount_price}</h3>
+            <h3 className={styles.card_price}>₹{item.original_price}</h3>
           </div>
         </div>
       </div>

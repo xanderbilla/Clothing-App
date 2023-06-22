@@ -8,12 +8,12 @@ const ProductFilter = ({ handleFilters, setSort }) => {
         <h3 className={styles.container_filter__text}>Filter Items:</h3>
         <select className={styles.container_filter__select} name="color" onChange={handleFilters}>
           <option className={styles.container_filter__option} disabled>Color</option>
-          <option className={styles.container_filter__option} value="Black">Black</option>
-          <option className={styles.container_filter__option} value="Blue">Blue</option>
-          <option className={styles.container_filter__option} value="Green">Green</option>
-          <option className={styles.container_filter__option} value="Red">Red</option>
-          <option className={styles.container_filter__option} value="White">White</option>
-          <option className={styles.container_filter__option} value="Yellow">Yellow</option>
+          <option className={styles.container_filter__option} value="black">Black</option>
+          <option className={styles.container_filter__option} value="blue">Blue</option>
+          <option className={styles.container_filter__option} value="green">Green</option>
+          <option className={styles.container_filter__option} value="red">Red</option>
+          <option className={styles.container_filter__option} value="white">White</option>
+          <option className={styles.container_filter__option} value="yellow">Yellow</option>
         </select>
         <select className={styles.container_filter__select} name="size" onChange={handleFilters}>
           <option className={styles.container_filter__option} disabled >Size</option>

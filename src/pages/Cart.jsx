@@ -4,7 +4,7 @@ import { SuccessAlert, ErrorAlert } from '../components/Alert';
 import { resetCart } from '../redux/cartRedux';
 import CartImages from '../components/CartImages';
 
-const Cart = () => {
+const Cart = ({user}) => {
     const cart = useSelector((state) => state.cart);
     const [orderAdded, setOrderAdded] = useState(false);
     const [paymentOption, setPaymentOption] = useState('');
@@ -129,6 +129,10 @@ const Cart = () => {
         }
     };
 
+    const authCheck = () => {
+        redirect('/login')
+    }
+
     const renderProduct = (product, index) => {
         return (
             <div className={styles.product} key={index}>
@@ -160,7 +164,7 @@ const Cart = () => {
                         <AddIcon style={{ cursor: 'not-allowed' }} />
                     </div>
                     <div className={styles.foofunc}>
-                        <div className={styles.product__price}>${product.discount_price * product.quantity}</div>
+                        <div className={styles.product__price}>₹{product.discount_price * product.quantity}</div>
                         <button className={styles.remove} onClick={() => deleteItem(product.prodId)}>
                             <DeleteOutlineIcon fontSize="large" />{' '}
                         </button>
@@ -195,25 +199,28 @@ const Cart = () => {
                         <h1 className={styles.summary__title}>ORDER SUMMARY</h1>
                         <div className={styles.summary__item}>
                             <span className={styles.summary__item_text}>Subtotal</span>
-                            <div className={styles.summary__item_price}>$ {cart.total}</div>
+                            <div className={styles.summary__item_price}>₹ {cart.total}</div>
                         </div>
                         <div className={styles.summary__item}>
                             <span className={styles.summary__item_text}>Estimated Shiping</span>
-                            <div className={styles.summary__item_price}>$ 99</div>
+                            <div className={styles.summary__item_price}>₹ 99</div>
                         </div>
                         <div className={styles.summary__item}>
                             <span className={styles.summary__item_text}>Shipping Discount</span>
-                            <div className={styles.summary__item_price}>- $ 59</div>
+                            <div className={styles.summary__item_price}>- ₹ 59</div>
                         </div>
                         <div className={styles.summary__item}>
                             <span className={styles.summary__total_text}>Total</span>
-                            <div className={styles.summary__total_price}>$ {cart.total - 59 - 99}</div>
+                            <div className={styles.summary__total_price}>₹ {cart.total - 59 - 99}</div>
                         </div>
                         <Payment onPaymentChange={handlePaymentChange} />
                         {showPaymentError && <ErrorAlert message={'Please choose a payment option.'} />}
-                        <button className={styles.summary__checkout} onClick={handleCheckout}>
+                        {user ? <button className={styles.summary__checkout} onClick={handleCheckout}>
                             CHECKOUT NOW
                         </button>
+                            :
+                        <button className={styles.summary__checkout} onClick={authCheck}>LOGIN TO CHECKOUT</button>
+                        }
                     </div>
                 </div>
             ) : (

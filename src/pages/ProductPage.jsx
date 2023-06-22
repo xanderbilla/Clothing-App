@@ -110,7 +110,7 @@ const ProductPage = ({ isLogin, setIsLogin, user }) => {
             <Rating name="read-only" value={averageRating} precision={0.1} readOnly />
             <span className={styles.rating}>({averageRating} / 5 | {review.length} Reviews)</span>
           </div>
-          <span className={styles.price}>${product.discount_price}</span>
+          <span className={styles.price}>₹{product.discount_price}</span>
           <div className={styles.additional_details}>
             {product.size && (
               <AdditionalDetails

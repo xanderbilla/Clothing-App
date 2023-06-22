@@ -9,6 +9,7 @@ const RatingSection = ({ isLogin, user, averageRating }) => {
   const [data, setData] = useState([]);
   const [value, setValue] = useState(0);
   const [review, setReview] = useState('');
+  const [message, setMessage] = useState('');
   const prod = useLocation().pathname.split('/')[2];
 
   const fetchReviews = async () => {
@@ -18,8 +19,13 @@ const RatingSection = ({ isLogin, user, averageRating }) => {
           prodId: prod,
         },
       });
-      setData(response);
-      console.log(response);
+      const sortedData = response.sort((a, b) => {
+        const timestampA = new Date(a.timestamp).getTime();
+        const timestampB = new Date(b.timestamp).getTime();
+        return timestampB - timestampA;
+      });
+      setData(sortedData);
+      console.log(sortedData);
     } catch (error) {
       console.log(error.response);
     }
@@ -28,8 +34,19 @@ const RatingSection = ({ isLogin, user, averageRating }) => {
   useEffect(() => {
     fetchReviews();
   }, []);
+  
+  const resetForm = () => {
+    setReview('');
+    setValue(0);
+    setMessage('');
+  };
 
   const onSave = () => {
+    if (value === 0 || review === '') {
+      setMessage('Please enter the rating!!!');
+      return;
+    }
+  
     const myInit = {
       body: {
         custId: user.attributes.sub,
@@ -39,16 +56,32 @@ const RatingSection = ({ isLogin, user, averageRating }) => {
         prodId: prod,
       },
     };
-
+  
     API.post('eCommerceApi', '/review', myInit)
       .then((response) => {
-        console.log('Review Added');
-        fetchReviews(); // Fetch the updated review data
+        resetForm();
+        fetchReviews();
+        setMessage('Review posted successfully!');
       })
       .catch((error) => {
         console.log(error.response);
       });
   };
+  
+  useEffect(() => {
+    let timeout;
+    if (message) {
+      timeout = setTimeout(() => {
+        setMessage('');
+      }, 1000);
+    }
+  
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [message]);
+  
+
 
   return (
     <div className={styles.container}>
@@ -69,6 +102,7 @@ const RatingSection = ({ isLogin, user, averageRating }) => {
                 setValue(newValue);
               }}
             />
+              {message && <span>{message}</span>}
             <textarea
               className={styles.input}
               required
