@@ -30,7 +30,8 @@ const RatingCard = ({ data, fetchReviews }) => {
     API.put('eCommerceApi', `/review/${reviewId}`, myInit)
       .then((response) => {
         console.log('Review Updated');
-        fetchReviews(); 
+          fetchReviews(); 
+          setIsClicked(!isClicked)
       })
       .catch((error) => {
         console.log(error.response);

@@ -102,7 +102,7 @@ const Cart = () => {
                                 status: 'Pending',
                                 address: user.attributes['custom:address'],
                                 paymentId:
-                                    paymentOption === 'COD' ? response.razorpay_payment_id : '',
+                                    paymentOption === 'COD' ? "" : response.razorpay_payment_id,
                             },
                         };
                         API.post('eCommerceApi', '/orders', data)
