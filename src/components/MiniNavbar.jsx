@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styles from '../styles/miniNavbar.module.css'
 import LaunchIcon from '@mui/icons-material/Launch';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const MiniNavbar = () => {
     const [value, setValue] = useState('All')
@@ -25,15 +25,15 @@ const MiniNavbar = () => {
                 </select>
             </div>
             <div className={styles.right}>
-                <div className={styles.links}>
+                <Link to='https://admin.xanderbilla.com' className={styles.links}>
+                    Admin Dashboard <LaunchIcon fontSize='small' />
+                </Link>
+                <Link to='https://food.xanderbilla.com' className={styles.links}>
                     Food <LaunchIcon fontSize='small' />
-                </div>
-                <div className={styles.links}>
-                    Grocery <LaunchIcon fontSize='small' />
-                </div>
-                <div className={styles.links}>
-                    Electronics <LaunchIcon fontSize='small' />
-                </div>
+                </Link>
+                <Link to='https://grocery.xanderbilla.com' className={styles.links}>
+                    Grocery (Only for Testing)<LaunchIcon fontSize='small' />
+                </Link>
             </div>
         </div>
     )

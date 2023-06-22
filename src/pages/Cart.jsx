@@ -145,7 +145,7 @@ const Cart = () => {
                         </span>
                         <div
                             className={styles.product__color}
-                            style={{ backgroundColor: `${product.selectedColor.toLowerCase()}` }}
+                            style={{ backgroundColor: `${product.selectedColor}` }}
                         />
                         <span className={styles.product__size}>
                             <b>Size: </b>

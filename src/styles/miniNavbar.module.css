@@ -34,6 +34,8 @@
     align-items: center;
     gap: 5px;
     cursor: pointer;
+    text-decoration: none;
+    color: inherit;
 }
 
 .links:hover{

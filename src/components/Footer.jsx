@@ -13,7 +13,7 @@ const Footer = () => {
         <div className={styles.container}>
             <div className={styles.container_left}>
                 <img src="https://i.imgur.com/S5awLwi.png" alt="" height="40px" width="160px" />
-                <p className={styles.container_desc}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint commodi odit ipsa, sequi deleniti adipisci. Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore, obcaecati!</p>
+                <p className={styles.container_desc}>Browse, select, and purchase a wide variety of clothing products online. Also, provides a convenient and accessible way for shoppers to explore and shop for clothing items without the need to visit physical stores.</p>
                 <div className={styles.container_social}>
                     <div className={styles.container_social_icon}>
                         <FacebookOutlinedIcon />
@@ -45,13 +45,13 @@ const Footer = () => {
             <div className={styles.container_right}>
                 <h3 className={styles.container_title}>Contact</h3>
                 <div className={styles.container_contact}><LocationOnIcon style={{ marginRight: '10px' }} />
-                    Strada Vulcan 59, Brașov, România
+                    #5, Acharya Institute Road, Soldevanahlli, Banaglore
                 </div>
                 <div className={styles.container_contact}><LocalPhoneIcon style={{ marginRight: '10px' }} />
-                    +40 123 456 7890
+                    +91 123 456 7890
                 </div>
                 <div className={styles.container_contact}><EmailIcon style={{ marginRight: '10px' }} />
-                    laila@email.com
+                    xanderbilla@mail.com
                 </div>
                 <img className={styles.container_payment} src="https://i.imgur.com/iRvqTEm.png" alt="" />
             </div>
