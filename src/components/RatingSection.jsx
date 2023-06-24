@@ -34,7 +34,7 @@ const RatingSection = ({ isLogin, user, averageRating }) => {
   useEffect(() => {
     fetchReviews();
   }, []);
-  
+
   const resetForm = () => {
     setReview('');
     setValue(0);
@@ -46,7 +46,7 @@ const RatingSection = ({ isLogin, user, averageRating }) => {
       setMessage('Please enter the rating!!!');
       return;
     }
-  
+
     const myInit = {
       body: {
         custId: user.attributes.sub,
@@ -56,7 +56,7 @@ const RatingSection = ({ isLogin, user, averageRating }) => {
         prodId: prod,
       },
     };
-  
+
     API.post('eCommerceApi', '/review', myInit)
       .then((response) => {
         resetForm();
@@ -67,21 +67,19 @@ const RatingSection = ({ isLogin, user, averageRating }) => {
         console.log(error.response);
       });
   };
-  
+
   useEffect(() => {
     let timeout;
     if (message) {
       timeout = setTimeout(() => {
         setMessage('');
-      }, 1000);
+      }, 2000);
     }
-  
+
     return () => {
       clearTimeout(timeout);
     };
   }, [message]);
-  
-
 
   return (
     <div className={styles.container}>
@@ -102,13 +100,14 @@ const RatingSection = ({ isLogin, user, averageRating }) => {
                 setValue(newValue);
               }}
             />
-              {message && <span>{message}</span>}
+            {message && <span>{message}</span>}
             <textarea
               className={styles.input}
               required
               rows="4"
               cols="50"
               placeholder="Your Review..."
+              value={review}
               onChange={(e) => setReview(e.target.value)}
             />
             <div className={styles.buttons}>
