@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from '../styles/productList.module.css';
 
-const ProductFilter = ({ handleFilters, setSort }) => {
+const ProductFilter = ({ handleFilters, setSort, sort }) => {
   return (
     <div className={styles.container_filter}>
       <div className={styles.container_filter__item}>
@@ -26,7 +26,7 @@ const ProductFilter = ({ handleFilters, setSort }) => {
       </div>
       <div className={styles.container_filter__item}>
         <div className={styles.container_filter__text}>Sort Products</div>
-        <select className={styles.container_filter__select} name="sort" value="newest" onChange={e => setSort(e.target.value)}>
+        <select className={styles.container_filter__select} name="sort" value={sort} onChange={e => setSort(e.target.value)}>
           <option className={styles.container_filter__option} value="newest">Newest</option>
           <option className={styles.container_filter__option} value="asc">Price Lowest To Highest</option>
           <option className={styles.container_filter__option} value="desc">Price Highest To Lowest</option>

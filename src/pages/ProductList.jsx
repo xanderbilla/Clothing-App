@@ -15,13 +15,10 @@ const ProductList = () => {
             [e.target.name]: value 
         })
     }
-
-    console.log(filters);
-
     return (
         <div className={styles.container}>
         <h1 className={styles.container_title}>{cat}</h1>
-        <ProductFilter handleFilters={handleFilters} setSort={setSort} />
+            <ProductFilter handleFilters={handleFilters} setSort={setSort} sort={sort} />
         <List cat={cat} sort={sort} filters={filters} />
       </div>
     )

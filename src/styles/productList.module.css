@@ -5,6 +5,7 @@
 .container_filter {
     display: flex;
     justify-content: space-between;
+    
 }
 
 .container_filter__item {
@@ -37,5 +38,6 @@
 
     .container_filter__item {
         padding: 0px;
+        justify-content: space-between;
     }
 }

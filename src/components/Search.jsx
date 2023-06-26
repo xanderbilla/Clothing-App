@@ -6,30 +6,35 @@ import { Link } from 'react-router-dom';
 
 const Search = () => {
   const [query, setQuery] = useState('');
-  const [info, setInfo] = useState('');
+  const [info, setInfo] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
     const getProducts = async () => {
       try {
         const apiName = 'eCommerceApi';
-        API.get(apiName, `/products`).then(async (response) => {
-          setInfo(response);
-        });
-      } catch (error) { }
+        const response = await API.get(apiName, `/products`);
+        setInfo(response);
+      } catch (error) {}
     };
     getProducts();
   }, []);
 
-  const filterItems = (items, query) => {
-    return items.filter((item) =>
-      item.title.toLowerCase().includes(query.toLowerCase())
-    );
-  };
+  useEffect(() => {
+    const searchItems = () => {
+      const filteredItems = info.filter((item) =>
+        item.title.toLowerCase().includes(query.toLowerCase())
+      );
+      setSearchResults(filteredItems);
+    };
+
+    searchItems();
+  }, [query, info]);
 
   const handleLinkClick = () => {
     setQuery('');
   };
-
+  
   return (
     <div className={styles.container}>
       <div className={styles.search}>
@@ -47,7 +52,7 @@ const Search = () => {
         </div>
         <ul className={styles.search__result}>
           {query &&
-            filterItems(info, query)
+            searchResults
               .slice(0, 4)
               .map((item) => (
                 <Link

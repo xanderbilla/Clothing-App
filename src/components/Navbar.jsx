@@ -8,6 +8,7 @@ import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import Search from './Search';
+import {LazyLoadImage} from 'react-lazy-load-image-component'
 
 const Navbar = ({ isOpen, setIsOpen, }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -57,7 +58,7 @@ const Navbar = ({ isOpen, setIsOpen, }) => {
                 </div>
                 <ShoppingCartOutlinedIcon color="black" />
                 <div className={styles.left}>
-                    <Link to='/' className={styles.link}><img src="https://i.imgur.com/S5awLwi.png" alt="" height="40px" /></Link>
+                    <Link to='/' className={styles.link}><LazyLoadImage src="https://i.imgur.com/S5awLwi.png" alt="" height="40px" /></Link>
                 </div>
                 <div className={styles.center}>
                     <Search />

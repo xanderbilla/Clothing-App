@@ -7,12 +7,13 @@ import PinterestIcon from '@mui/icons-material/Pinterest';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import EmailIcon from '@mui/icons-material/Email';
+import {LazyLoadImage} from 'react-lazy-load-image-component'
 
 const Footer = () => {
     return (
         <div className={styles.container}>
             <div className={styles.container_left}>
-                <img src="https://i.imgur.com/S5awLwi.png" alt="" height="40px" width="160px" />
+                <LazyLoadImage src="https://i.imgur.com/S5awLwi.png" alt="" height="40px" width="160px" />
                 <p className={styles.container_desc}>Browse, select, and purchase a wide variety of clothing products online. Also, provides a convenient and accessible way for shoppers to explore and shop for clothing items without the need to visit physical stores.</p>
                 <div className={styles.container_social}>
                     <div className={styles.container_social_icon}>
@@ -53,7 +54,7 @@ const Footer = () => {
                 <div className={styles.container_contact}><EmailIcon style={{ marginRight: '10px' }} />
                     xanderbilla@mail.com
                 </div>
-                <img className={styles.container_payment} src="https://i.imgur.com/iRvqTEm.png" alt="" />
+                <LazyLoadImage className={styles.container_payment} src="https://i.imgur.com/iRvqTEm.png" alt="" />
             </div>
         </div>
     )
