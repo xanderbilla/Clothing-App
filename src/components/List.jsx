@@ -7,7 +7,7 @@ const List = ({ cat, filters, sort }) => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(8);
+  const [itemsPerPage] = useState(3);
 
   useEffect(() => {
     const getProducts = async () => {
@@ -59,13 +59,13 @@ const List = ({ cat, filters, sort }) => {
       <div className={styles.content}>
         {cat
           ? currentItems.map((item) => <Product item={item} key={item.prodId} />)
-          : products.filter(item => item.isNew).slice(0, itemsPerPage).map((item) => <Product item={item} key={item.prodId} />)}
+          : products.filter(item => item.isNew).slice(0, 4).map((item) => <Product item={item} key={item.prodId} />)}
       </div>
       {filteredProducts.length > itemsPerPage && (
         <ul className={styles.pagination}>
           {Array.from({ length: Math.ceil(filteredProducts.length / itemsPerPage) }).map((_, index) => (
             <li key={index} className={`${styles.pageItem} ${currentPage === index + 1 ? styles.active : ''}`}>
-              <button className={styles.button} onClick={() => paginate(index + 1)}>{index + 1}</button>
+              {cat && <button className={styles.button} onClick={() => paginate(index + 1)}>{index + 1}</button>}
             </li>
           ))}
         </ul>
