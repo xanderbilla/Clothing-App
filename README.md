@@ -6,8 +6,6 @@
 
 # E Commerce Web Application
 
-The multi-e-commerce application is a comprehensive solution that encompasses four distinct apps: fashion web, food order, electronic e-commerce, and grocery apps. Each app operates independently, yet they are seamlessly integrated to provide users with a unified shopping experience.
-
 The fashion web app serves as an online store for clothing and fashion accessories. It features product listings, detailed product information, and a shopping cart. Users can search, browse, and add items to their cart, and complete purchases using various payment methods.
 
 ## Features
