@@ -12,20 +12,23 @@ The fashion web app serves as an online store for clothing and fashion accessori
 
 ## Features
 
-* View Products
-* Browse Products
-* Rate Products
-* Track Orders
-* Manage Orders
-* Manage Profile
-* Search and Filter Products
+> ## User
+> 
+> - View Products
+> - Browse Products
+> - Rate Products
+> - Track Orders
+> - Manage Orders
+> - Manage Profile
+> - Search and Filter Products
+> 
 
-## Admin Features
-* Create items
-* View items
-* Update items
-* Delete items
-* Manage Customer Orders
+> - ## Admin Features
+> - Create items
+> - View items
+> - Update items
+> - Delete items
+> - Manage Customer Orders
 
 ## Authors
 
