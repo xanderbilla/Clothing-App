@@ -78,13 +78,7 @@ This project is used by the following organization/people:
 
 For support, [email](mailto:xanderbilla@gmail.com) or message on [Instagram](https://instagram.com/xanderbilla).
 
-
-## Appendix
-
-This project is prohibited to use for commercial purpose.
-
-
 ## License
 
-[MIT](https://choosealicense.com/licenses/mit/)
-[Acharya Institute](https://www.acharya.ac.in/)
+- [MIT](https://choosealicense.com/licenses/mit/)
+- [Acharya Institute](https://www.acharya.ac.in/)
